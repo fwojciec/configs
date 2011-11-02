@@ -1,0 +1,27 @@
+<+	+>	!comp!	!exe!
+%        File: !comp!expand("%:p:t")!comp!
+%     Created: !comp!strftime("%a %b %d %I:00 %p %Y ").substitute(strftime('%Z'), '\<\(\w\)\(\w*\)\>\(\W\|$\)', '\1', 'g')!comp!
+% Last Change: !comp!strftime("%a %b %d %I:00 %p %Y ").substitute(strftime('%Z'), '\<\(\w\)\(\w*\)\>\(\W\|$\)', '\1', 'g')!comp!
+%
+\documentclass[12pt,letterpaper,oneside]{article}
+\usepackage[longnamesfirst,nonamebreak]{natbib}
+\usepackage{setspace}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{ulem}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pslatex}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\sectionfont{\small}
+\usepackage[greek,english]{babel}
+\def\textgreek#1{{\fontencoding{LGR}\fontfamily{cmr}\selectfont
+\def\encodingdefault{LGR}#1}}
+\usepackage[or]{teubner}
+\normalem
+\doublespace
+\setlength{\parindent}{0.7cm}
+\setlength{\parskip}{0.3cm}
+\begin{document}
+<++>
+\end{document}
