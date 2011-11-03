@@ -1,4 +1,6 @@
-. $HOME/.profile
-. $HOME/.bashrc
+# Source .profile and .bashrc if they exist
+[[ -f "$HOME/.profile" ]] && . $HOME/.profile
+[[ -f "$HOME/.bashrc" ]] && . $HOME/.bashrc
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+# Load RVM function
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
