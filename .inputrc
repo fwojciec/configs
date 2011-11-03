@@ -6,13 +6,16 @@
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 
+# mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
 "\eOD": backward-word
 "\eOC": forward-word
 "\eOd": backward-word
 "\eOc": forward-word
 
+# mappings for PgUp/PgDn
 "\e[5~": previous-history
 "\e[6~": next-history
 
+# allow the use of the Delete/Insert keys
 "\e[2~": kill-whole-line
 "\e[3~": delete-char

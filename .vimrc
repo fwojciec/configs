@@ -1,22 +1,33 @@
 " Set colorscheme to something nice
 
-if ($TERM == "screen-bce") || ($TERM == "xterm-256color")
+" Set number of colors depending on available terminfo
+if (&term =~ '^xterm')
+  set t_Co=256 
+elseif (&term =~ '^screen-bce')
+  set t_Co=256            " just guessing
+elseif (&term =~ '^rxvt')
   set t_Co=256
-endif
-
-if ($TERM == "linux")
+elseif (&term =~ '^linux')
   set t_Co=8
+else
+  set t_Co=16
 endif
 
+" Set colorscheme depending on available colors
+if (&t_Co == 256 || &t_Co == 88)
+  set background=dark
+  colorscheme herald
+else
+  set background=dark
+  colorscheme desert
+endif
+
+" GUI Configuration
 if has("gui_running")
     set guioptions=ac   
     set guifont=Envy\ Code\ R
+"    set gfn=Envy\ Code\ R:h10:cEASTEUROPE
     set lines=44
-    set background=dark
-    colorscheme herald
-else
-    set background=dark
-    colorscheme herald
 endif
 
 " Disable automatic backup to prevent creation of trash all around the hard drive
@@ -43,6 +54,14 @@ set showmode
 " with +wildmenu.  See :help 'wildmenu'
 set wildmenu
 
+" Let's make it easy to edit this file (mnemonic for the key sequence is
+" 'e'dit 'v'imrc)
+nmap <silent> ,ev :e $MYVIMRC<cr>
+
+" And to source this file as well (mnemonic for the key sequence is
+" 's'ource 'v'imrc)
+nmap <silent> ,sv :so $MYVIMRC<cr>
+
 " Forget being compatible with good ol' vi
 set nocompatible
 
@@ -60,6 +79,9 @@ set bs=2
 " Keymappings
 map <F2> :NERDTreeToggle<CR>    " F2 toggles NERDTree window
 map <F3> :set nu!<CR>           " F3 toggles line numbers
+nnoremap <F10> :set invpaste paste?<CR> "F10 toggles paste mode, for pasting 
+imap <F10> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F10>
 
 " Set the search scan to wrap around the file
 set wrapscan
