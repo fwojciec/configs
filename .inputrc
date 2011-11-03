@@ -1,0 +1,18 @@
+# for history search
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# fix home / end keys
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+"\eOD": backward-word
+"\eOC": forward-word
+"\eOd": backward-word
+"\eOc": forward-word
+
+"\e[5~": previous-history
+"\e[6~": next-history
+
+"\e[2~": kill-whole-line
+"\e[3~": delete-char
