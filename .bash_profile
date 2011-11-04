@@ -4,3 +4,11 @@
 
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# Keychain
+if [[ -x /usr/bin/keychain ]]; then
+  [[ -f ${HOME}/.ssh/id_dsa ]] && keychain -q --nolock ${HOME}/.ssh/id_dsa
+  [[ -f ${HOME}/.ssh/id_rsa ]] && keychain -q --nolock ${HOME}/.ssh/id_rsa
+  . "${HOME}/.keychain/${HOSTNAME}-sh" > /dev/null
+fi
+

@@ -7,6 +7,8 @@ elseif (&term =~ '^screen-bce')
   set t_Co=256            " just guessing
 elseif (&term =~ '^rxvt')
   set t_Co=256
+elseif (&term =~ '^putty')
+  set t_Co=256
 elseif (&term =~ '^linux')
   set t_Co=8
 else

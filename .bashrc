@@ -60,6 +60,7 @@ function prompt_func() {
         PS1="[${BOLD}${BLUE}\H${RESET}] ${RED}\w${RESET}${YELLOW}`__git_ps1`${RESET}\n> "
     fi
 }
+
 PROMPT_COMMAND=prompt_func
 
 ### Bash options
