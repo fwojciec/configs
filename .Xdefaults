@@ -58,12 +58,12 @@ xterm*geometry:			      120x30
 urxvt*termName:			      rxvt-256color
 !urxvt*termName:			      rxvt-unicode
 urxvt*depth:			        24
-urxvt*font:		            xft:Envy Code R:size=10
+!urxvt*font:		            xft:Envy Code R:size=10
 !urxvt*font:		          xft:Dina:size=8
-!urxvt*font:			        -*-dina-medium-r-*-*-*-*-*-*-*-*-*-*
-!urxvt*boldFont:          -*-dina-bold-r-*-*-*-*-*-*-*-*-*-*
-!urxvt*italicFont:			  -*-dina-medium-i-*-*-*-*-*-*-*-*-*-*
-!urxvt*boldItalicFont:	  -*-dina-bold-i-*-*-*-*-*-*-*-*-*-*
+urxvt*font:			        -*-dina-medium-r-*-*-*-*-*-*-*-*-*-*
+urxvt*boldFont:          -*-dina-bold-r-*-*-*-*-*-*-*-*-*-*
+urxvt*italicFont:			  -*-dina-medium-i-*-*-*-*-*-*-*-*-*-*
+urxvt*boldItalicFont:	  -*-dina-bold-i-*-*-*-*-*-*-*-*-*-*
 urxvt*internalBorder:     0
 URxvt*borderLess:         false 
 urxvt*cursorColor:		    #8f8f8f
