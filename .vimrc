@@ -143,6 +143,9 @@ set synmaxcol=2048
 " Mousewheel setting
 set mouse=a
 
+" Disable saving of swap files (never use them)
+set noswapfile
+
 "autocmd settings
 autocmd     FileType css                  set omnifunc=csscomplete#CompleteCSS
 autocmd     BufRead,BufNewFile *.scss     set filetype=scss

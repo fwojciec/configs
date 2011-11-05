@@ -39,7 +39,6 @@ alias cls="clear"
 # Arch Linux specific
 if [ -f /usr/bin/pacman ]; then
   alias pacman="sudo pacman"
-  alias vim="vim --servername vim"
 fi
 
 # Prompt
