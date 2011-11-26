@@ -94,6 +94,7 @@ sorendition 10 99
 # bind F12 to move to next window
 bindkey -k F1 prev
 bindkey -k F2 next
+bindkey -a -k fe stuff ^M
 
 # Startup screen sessions
 screen -t one 
