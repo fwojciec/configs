@@ -1,6 +1,12 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export CLICOLOR=1
+export LSCOLORS=FxFxCxDxBxegedabagacad
+
+# On OS X / homebrew makes coreutils use standard names
+[ `uname` == "Darwin" ] && PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
 # Dircolors
 eval `dircolors -b ~/.dircolors`
 
