@@ -5,7 +5,12 @@ export CLICOLOR=1
 export LSCOLORS=FxFxCxDxBxegedabagacad
 
 # On OS X / homebrew makes coreutils use standard names
-[ `uname` == "Darwin" ] && PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+if [ $(uname) == "Darwin" ]; then
+  PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:$PATH"
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+  fi
+fi
 
 # Dircolors
 eval `dircolors -b ~/.dircolors`
@@ -108,3 +113,5 @@ function x()
 }
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
