@@ -25,6 +25,11 @@ if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
+# Git prompt
+if [ -f /usr/share/git/git-prompt.sh ]; then
+  . /usr/share/git/git-prompt.sh
+fi
+
 # Aliases:
 if [ -f ~/.bash_aliases_local ]; then
   . ~/.bash_aliases_local
