@@ -7,8 +7,8 @@ export LSCOLORS=FxFxCxDxBxegedabagacad
 # On OS X / homebrew makes coreutils use standard names
 if [ $(uname) == "Darwin" ]; then
   PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:$PATH"
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
   fi
 fi
 
