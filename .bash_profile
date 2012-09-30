@@ -12,3 +12,7 @@ if [[ -x /usr/bin/keychain || -x $HOME/bin/keychain ]]; then
   . "${HOME}/.keychain/${HOSTNAME}-sh" > /dev/null
 fi
 
+# Loads bash_completion in OSX
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
