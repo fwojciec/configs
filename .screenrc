@@ -1,5 +1,5 @@
 # basic settings... self explainatory
-deflogin on
+#deflogin on
 autodetach on
 startup_message off
 
