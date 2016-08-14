@@ -18,3 +18,4 @@ if [ $(uname) == "Darwin" ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
 fi
+export PATH=/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/filip/.rvm/bin
