@@ -1,169 +1,146 @@
-" Set colorscheme to something nice
+" Inspired by https://www.youtube.com/watch?v=YhqsjUUHj6g
 
-" Set number of colors depending on available terminfo
-if (&term =~ '^xterm')
-  set t_Co=256 
-elseif (&term =~ '^screen-bce')
-  set t_Co=256            " just guessing
-elseif (&term =~ '^rxvt')
-  set t_Co=256
-elseif (&term =~ '^putty')
-  set t_Co=256
-elseif (&term =~ '^linux')
-  set t_Co=8
-else
-  set t_Co=16
-endif
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
 
-" Set colorscheme depending on available colors
-if (&t_Co == 256 || &t_Co == 88)
-  set background=dark
-  colorscheme herald
-else
-  set background=dark
-  colorscheme desert
-endif
+" Better copy and paste
+set pastetoggle=<F2>
+set clipboard=unnamed
 
-" GUI Configuration
-if has("gui_running")
-    set guioptions=ac   
-    set guifont=Envy\ Code\ R
-"    set gfn=Envy\ Code\ R:h10:cEASTEUROPE
-    set lines=44
-endif
+" Mouse and backspace
+set mouse=a	" on OSX press ALT and click
+set bs=2	" make backspace behave like normal again
 
-" Disable automatic backup to prevent creation of trash all around the hard drive
-set nobackup
+" Rebind <Leader> key
+let mapleader = ","
+
+" Bind nohl
+" Removes highlight of your list search
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
+
+" Bind Ctrl+<movement> keys to move around the windows instead of using Ctrl+w + <movement>
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+" Map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" Easier moving of code blocks
+vnoremap < <gv	" better indentation
+vnoremap > >gv	" better indentation
+
+" Show whitespace
+" Must be inserted BEFORE the colorscheme command
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Color scheme
+" mkdir -p ~/.vim/colors && cd ~/.vim/colors
+" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+set t_Co=256
+color wombat256mod
 
 " Enable syntax highlighting
+" You need to reload this file for the change to apply
+filetype off
+filetype plugin indent on
 syntax on
 
-" Get that filetype stuff happening
-filetype on
-filetype plugin on
-filetype indent on
+" Showing line numbers and length
+set number 	" show line numbers
+set tw=79	" width of document (used by gd)
+set nowrap 	" don't automatically wrap on load
+set fo-=t	" don't automatically wrap tex when typing
+set colorcolumn=80
+highlight ColorColumn ctermbg=233
 
-" Why is this not a default
-set hidden
+" Easier formatting of paragraphs
+vmap Q gq
+nmap Q gqap
 
-" Don't update the display while executing macros
-set lazyredraw
+" Useful settings
+set history=700
+set undolevels=700
 
-" At least let yourself know what mode you're in
-set showmode
+" Real programmers don't use TABs but spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
 
-" Enable enhanced command-line completion. Presumes you have compiled
-" with +wildmenu.  See :help 'wildmenu'
-set wildmenu
-
-" Let's make it easy to edit this file (mnemonic for the key sequence is
-" 'e'dit 'v'imrc)
-nmap <silent> ,ev :e $MYVIMRC<cr>
-
-" And to source this file as well (mnemonic for the key sequence is
-" 's'ource 'v'imrc)
-nmap <silent> ,sv :so $MYVIMRC<cr>
-
-" Forget being compatible with good ol' vi
-set nocompatible
-
-" Indentation / tab replacement stuff
-set shiftwidth=2        " > and < move block by 4 spaces in visual mode
-set tabstop=2
-set sts=2
-set expandtab           " expand tabs to spaces
-set autoindent          " always set autoindenting on
-set smartindent
-
-" Enable backspace on Windows
-set bs=2
-
-" Keymappings
-map <F2> :NERDTreeToggle<CR>    " F2 toggles NERDTree window
-map <F3> :set nu!<CR>           " F3 toggles line numbers
-nnoremap <F10> :set invpaste paste?<CR> "F10 toggles paste mode, for pasting 
-imap <F10> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F10>
-
-" Set the search scan to wrap around the file
-set wrapscan
-
-" Set the forward slash to be the slash of note.  Backslashes suck
-" This is really only applicable to Windows but I like to have a vimrc
-" that works no matter what OS I'm currently on
-set shellslash
-
-" Make command line two lines high
-set ch=2
-
-" disable visual bell
-set t_vb=
-
-" Allow backspacing over indent, eol, and the start of an insert
-set backspace=2
-
-" Set encoding to utf-8
-set encoding=utf8
-
-" See :help 'cpoptions' for these ones.  'cpoptions' has a huge
-" set of possible options
-set cpoptions=Bces$
-
-" Set the status line the way I like it
-"set stl=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
-"set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
-"set statusline=%t\ %y\ format:\ %{&ff};\ [%c,%l]
-
-" tell Vim to always put a status line in, even if there is only one
-" window
-set laststatus=2
-
-" Hide the mouse pointer while typing
-set mousehide
-
-" Keep some stuff in the history
-set history=100
-
-" These commands open folds
-set foldopen=block,insert,jump,mark,percent,quickfix,search,tag,undo
-
-" When the page starts to scroll, keep the cursor 8 lines from
-" the top and 8 lines from the bottom
-set scrolloff=8
-
-" Incrementally match the search.  I orignally hated this
-" but someone forced me to live with it for a while and told
-" me that I would grow to love it after getting used to it...
-" turns out he was right :)
+" Make search case insensitive
+set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
-" Syntax coloring lines that are too long just slows down the world
-set synmaxcol=2048
-
-" Mousewheel setting
-set mouse=a
-
-" Disable saving of swap files (never use them)
+" Disable backup and swap files -- they trigger too many events for file
+" system watchers
+set nobackup
+set nowritebackup
 set noswapfile
 
-"autocmd settings
-autocmd     FileType css                  set omnifunc=csscomplete#CompleteCSS
-autocmd     BufRead,BufNewFile *.scss     set filetype=scss
-autocmd     BufRead,BufNewFile *.sass     set filetype=sass
-au          BufRead,BufNewFile *.py,*.pyw set shiftwidth=4
-au          BufRead,BufNewFile *.py,*.pyw set tabstop=4
-au          BufRead,BufNewFile *.py,*.pyw set sts=4
-au          BufRead,BufNewFile *.py,*.pyw set expandtab
-
-if has("autocmd")
-  " Drupal *.module and *.install files.
-  augroup module
-    autocmd BufRead,BufNewFile *.module set filetype=php
-    autocmd BufRead,BufNewFile *.install set filetype=php
-    autocmd BufRead,BufNewFile *.test set filetype=php
-  augroup END
-endif
-
-" Call pathogen
+" Setup Pathogen to manage your plugins
+" mkdir -p ~/.vim/autoload ~/.vim/bundle
+" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 call pathogen#infect()
+
+" ============================================================================
+" Python IDE Setup
+" ============================================================================
+
+" Settings for vim-powerline
+" cd ~/.vim/bundle
+" git clone git://github.com/Lokaltog/vim-powerline.git
+set laststatus=2
+
+" Settings for ctrlp
+" cd ~/.vim/bundle
+" git clone https://github.com/kien/ctrlp.vim.git
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
+
+" Settings for jedi-vim
+" cd ~/.vim/bundle
+" git clone git://github.com/davidhalter/jedi-vim.git
+" cd ~/.vim/bundle/jedi-vim && git submodule update --init
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" Better navigating through omnicomplete option list
+" See
+" http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+set completeopt=longest,menuone
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == 'j'
+            return "\<C-N>"
+        elseif a:action == 'k'
+            return "\<C-P>"
+        endif
+    endif
+    return a:action
+endfunction
+
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+" Python folding
+" mkdir -p ~/.vim/ftplugin
+" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
+set nofoldenable
 
