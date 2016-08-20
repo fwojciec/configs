@@ -75,13 +75,11 @@ BLUE="\033[34m"
 RED="\033[31m"
 YELLOW="\033[33m"
 PINK="\033[35m"
-
-VE=${VIRTUAL_ENV:+($PINK`basename $VIRTUAL_ENV`$RESET) }
-GP=${YELLOW}`__git_ps1`${RESET}
+LIGHT_GRAY="\[\033[0;37m\]"
 
 function prompt_func() {
     if [ `/usr/bin/whoami` != "root" ]; then
-        PS1="[${BOLD}${BLUE}\H${RESET}] ${GREEN}\w${RESET}${VIRTUAL_ENV:+$BLUE (`basename $VIRTUAL_ENV`)$RESET}${YELLOW}`__git_ps1`${RESET}\n> "
+        PS1="[${BOLD}${BLUE}\H${RESET}] ${GREEN}\w${RESET}${VIRTUAL_ENV:+$LIGHT_GRAY (`basename $VIRTUAL_ENV`)$RESET}${YELLOW}`__git_ps1`${RESET}\n> "
     else
         PS1="[${BOLD}${BLUE}\H${RESET}] ${RED}\w${RESET}${GP}\n> "
     fi
