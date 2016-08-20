@@ -12,8 +12,10 @@ if [ $(uname) == "Darwin" ]; then
   fi
   if [ -f /usr/local/bin/python3 ]; then
       alias python='python3'
+      alias pip='pip3'
   fi
 fi
+
 
 # Dircolors
 eval `dircolors -b ~/.dircolors`
@@ -39,10 +41,6 @@ if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
-# Git prompt
-if [ -f /usr/share/git/git-prompt.sh ]; then
-  . /usr/share/git/git-prompt.sh
-fi
 
 # Aliases:
 if [ -f ~/.bash_aliases_local ]; then
@@ -60,9 +58,16 @@ if [ -f /usr/bin/pacman ]; then
   alias pacman="sudo pacman"
 fi
 
-# Prompt
-GIT_PS1_SHOWDIRTYSTATE=true
+# Git prompt
+if [ -f /usr/share/git/git-prompt.sh ]; then
+  . /usr/share/git/git-prompt.sh
+fi
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM="auto"
 
+# Prompt
 BOLD="\033[1m"
 GREEN="\033[32m"
 RESET="\033[0m"
@@ -71,23 +76,26 @@ RED="\033[31m"
 YELLOW="\033[33m"
 PINK="\033[35m"
 
+VE=${VIRTUAL_ENV:+($PINK`basename $VIRTUAL_ENV`$RESET) }
+GP=${YELLOW}`__git_ps1`${RESET}
+
 function prompt_func() {
     if [ `/usr/bin/whoami` != "root" ]; then
-        PS1="[${BOLD}${BLUE}\H${RESET}] ${GREEN}\w${RESET}${YELLOW}`__git_ps1`${RESET}\n> "
+        PS1="[${BOLD}${BLUE}\H${RESET}] ${GREEN}\w${RESET}${VIRTUAL_ENV:+$BLUE (`basename $VIRTUAL_ENV`)$RESET}${YELLOW}`__git_ps1`${RESET}\n> "
     else
-        PS1="[${BOLD}${BLUE}\H${RESET}] ${RED}\w${RESET}${YELLOW}`__git_ps1`${RESET}\n> "
+        PS1="[${BOLD}${BLUE}\H${RESET}] ${RED}\w${RESET}${GP}\n> "
     fi
 }
 
 PROMPT_COMMAND=prompt_func
 
 ### Bash options
-shopt -s cdspell                   
-shopt -s histappend               
-shopt -s checkwinsize            
-complete -cf sudo               
-#set -o noclobber              
-set -o ignoreeof              
+shopt -s cdspell
+shopt -s histappend
+shopt -s checkwinsize
+complete -cf sudo
+#set -o noclobber
+set -o ignoreeof
 #set -o nounset
 shopt -s extglob
 shopt -s cmdhist
@@ -121,5 +129,4 @@ function x()
 }
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
