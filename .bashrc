@@ -10,10 +10,10 @@ if [ $(uname) == "Darwin" ]; then
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
-  if [ -f /usr/local/bin/python3 ]; then
-      alias python='python3'
-      alias pip='pip3'
-  fi
+#  if [ -f /usr/local/bin/python3 ]; then
+#      alias python='python3'
+#      alias pip='pip3'
+#  fi
 fi
 
 
