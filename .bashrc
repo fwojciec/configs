@@ -126,5 +126,11 @@ function x()
     fi
 }
 
+#Iterm 2 Shell integration
+
+if [ -f $HOME/.iterm2_shell_integration.`basename $SHELL` ]; then
+	source ~/.iterm2_shell_integration.`basename $SHELL`
+fi
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

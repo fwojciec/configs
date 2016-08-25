@@ -24,3 +24,5 @@ export PATH=/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sb
 if [ -d $HOME/bin ]; then
     export PATH=$HOME/bin:$PATH
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

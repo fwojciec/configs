@@ -48,6 +48,9 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 set t_Co=256
 color wombat256mod
 
+" gvim font
+set guifont=Envy\ Code\ R:h14
+
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
 filetype off
@@ -118,28 +121,28 @@ let g:ctrlp_working_path_mode = 'ra'
 " cd ~/.vim/bundle
 " git clone git://github.com/davidhalter/jedi-vim.git
 " cd ~/.vim/bundle/jedi-vim && git submodule update --init
-let g:jedi#usages_command = "<leader>z"
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"let g:jedi#usages_command = "<leader>z"
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_select_first = 0
+"map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Better navigating through omnicomplete option list
 " See
 " http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-set completeopt=longest,menuone
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+"set completeopt=longest,menuone
+"function! OmniPopup(action)
+"    if pumvisible()
+"        if a:action == 'j'
+"            return "\<C-N>"
+"        elseif a:action == 'k'
+"            return "\<C-P>"
+"        endif
+"    endif
+"    return a:action
+"endfunction
+"
+"inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+"inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 " Python folding
 " mkdir -p ~/.vim/ftplugin
@@ -153,12 +156,12 @@ set pastetoggle=<F2>
 let g:user_emmet_install_global = 0
 autocmd FileType html,htmldjango,css,scss EmmetInstall
 "imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key='<C-e>'
 
 " NREDTree configuration
 map <C-n> :NERDTreeToggle<CR>
 " If nerdtree is the only window open close vim
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " YouCompleteMe settings
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
@@ -173,4 +176,12 @@ let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
 let g:UltiSnipsListSnippets        = "<c-k>" "List possible snippets based on current file
 
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
