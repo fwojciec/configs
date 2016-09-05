@@ -16,7 +16,6 @@ if [ $(uname) == "Darwin" ]; then
 #  fi
 fi
 
-
 # Dircolors
 eval `dircolors -b ~/.dircolors`
 
@@ -66,6 +65,12 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="auto"
+
+if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
+    GIT_PROMPT_THEME=Default
+    source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+fi
+
 
 # Prompt
 BOLD="\033[1m"
