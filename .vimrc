@@ -1,10 +1,10 @@
 " Inspired by https://www.youtube.com/watch?v=YhqsjUUHj6g
 
 " Disable some mappings to learn vim
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
