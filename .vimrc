@@ -64,10 +64,10 @@ syntax on
 " Showing line numbers and length
 set relativenumber
 set number 	" show line numbers
-set tw=79	" width of document (used by gd)
+set tw=99	" width of document (used by gd)
 set nowrap 	" don't automatically wrap on load
 set fo-=t	" don't automatically wrap tex when typing
-set colorcolumn=80
+set colorcolumn=100
 highlight ColorColumn ctermbg=233
 
 " Easier formatting of paragraphs
@@ -93,6 +93,7 @@ autocmd FileType htmldjango set commentstring={#\ %s\ #}
 
 " Use different settings for html, css and django templates
 autocmd Filetype python,python.django setlocal ts=4 sts=4 sw=4
+autocmd FileType python,python.django set colorcolumn=100
 
 " Make search case insensitive
 set hlsearch
@@ -168,3 +169,6 @@ if has('gui_running')
 else
     colorscheme wombat256mod
 endif
+
+" Pylint configuration file
+let g:pymode_lint_config = '$HOME/.pylint.rc'
