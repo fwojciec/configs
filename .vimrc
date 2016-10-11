@@ -47,6 +47,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 " gvim font
 "set guifont=Envy\ Code\ R:h14
 set guifont=Monaco\ for\ Powerline:h13
+" set guifont=Hack:h13
 " set guifont=Cousine\ for\ Powerline:h13
 
 " Set guioptions
@@ -172,3 +173,7 @@ endif
 
 " Pylint configuration file
 let g:pymode_lint_config = '$HOME/.pylint.rc'
+let g:pymode_options_max_line_length=100
+" let g:pymode_rope=0
+" let g:pymode_rope_lookup_project = 0
+

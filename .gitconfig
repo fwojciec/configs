@@ -1,0 +1,5 @@
+[user]
+	name = Filip Wojciechowski
+	email = fwojciec@gmail.com
+[credential]
+	helper = osxkeychain
