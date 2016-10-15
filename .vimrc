@@ -176,9 +176,3 @@ endif
 " Pylint configuration file
 let g:pymode_lint_config = '$HOME/.pylint.rc'
 let g:pymode_options_max_line_length=100
-<<<<<<< HEAD
-=======
-" let g:pymode_rope=0
-" let g:pymode_rope_lookup_project = 0
-
->>>>>>> 87676a8c3ab23d8297ad9cdd7403995eb5648100
