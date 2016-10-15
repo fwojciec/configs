@@ -4,6 +4,9 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/us
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/filip/.oh-my-zsh
 
+# Custom configuration
+ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
+
 # ZSH theme
 ZSH_THEME="my-agnoster"
 DEFAULT_USER="filip"
@@ -43,5 +46,3 @@ alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
 
-# Custom configuration
-ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
