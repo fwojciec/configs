@@ -43,4 +43,5 @@ alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
 
-
+# Custom configuration
+ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
