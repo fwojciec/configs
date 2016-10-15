@@ -165,10 +165,13 @@ set t_Co=256
 set background=dark
 
 if has('gui_running')
+    set background=light
     colorscheme solarized
 else
-    colorscheme wombat256mod
+    set background=dark
+    colorscheme solarized
 endif
 
 " Pylint configuration file
 let g:pymode_lint_config = '$HOME/.pylint.rc'
+let g:pymode_options_max_line_length=100
