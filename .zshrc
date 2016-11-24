@@ -8,7 +8,8 @@ export ZSH=/Users/filip/.oh-my-zsh
 ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
 
 # ZSH theme
-ZSH_THEME="my-agnoster"
+# ZSH_THEME="my-agnoster"
+ZSH_THEME="spaceship"
 DEFAULT_USER="filip"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
