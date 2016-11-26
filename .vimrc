@@ -166,10 +166,10 @@ set t_Co=256
 set background=dark
 
 if has('gui_running')
-    set background=light
+    set background=dark
     colorscheme solarized
 else
-    set background=dark
+    set background=light
     colorscheme solarized
 endif
 
