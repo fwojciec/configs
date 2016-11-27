@@ -46,7 +46,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " gvim font
 "set guifont=Envy\ Code\ R:h14
-set guifont=Monaco\ for\ Powerline:h13
+set guifont=Monaco\ for\ Powerline:h15
 " set guifont=Hack:h13
 " set guifont=Cousine\ for\ Powerline:h13
 
@@ -60,6 +60,7 @@ set guifont=Monaco\ for\ Powerline:h13
 " You need to reload this file for the change to apply
 filetype off
 filetype plugin indent on
+let python_highlight_all=1
 syntax on
 
 " Showing line numbers and length
@@ -85,6 +86,8 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
+set autoindent
+set fileformat=unix
 
 " Use different settings for html, css and django templates
 autocmd Filetype html,htmldjango,css,scss setlocal ts=2 sts=2 sw=2 | EmmetInstall
@@ -176,3 +179,16 @@ endif
 " Pylint configuration file
 let g:pymode_lint_config = '$HOME/.pylint.rc'
 let g:pymode_options_max_line_length=100
+
+" Disable automatic folding
+set nofoldenable
+
+"Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
