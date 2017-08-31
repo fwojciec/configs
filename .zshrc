@@ -46,4 +46,11 @@ alias ls="ls -hF --color=auto --group-directories-first"
 alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
+if [[ `uname` = "Darwin" ]]; then
+    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+fi
 
+# Load local Django variables
+if [[ -a ~/.django_vars ]]; then
+    source ~/.django_vars
+fi
