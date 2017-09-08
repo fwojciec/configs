@@ -46,7 +46,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " gvim font
 "set guifont=Envy\ Code\ R:h14
-set guifont=Monaco\ for\ Powerline:h15
+set guifont=Monaco\ for\ Powerline:h14
 " set guifont=Hack:h13
 " set guifont=Cousine\ for\ Powerline:h13
 
@@ -91,6 +91,7 @@ set fileformat=unix
 
 " Use different settings for html, css and django templates
 autocmd Filetype html,htmldjango,css,scss setlocal ts=2 sts=2 sw=2 | EmmetInstall
+autocmd Filetype javascript,javascript.jsx setlocal ts=2 sts=2 sw=2
 
 " Use a different comment style for Django's HTML templates.
 autocmd FileType htmldjango set commentstring={#\ %s\ #}
@@ -171,6 +172,12 @@ set background=dark
 if has('gui_running')
     set background=dark
     colorscheme solarized
+    highlight SignColumn guibg=bg
+    " if &background ==# "light"
+    "     highlight SignColumn guibg=#eee7d4
+    " else
+    "     highlight SignColumn guibg=#013944
+    " endif
 else
     set background=dark
     colorscheme solarized
@@ -184,12 +191,23 @@ let g:pymode_options_max_line_length=100
 set nofoldenable
 
 "Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height=3
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_loc_list_height=3
+" let g:syntastic_python_checkers = ['flake8']
+
+"Ale settings
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+" highlight SignColumn guibg=bg
+let g:ale_completion_enabled = 0
+
+"Javascript settings
+let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
