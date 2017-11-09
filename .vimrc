@@ -133,6 +133,7 @@ let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_working_path_mode = 'ra'
 
@@ -180,7 +181,8 @@ if has('gui_running')
     " endif
 else
     set background=dark
-    colorscheme solarized
+    " colorscheme solarized
+    colorscheme wombat256mod
 endif
 
 " Pylint configuration file
@@ -191,23 +193,25 @@ let g:pymode_options_max_line_length=100
 set nofoldenable
 
 "Syntastic settings
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_loc_list_height=3
-" let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height=3
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_javascript_checkers = ['eslint']
 
-"Ale settings
-let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
-" highlight SignColumn guibg=bg
-let g:ale_completion_enabled = 0
+
+" "Ale settings
+" let g:ale_sign_column_always = 1
+" let g:airline#extensions#ale#enabled = 1
+" " highlight SignColumn guibg=bg
+" let g:ale_completion_enabled = 0
 
 "Javascript settings
 let g:javascript_plugin_flow = 1
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1

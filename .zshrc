@@ -54,3 +54,8 @@ fi
 if [[ -a ~/.django_vars ]]; then
     source ~/.django_vars
 fi
+
+# Load local Django fairlendar variables
+if [[ -a ~/.fairlendar_vars ]]; then
+    source ~/.fairlendar_vars
+fi
