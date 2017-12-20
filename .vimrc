@@ -6,6 +6,14 @@
 " noremap <Left> <NOP>
 " noremap <Right> <NOP>
 
+" Keyboard movement
+noremap <Char-0x05> $
+noremap <Char-0x01> ^
+inoremap <Char-0x05> <C-o>$
+inoremap <Char-0x01> <C-o>^
+noremap <D-Up> <C-f>
+noremap <D-Down> <C-b>
+
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
@@ -22,10 +30,10 @@ set bs=2	" make backspace behave like normal again
 let mapleader = " "
 
 " Bind Ctrl+<movement> keys to move around the windows instead of using Ctrl+w + <movement>
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+" map <c-j> <c-w>j
+" map <c-k> <c-w>k
+" map <c-l> <c-w>l
+" map <c-h> <c-w>h
 
 " Easier moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
@@ -134,8 +142,12 @@ set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 set wildignore+=*/node_modules/*
+set wildignore+=*/venv/*
+set wildignore+=*.egg-info*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Python folding
 " mkdir -p ~/.vim/ftplugin
@@ -182,7 +194,8 @@ if has('gui_running')
 else
     set background=dark
     " colorscheme solarized
-    colorscheme wombat256mod
+    " colorscheme wombat256mod
+    colorscheme NeoSolarized
 endif
 
 " Pylint configuration file
@@ -215,3 +228,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 "Javascript settings
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 1
+
+" Autopep8 settings
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+let g:autopep8_max_line_length=100
+let g:autopep8_disable_show_diff=1
+
