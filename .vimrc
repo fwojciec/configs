@@ -145,6 +145,7 @@ set wildignore+=*/node_modules/*
 set wildignore+=*/venv/*
 set wildignore+=*.egg-info*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/package-lock.json
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -193,9 +194,14 @@ if has('gui_running')
     " endif
 else
     set background=dark
+<<<<<<< Updated upstream
     " colorscheme solarized
     " colorscheme wombat256mod
     colorscheme NeoSolarized
+=======
+    colorscheme solarized
+    " colorscheme wombat256mod
+>>>>>>> Stashed changes
 endif
 
 " Pylint configuration file
