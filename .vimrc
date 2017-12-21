@@ -194,14 +194,10 @@ if has('gui_running')
     " endif
 else
     set background=dark
-<<<<<<< Updated upstream
-    " colorscheme solarized
-    " colorscheme wombat256mod
-    colorscheme NeoSolarized
-=======
+    colorscheme solarized
+    " colorscheme NeoSolarized
     colorscheme solarized
     " colorscheme wombat256mod
->>>>>>> Stashed changes
 endif
 
 " Pylint configuration file
@@ -239,4 +235,3 @@ let g:jsx_ext_required = 1
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 let g:autopep8_max_line_length=100
 let g:autopep8_disable_show_diff=1
-
