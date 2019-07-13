@@ -1,116 +1,41 @@
-" Inspired by https://www.youtube.com/watch?v=YhqsjUUHj6g
+call plug#begin('~/.vim/plugged')
 
-" Disable some mappings to learn vim
-" noremap <Up> <NOP>
-" noremap <Down> <NOP>
-" noremap <Left> <NOP>
-" noremap <Right> <NOP>
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
-" Keyboard movement
-noremap <Char-0x05> $
-noremap <Char-0x01> ^
-inoremap <Char-0x05> <C-o>$
-inoremap <Char-0x01> <C-o>^
-noremap <D-Up> <C-f>
-noremap <D-Down> <C-b>
+" Color schemes and interface
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhartington/oceanic-next'
 
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
+" CtrlP
+Plug 'kien/ctrlp.vim'
 
-" Better copy and paste
-set pastetoggle=<F2>
-set clipboard=unnamed
+" Linting
+Plug 'w0rp/ale'
 
-" Mouse and backspace
-set mouse=a	" on OSX press ALT and click
-set bs=2	" make backspace behave like normal again
+" Go Support
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Rebind <Leader> key
-" Map it to space rather than comma, bacause comma is useful for movement
-let mapleader = " "
+" LSP support
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+call plug#end()
 
-" Bind Ctrl+<movement> keys to move around the windows instead of using Ctrl+w + <movement>
-" map <c-j> <c-w>j
-" map <c-k> <c-w>k
-" map <c-l> <c-w>l
-" map <c-h> <c-w>h
-
-" Easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
-
-" Map sort function to a key
-"vnoremap <Leader>s :sort<CR>
-
-" Easier moving of code blocks
-vnoremap < <gv	" better indentation
-vnoremap > >gv	" better indentation
-
-" Show whitespace
-" Must be inserted BEFORE the colorscheme command
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
-
-
-" gvim font
-"set guifont=Envy\ Code\ R:h14
-set guifont=Monaco\ for\ Powerline:h14
-" set guifont=Hack:h13
-" set guifont=Cousine\ for\ Powerline:h13
-
-" Set guioptions
-:set guioptions-=m  "remove menu bar
-:set guioptions-=T  "remove toolbar
-:set guioptions-=r  "remove right-hand scroll bar
-:set guioptions-=L  "remove left-hand scroll bar
-
-" Enable syntax highlighting
-" You need to reload this file for the change to apply
-filetype off
-filetype plugin indent on
-let python_highlight_all=1
-syntax on
-
-" Showing line numbers and length
+" configuration
+" let mapleader=","
+set number
 set relativenumber
-set number 	" show line numbers
-set tw=99	" width of document (used by gd)
-set nowrap 	" don't automatically wrap on load
-set fo-=t	" don't automatically wrap tex when typing
-set colorcolumn=100
-highlight ColorColumn ctermbg=233
-
-" Easier formatting of paragraphs
-vmap Q gq
-nmap Q gqap
-
-" Useful settings
-set history=700
-set undolevels=700
-
-" Real programmers don't use TABs but spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
-set expandtab
-set autoindent
-set fileformat=unix
-
-" Use different settings for html, css and django templates
-autocmd Filetype html,htmldjango,css,scss setlocal ts=2 sts=2 sw=2 | EmmetInstall
-autocmd Filetype javascript,javascript.jsx setlocal ts=2 sts=2 sw=2
-
-" Use a different comment style for Django's HTML templates.
-autocmd FileType htmldjango set commentstring={#\ %s\ #}
-
-" Use different settings for html, css and django templates
-autocmd Filetype python,python.django setlocal ts=4 sts=4 sw=4
-autocmd FileType python,python.django set colorcolumn=100
+set clipboard=unnamed
+set hidden
+set cmdheight=2
+set updatetime=300
+set signcolumn=yes
+set autowrite " helpful for vim-go so you can build/run without saving beforhand
 
 " Make search case insensitive
 set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 
@@ -120,19 +45,97 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
-call pathogen#infect()
+" Splits
+set splitbelow
+set splitright
 
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
+filetype plugin indent on
+syntax on
+
+" visual
+set t_Co=256
+set background=dark
+" if (has("termguicolors"))
+" 	set termguicolors
+" endif
+if exists('+termguicolors')
+	let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
+
+colorscheme OceanicNext
+
+" Send more characters for redraws
+set ttyfast
+" Enable the mouse in all modes
+set mouse=a
+
+" move line up and down with indentation
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" Reindent the entire file
+nmap <leader>= mzgg=G`z
+
+" vim-go mappings and configuration
+" map <C-n> :cnext<CR>
+" map <C-m> :cprevious<CR>
+" nnoremap <leader>a :cclose<CR>
+" let g:go_list_type = "quickfix"
+" let g:go_fmt_command = "goimports"
+" " let g:go_highlight_types = 1
+" " let g:go_highlight_functions = 1
+" " let g:go_highlight_function_calls = 1
+" " let g:go_highlight_extra_types = 1
+" let g:go_term_height = 10
+" let g:go_term_width = 30
+" let g:go_term_mode = "split"
+" let g:go_auto_type_info = 1
+" let g:go_term_enabled = 1
+" let g:go_def_mode='gopls'
+" let g:go_info_mode='gopls'
+let g:go_metalinter_enabled = 0
+let g:go_def_mapping_enabled = 0 " coc.nvim takes care of that now
+let g:go_fmt_fail_silently = 1 " prevents opening location list on lint errors
+
+" fun :GoBuild or :GoTestCompile based on the go file
+" function! s:build_go_files()
+" 	let l:file = expand('%')
+" 	if l:file =~# '^\f\+_test\.go$'
+" 		call go#test#Test(0, 1)
+" 	elseif l:file =~# '^\f\+\.go$'
+" 		call go#cmd#Build(0)
+" 	endif
+" endfunction
+
+" AutoCommands
+augroup AutoCommands
+	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
+	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.yaml setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.vim setlocal tabstop=4 shiftwidth=4
+	" autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+	" autocmd FileType go nmap <leader>b  <Plug>(go-build)
+	" autocmd FileType go nmap <leader>r  <Plug>(go-run)
+	" autocmd FileType go nmap <leader>t  <Plug>(go-test)
+	" autocmd FileType go nmap <leader>c  <Plug>(go-coverage-toggle)
+	" autocmd FileType go nmap <Leader>i  <Plug>(go-info)
+	" autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+	" autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+	" autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+	" autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
 
 " Settings for vim-airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " Settings for ctrlp
 " cd ~/.vim/bundle
@@ -149,89 +152,86 @@ set wildignore+=*/package-lock.json
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_use_caching = 0
 
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-" set nofoldenable
+" " deoplete configuration
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" set completeopt-=preview
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" Emmet Vim configs
-let g:user_emmet_install_global = 0
-autocmd FileType html,htmldjango,css,scss EmmetInstall
-"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-let g:user_emmet_leader_key='<C-e>'
-
-" NREDTree configuration
-map <C-n> :NERDTreeToggle<CR>
-" If nerdtree is the only window open close vim
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" YouCompleteMe settings
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
-set completeopt=menu "prevents opening of docs menu
-
-" Disable bell in gvim/macvim
-autocmd! GUIEnter * set vb t_vb=
-
-" Color scheme
-" mkdir -p ~/.vim/colors && cd ~/.vim/colors
-" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
-set t_Co=256
-set background=dark
-
-if has('gui_running')
-    set background=dark
-    colorscheme solarized
-    highlight SignColumn guibg=bg
-    " if &background ==# "light"
-    "     highlight SignColumn guibg=#eee7d4
-    " else
-    "     highlight SignColumn guibg=#013944
-    " endif
-else
-    set background=dark
-    colorscheme solarized
-    " colorscheme NeoSolarized
-    colorscheme solarized
-    " colorscheme wombat256mod
-endif
-
-" Pylint configuration file
-let g:pymode_lint_config = '$HOME/.pylint.rc'
-let g:pymode_options_max_line_length=100
-
-" Disable automatic folding
-set nofoldenable
-
-"Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height=3
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_javascript_checkers = ['eslint']
+" ale configuration
+let g:ale_fixers = {'go': ['goimports']}
+let g:ale_linters = {'go': ['golint', 'gopls', 'govet']}
+let g:ale_fix_on_save = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_set_loclist = 0
+let g:ale_open_list = 0
 
 
-" "Ale settings
-" let g:ale_sign_column_always = 1
-" let g:airline#extensions#ale#enabled = 1
-" " highlight SignColumn guibg=bg
-" let g:ale_completion_enabled = 0
+" coc.nvim settings
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
-"Javascript settings
-let g:javascript_plugin_flow = 1
-let g:jsx_ext_required = 1
+inoremap <silent><expr> <TAB>
+			\ pumvisible() ? coc#_select_confirm() :
+			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
 
-" Autopep8 settings
-autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-let g:autopep8_max_line_length=100
-let g:autopep8_disable_show_diff=1
+" inoremap <silent><expr> <Tab>
+" 			\ pumvisible() ? "\<C-n>" :
+" 			\ <SID>check_back_space() ? "\<Tab>" :
+" 			\ coc#refresh()
+
+let g:coc_snippet_next = '<tab>'
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use U to show documentation in preview window
+nnoremap <silent> U :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
