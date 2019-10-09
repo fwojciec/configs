@@ -1,0 +1,111 @@
+{
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[reason]": {
+    "editor.tabSize": 2,
+  },
+  "[css]": {
+    "editor.tabSize": 2
+  },
+  "[scss]": {
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.tabSize": 4
+  },
+  "editor.fontFamily": "'Operator Mono Lig', 'Cascadia Code', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  // "workbench.colorCustomizations": {
+  //   "titleBar.inactiveBackground": "#1b2b34"
+  // },
+  "go.useLanguageServer": true,
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "--fast"
+  ],
+  "[go]": {
+    "editor.tabSize": 8,
+    "editor.snippetSuggestions": "none",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "gopls": {
+    "usePlaceholders": true, // add parameter placeholders when completing a function
+    "completionDocumentation": true, // for documentation in completion items
+    "completeUnimported": true,
+    "deepCompletion": true
+  },
+  "files.eol": "\n",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "eslint.autoFixOnSave": true, // formatting only supports LF line endings
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "terminal.integrated.fontWeight": "400",
+  "terminal.integrated.fontWeightBold": "500",
+  "eslint.alwaysShowStatus": true,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "prettier.printWidth": 100,
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": true,
+  "breadcrumbs.enabled": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.renderIndentGuides": false,
+  "editor.fontWeight": "400",
+  "editor.letterSpacing": 0.1,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "entity.other.inherited-class",
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+  "workbench.colorTheme": "Halcyon",
+  "files.associations": {
+    "*.pgsql": "sql"
+  },
+  "extensions.ignoreRecommendations": false,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": true,
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 15,
+  // "elm.compiler": "./node_modules/.bin/elm",
+  "elm.compiler": "/usr/local/bin/elm",
+  // "elm.makeCommand": "./node_modules/.bin/elm-make"
+  "elm.makeCommand": "/usr/local/bin/elm make",
+  "languageServerHaskell.hlintOn": true,
+  "languageServerHaskell.liquidOn": true,
+  "languageServerHaskell.useCustomHieWrapper": true,
+  "languageServerHaskell.useCustomHieWrapperPath": "hie-wrapper"
+}
