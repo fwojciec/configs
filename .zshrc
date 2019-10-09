@@ -6,7 +6,7 @@ bindkey "^[e" end-of-line
 
 # Path
 # COREUTILS_PATH=/usr/local/opt/coreutils/libexec/gnubin
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin:$HOME/.local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/filip/.oh-my-zsh
@@ -67,3 +67,6 @@ export PATH=$PATH:$GOPATH/bin
 
 # Disables shared history
 unsetopt share_history
+
+# Haskell ghcup
+source .ghcup/env
