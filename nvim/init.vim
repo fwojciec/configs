@@ -1,11 +1,12 @@
 call plug#begin()
 Plug 'tpope/vim-commentary'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mhartington/oceanic-next'
-Plug 'drewtempelmeyer/palenight.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'itchyny/lightline.vim'
+" Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'itchyny/vim-haskell-indent'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -25,22 +26,20 @@ set hlsearch
 set ignorecase
 set smartcase
 set mouse=a
+set noshowmode
 
 set t_Co=256
 set background=dark
-if exists('+termguicolors')
-	let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+if (has('termguicolors'))
 	set termguicolors
 endif
-" colorscheme OceanicNext
-colorscheme palenight
+colorscheme gruvbox
 
 syntax on
 filetype plugin indent on
 
 augroup AutoCommands
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+	autocmd BufWritePost init.vim so $MYVIMRC | call LightlineReload()
 	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
@@ -53,18 +52,19 @@ augroup AutoCommands
 	autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
 augroup END
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" Use tab for trigger completion with characters ahead, navigate (and snippets)
 inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
+			\ pumvisible() ? coc#_select_confirm() :
+			\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
 			\ <SID>check_back_space() ? "\<TAB>" :
 			\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -112,6 +112,8 @@ augroup mygroup
 	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
 	" Update signature help on jump placeholder
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+	autocmd BufWritePre *.hs :call CocAction('format')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -142,9 +144,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -162,3 +161,38 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Lightline configuration
+function! CocCurrentFunction()
+	return get(b:, 'coc_current_function', '')
+endfunction
+
+function! LightlineReload()
+	call lightline#init()
+	call lightline#colorscheme()
+	call lightline#update()
+endfunction
+
+let g:lightline = {
+			\ 'colorscheme': 'gruvbox',
+			\ 'active': {
+			\   'left': [ [ 'mode', 'paste' ],
+			\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+			\ },
+			\ 'component_function': {
+			\   'cocstatus': 'coc#status',
+			\   'currentfunction': 'CocCurrentFunction'
+			\ },
+			\ }
+
+" FZF configuration
+noremap <leader>p :FZF<CR>
+
+" vim-go configuration
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_metalinter_autosave=1
+
+" vim-haskell settings
+let g:haskell_indent_before_where = 1
+let g:haskell_indent_after_bare_where = 1

@@ -69,4 +69,4 @@ export PATH=$PATH:$GOPATH/bin
 unsetopt share_history
 
 # Haskell ghcup
-source .ghcup/env
+source $HOME/.ghcup/env

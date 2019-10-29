@@ -17,7 +17,28 @@
 					"hlintOn": true
 				}
 			}
+		},
+		"golang": {
+			"command": "gopls",
+			"rootPatterns": [
+				"go.mod",
+				".vim/",
+				".git/",
+				".hg/"
+			],
+			"filetypes": [
+				"go"
+			],
+			"initializationOptions": {
+				"usePlaceholders": true,
+				"completeUnimported": true,
+				"deepCompletion": true
+			}
 		}
-	}
+	},
+	"suggest.minTriggerInputLength": 2,
+	"snippets.ultisnips.directories": [
+		"UltiSnips",
+		"/Users/filip/.config/nvim/plugged/vim-go/gosnippets/UltiSnips"
+	]
 }
-
