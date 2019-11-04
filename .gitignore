@@ -1,2 +1,3 @@
 .vim/bundle
 .DS_Store
+.oh_my_zsh_custom/themes/spaceship-prompt
