@@ -2,13 +2,15 @@ call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
-" Plug 'morhetz/gruvbox'
 Plug 'gruvbox-community/gruvbox'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'kien/ctrlp.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf'
+" Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -43,6 +45,10 @@ augroup AutoCommands
 	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.yaml setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.vim setlocal tabstop=4 shiftwidth=4
@@ -186,7 +192,7 @@ let g:lightline = {
 			\ }
 
 " FZF configuration
-noremap <leader>p :FZF<CR>
+" noremap <leader>p :FZF<CR>
 
 " vim-go configuration
 let g:go_def_mode='gopls'
@@ -196,3 +202,17 @@ let g:go_metalinter_autosave=1
 " vim-haskell settings
 let g:haskell_indent_before_where = 1
 let g:haskell_indent_after_bare_where = 1
+
+" ctrlp
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/venv/*
+set wildignore+=*.egg-info*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/package-lock.json
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
