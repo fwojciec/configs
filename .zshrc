@@ -9,7 +9,7 @@ bindkey "^[e" end-of-line
 export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin:$HOME/.local/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/filip/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Custom configuration
 ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
@@ -44,21 +44,17 @@ export EDITOR='vim'
 
 alias cp="cp -v"
 alias grep="grep --color=auto"
-alias ls="gls -hF --color=auto --group-directories-first"
 alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
 alias e="nvim"
 alias glint="golangci-lint run"
-alias ctags="`brew --prefix`/bin/ctags"
+alias ls="ls -hF --color=auto --group-directories-first"
 if [[ `uname` = "Darwin" ]]; then
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+    alias ctags="`brew --prefix`/bin/ctags"
+    alias ls="gls -hF --color=auto --group-directories-first"
 fi
-
-# Load local Django fairlendar variables
-# if [[ -a ~/.fairlendar_vars ]]; then
-#     source ~/.fairlendar_vars
-# fi
 
 # GoLang configuration
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
@@ -69,4 +65,6 @@ export PATH=$PATH:$GOPATH/bin
 unsetopt share_history
 
 # Haskell ghcup
-source $HOME/.ghcup/env
+if [ -f "$HOME/.ghcup/env" ]; then
+    source $HOME/.ghcup/env
+fi
