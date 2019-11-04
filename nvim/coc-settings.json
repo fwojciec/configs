@@ -40,5 +40,13 @@
 	"snippets.ultisnips.directories": [
 		"UltiSnips",
 		"/Users/filip/.config/nvim/plugged/vim-go/gosnippets/UltiSnips"
-	]
+	],
+	"suggest.echodocSupport": true,
+	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
+	"suggest.maxCompleteItemCount": 20,
+	"coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "json", "typescript.tsx"],
+	"eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
+	"diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•"
 }

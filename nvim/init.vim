@@ -4,7 +4,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'gruvbox-community/gruvbox'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'kien/ctrlp.vim'
@@ -168,28 +170,28 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Lightline configuration
-function! CocCurrentFunction()
-	return get(b:, 'coc_current_function', '')
-endfunction
+" " Lightline configuration
+" function! CocCurrentFunction()
+" 	return get(b:, 'coc_current_function', '')
+" endfunction
 
-function! LightlineReload()
-	call lightline#init()
-	call lightline#colorscheme()
-	call lightline#update()
-endfunction
+" function! LightlineReload()
+" 	call lightline#init()
+" 	call lightline#colorscheme()
+" 	call lightline#update()
+" endfunction
 
-let g:lightline = {
-			\ 'colorscheme': 'gruvbox',
-			\ 'active': {
-			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-			\ },
-			\ 'component_function': {
-			\   'cocstatus': 'coc#status',
-			\   'currentfunction': 'CocCurrentFunction'
-			\ },
-			\ }
+" let g:lightline = {
+" 			\ 'colorscheme': 'gruvbox',
+" 			\ 'active': {
+" 			\   'left': [ [ 'mode', 'paste' ],
+" 			\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+" 			\ },
+" 			\ 'component_function': {
+" 			\   'cocstatus': 'coc#status',
+" 			\   'currentfunction': 'CocCurrentFunction'
+" 			\ },
+" 			\ }
 
 " FZF configuration
 " noremap <leader>p :FZF<CR>
