@@ -1,52 +1,53 @@
 {
-	"languageserver": {
-		"haskell": {
-			"command": "hie-wrapper",
-			"rootPatterns": [
-				".stack.yaml",
-				"cabal.config",
-				"package.yaml"
-			],
-			"filetypes": [
-				"hs",
-				"lhs",
-				"haskell"
-			],
-			"initializationOptions": {
-				"languageServerHaskell": {
-					"hlintOn": true
-				}
-			}
-		},
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": [
-				"go.mod",
-				".vim/",
-				".git/",
-				".hg/"
-			],
-			"filetypes": [
-				"go"
-			],
-			"initializationOptions": {
-				"usePlaceholders": true,
-				"completeUnimported": true,
-				"deepCompletion": true
-			}
-		}
-	},
-	"suggest.minTriggerInputLength": 1,
-	"snippets.ultisnips.directories": [
-		"UltiSnips",
-		"/Users/filip/.config/nvim/plugged/vim-go/gosnippets/UltiSnips"
-	],
-	"suggest.echodocSupport": true,
-	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
-	"suggest.maxCompleteItemCount": 20,
-	"coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "json", "typescript.tsx"],
-	"eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
-	"diagnostic.errorSign": "•",
+  "languageserver": {
+    "haskell": {
+      "command": "hie-wrapper",
+      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {
+        "languageServerHaskell": {
+          "hlintOn": true
+        }
+      }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "deepCompletion": true
+      }
+    }
+  },
+  "suggest.minTriggerInputLength": 1,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "/Users/filip/.config/nvim/plugged/vim-go/gosnippets/UltiSnips"
+  ],
+  "json.format.enable": false,
+  "suggest.echodocSupport": true,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "json"
+  ],
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
+  "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•"
+  "diagnostic.infoSign": "•",
+  "prettier.tabWidth": 2,
+  "prettier.semi": false,
+  "prettier.singleQuote": true
 }

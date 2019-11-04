@@ -43,7 +43,7 @@ syntax on
 filetype plugin indent on
 
 augroup AutoCommands
-	autocmd BufWritePost init.vim so $MYVIMRC | call LightlineReload()
+	autocmd BufWritePost init.vim so $MYVIMRC
 	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
@@ -117,7 +117,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 augroup mygroup
 	autocmd!
 	" Setup formatexpr specified filetype(s).
-	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	autocmd FileType typescript,javascript,json setl formatexpr=CocAction('formatSelected')
 	" Update signature help on jump placeholder
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 	autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
@@ -170,32 +170,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" " Lightline configuration
-" function! CocCurrentFunction()
-" 	return get(b:, 'coc_current_function', '')
-" endfunction
-
-" function! LightlineReload()
-" 	call lightline#init()
-" 	call lightline#colorscheme()
-" 	call lightline#update()
-" endfunction
-
-" let g:lightline = {
-" 			\ 'colorscheme': 'gruvbox',
-" 			\ 'active': {
-" 			\   'left': [ [ 'mode', 'paste' ],
-" 			\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-" 			\ },
-" 			\ 'component_function': {
-" 			\   'cocstatus': 'coc#status',
-" 			\   'currentfunction': 'CocCurrentFunction'
-" 			\ },
-" 			\ }
-
-" FZF configuration
-" noremap <leader>p :FZF<CR>
-
 " vim-go configuration
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -218,3 +192,7 @@ set wildignore+=*/package-lock.json
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
