@@ -44,10 +44,12 @@
     "javascriptreact",
     "typescript.tsx"
   ],
-  "diagnostic.errorSign": "•",
-  "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•",
+  "diagnostic.signOffset": 9999999,
+  "diagnostic.errorSign": "●",
+  "diagnostic.warningSign": "●",
+  "diagnostic.infoSign": "●",
   "prettier.tabWidth": 2,
   "prettier.semi": false,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.eslintIntegration": true
 }

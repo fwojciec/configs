@@ -4,15 +4,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
-" Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'kien/ctrlp.vim'
+Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug '/usr/local/opt/fzf'
-" Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -43,7 +40,7 @@ syntax on
 filetype plugin indent on
 
 augroup AutoCommands
-	autocmd BufWritePost init.vim so $MYVIMRC
+	autocmd BufWritePost init.vim so $MYVIMRC | call LightlineReload()
 	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
@@ -120,8 +117,10 @@ augroup mygroup
 	autocmd FileType typescript,javascript,json setl formatexpr=CocAction('formatSelected')
 	" Update signature help on jump placeholder
 	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd User CocDiagnosticChange call lightline#update()
 	autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 	autocmd BufWritePre *.hs :call CocAction('format')
+	autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -147,10 +146,13 @@ xmap <silent> <C-d> <Plug>(coc-range-select)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" Prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Using CocList
 " Show all diagnostics
@@ -193,6 +195,67 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
+" Lightline
+function! LightlineReload()
+	call lightline#init()
+	call lightline#colorscheme()
+	call lightline#update()
+endfunction
+
+let g:lightline = {
+			\ 'colorscheme': 'gruvbox',
+			\ 'active': {
+			\   'left': [ [ 'mode', 'paste' ],
+			\             [ 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ],
+			\   'right': [ [ 'lineinfo',  ],
+			\              [ 'percent' ],
+			\              [ 'fileformat', 'fileencoding', 'filetype'] ]
+			\ },
+			\ 'component_expand': {
+			\   'coc_error'        : 'LightlineCocErrors',
+			\   'coc_warning'      : 'LightlineCocWarnings',
+			\   'coc_info'         : 'LightlineCocInfos',
+			\   'coc_hint'         : 'LightlineCocHints',
+			\   'coc_fix'          : 'LightlineCocFixes',
+			\ },
+			\ }
+
+let g:lightline.component_type = {
+			\   'coc_error'        : 'error',
+			\   'coc_warning'      : 'warning',
+			\   'coc_info'         : 'tabsel',
+			\   'coc_hint'         : 'middle',
+			\   'coc_fix'          : 'middle',
+			\ }
+
+function! s:lightline_coc_diagnostic(kind, sign) abort
+	let info = get(b:, 'coc_diagnostic_info', 0)
+	if empty(info) || get(info, a:kind, 0) == 0
+		return ''
+	endif
+	try
+		let s = g:coc_user_config['diagnostic'][a:sign . 'Sign']
+	catch
+		let s = ''
+	endtry
+	return printf('%s %d', s, info[a:kind])
+endfunction
+
+function! LightlineCocErrors() abort
+	return s:lightline_coc_diagnostic('error', 'error')
+endfunction
+
+function! LightlineCocWarnings() abort
+	return s:lightline_coc_diagnostic('warning', 'warning')
+endfunction
+
+function! LightlineCocInfos() abort
+	return s:lightline_coc_diagnostic('information', 'info')
+endfunction
+
+function! LightlineCocHints() abort
+	return s:lightline_coc_diagnostic('hints', 'hint')
+endfunction
+
+" Echodoc
+let g:echodoc_enable_at_startup = 1
