@@ -22,7 +22,7 @@ DEFAULT_USER="filip"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,7 +34,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -51,9 +51,9 @@ alias e="nvim"
 alias glint="golangci-lint run"
 alias ls="ls -hF --color=auto --group-directories-first"
 if [[ `uname` = "Darwin" ]]; then
-    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-    alias ctags="`brew --prefix`/bin/ctags"
-    alias ls="gls -hF --color=auto --group-directories-first"
+	alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+	alias ctags="`brew --prefix`/bin/ctags"
+	alias ls="gls -hF --color=auto --group-directories-first"
 fi
 
 # GoLang configuration
@@ -66,5 +66,9 @@ unsetopt share_history
 
 # Haskell ghcup
 if [ -f "$HOME/.ghcup/env" ]; then
-    source $HOME/.ghcup/env
+	source $HOME/.ghcup/env
 fi
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^z' edit-command-line
