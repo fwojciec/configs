@@ -3,7 +3,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -11,7 +10,9 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -50,9 +51,9 @@ augroup AutoCommands
 	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
-	autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=javascript.tsx
 	autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
-	autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=typescript.tsx
 	autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.vim setlocal tabstop=4 shiftwidth=4
@@ -140,24 +141,25 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_metalinter_autosave=1
+let g:go_term_enabled=0
 
 " vim-haskell settings
 let g:haskell_indent_before_where = 1
 let g:haskell_indent_after_bare_where = 1
 
 " ctrlp
-let g:ctrlp_max_height = 30
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
-set wildignore+=*/node_modules/*
-set wildignore+=*/venv/*
-set wildignore+=*.egg-info*
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-set wildignore+=*/package-lock.json
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_max_height = 30
+" set wildignore+=*.pyc
+" set wildignore+=*_build/*
+" set wildignore+=*/coverage/*
+" set wildignore+=*/node_modules/*
+" set wildignore+=*/venv/*
+" set wildignore+=*.egg-info*
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" set wildignore+=*/package-lock.json
+" let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
 
 " Lightline
 function! LightlineReload()
@@ -223,3 +225,8 @@ endfunction
 
 " Echodoc
 let g:echodoc_enable_at_startup = 1
+
+" FZF
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+			\| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
