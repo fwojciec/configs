@@ -27,7 +27,6 @@
     "/Users/filip/.config/nvim/plugged/vim-go/gosnippets/UltiSnips"
   ],
   "json.format.enable": false,
-  "suggest.echodocSupport": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "suggest.maxCompleteItemCount": 20,
   "coc.preferences.formatOnSaveFiletypes": [
@@ -48,10 +47,11 @@
   "diagnostic.errorSign": "●",
   "diagnostic.warningSign": "●",
   "diagnostic.infoSign": "●",
+	"prettier.printWidth": 100,
   "prettier.tabWidth": 2,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.eslintIntegration": true,
+  "prettier.eslintIntegration": false,
   "emmet.includeLanguages": {
     "typescript-react": "typescript.tsx",
     "javascript react": "javascript.tsx"

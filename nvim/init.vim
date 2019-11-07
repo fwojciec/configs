@@ -10,7 +10,6 @@ Plug 'neovimhaskell/haskell-vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
-Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
@@ -31,20 +30,18 @@ set smartcase
 set mouse=a
 set noshowmode
 
-set t_Co=256
+" Colorscheme
+set termguicolors
 set background=dark
-if (has('termguicolors'))
-	set termguicolors
-endif
 colorscheme nord
 
+" Syntax
 syntax on
 filetype plugin indent on
 
 augroup AutoCommands
 	autocmd BufWritePost init.vim so $MYVIMRC | call LightlineReload()
 	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
-	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=javascript.tsx
@@ -52,11 +49,12 @@ augroup AutoCommands
 	autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=typescript.tsx
 	autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
-	autocmd BufNewFile,BufRead *.vim setlocal tabstop=4 shiftwidth=4
 	autocmd BufNewFile,BufRead *.hs setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.hsc setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.lhs setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 shiftwidth=4
+	autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=4 shiftwidth=4
 augroup end
 
 " Use tab for trigger completion with characters ahead, navigate (and snippets)
@@ -118,7 +116,7 @@ augroup mygroup
 	autocmd User CocDiagnosticChange call lightline#update()
 	autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 	autocmd BufWritePre *.hs :call CocAction('format')
-	autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
+	" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
 augroup end
 
 " Use `:Format` to format current buffer
@@ -137,7 +135,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_metalinter_autosave=1
-let g:go_term_enabled=0
 
 " vim-haskell settings
 let g:haskell_indent_before_where = 1
@@ -208,10 +205,12 @@ function! LightlineCocHints() abort
 	return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
-" Echodoc
-let g:echodoc_enable_at_startup = 1
-
 " FZF
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
 			\| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+nnoremap <leader><leader> :GFiles<CR>
+nnoremap <leader>fi       :Files<CR>
+nnoremap <leader><CR>     :Buffers<CR>
+nnoremap <leader>fl       :Lines<CR>
+nnoremap <leader>ag       :Ag! <C-R><C-W><CR>
