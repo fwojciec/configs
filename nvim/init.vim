@@ -2,17 +2,14 @@ call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'itchyny/lightline.vim'
-Plug 'gruvbox-community/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'mhartington/oceanic-next'
 Plug 'arcticicestudio/nord-vim'
 Plug 'neovimhaskell/haskell-vim'
-" Plug 'kien/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
 Plug 'Shougo/echodoc.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -39,7 +36,6 @@ set background=dark
 if (has('termguicolors'))
 	set termguicolors
 endif
-" colorscheme gruvbox
 colorscheme nord
 
 syntax on
@@ -61,7 +57,7 @@ augroup AutoCommands
 	autocmd BufNewFile,BufRead *.hsc setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.lhs setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
-augroup END
+augroup end
 
 " Use tab for trigger completion with characters ahead, navigate (and snippets)
 inoremap <silent><expr> <TAB>
@@ -147,20 +143,6 @@ let g:go_term_enabled=0
 let g:haskell_indent_before_where = 1
 let g:haskell_indent_after_bare_where = 1
 
-" ctrlp
-" let g:ctrlp_max_height = 30
-" set wildignore+=*.pyc
-" set wildignore+=*_build/*
-" set wildignore+=*/coverage/*
-" set wildignore+=*/node_modules/*
-" set wildignore+=*/venv/*
-" set wildignore+=*.egg-info*
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-" set wildignore+=*/package-lock.json
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlP'
-
 " Lightline
 function! LightlineReload()
 	call lightline#init()
@@ -172,10 +154,13 @@ let g:lightline = {
 			\ 'colorscheme': 'nord',
 			\ 'active': {
 			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ],
+			\             [ 'gitbranch', 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ],
 			\   'right': [ [ 'lineinfo',  ],
 			\              [ 'percent' ],
 			\              [ 'fileformat', 'fileencoding', 'filetype'] ]
+			\ },
+			\ 'component_function': {
+			\   'gitbranch': 'fugitive#head'
 			\ },
 			\ 'component_expand': {
 			\   'coc_error'        : 'LightlineCocErrors',
