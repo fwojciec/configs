@@ -148,25 +148,25 @@ function! LightlineReload()
 endfunction
 
 let g:lightline = {
-			\ 'colorscheme': 'nord',
-			\ 'active': {
-			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'gitbranch', 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ],
-			\   'right': [ [ 'lineinfo',  ],
-			\              [ 'percent' ],
-			\              [ 'fileformat', 'fileencoding', 'filetype'] ]
-			\ },
-			\ 'component_function': {
-			\   'gitbranch': 'fugitive#head'
-			\ },
-			\ 'component_expand': {
-			\   'coc_error'        : 'LightlineCocErrors',
-			\   'coc_warning'      : 'LightlineCocWarnings',
-			\   'coc_info'         : 'LightlineCocInfos',
-			\   'coc_hint'         : 'LightlineCocHints',
-			\   'coc_fix'          : 'LightlineCocFixes',
-			\ },
-			\ }
+            \ 'colorscheme': 'nord',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'coc_error', 'coc_warning', 'coc_hint', 'coc_info' ] ],
+            \   'right': [ [ 'lineinfo',  ],
+            \              [ 'percent' ],
+            \              [ 'fileformat', 'fileencoding', 'filetype'] ]
+            \ },
+            \ 'component_function': {
+            \   'gitbranch': 'fugitive#head'
+            \ },
+            \ 'component_expand': {
+            \   'coc_error'        : 'LightlineCocErrors',
+            \   'coc_warning'      : 'LightlineCocWarnings',
+            \   'coc_info'         : 'LightlineCocInfos',
+            \   'coc_hint'         : 'LightlineCocHints',
+            \   'coc_fix'          : 'LightlineCocFixes',
+            \ },      
+            \ }
 
 let g:lightline.component_type = {
 			\   'coc_error'        : 'error',
@@ -205,10 +205,16 @@ function! LightlineCocHints() abort
 	return s:lightline_coc_diagnostic('hints', 'hint')
 endfunction
 
-" FZF
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-			\| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" FZF statusline colors
+function! s:fzf_statusline()
+  highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
+  highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
+  highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+" FZF mappings
 nnoremap <leader><leader> :GFiles<CR>
 nnoremap <leader>fi       :Files<CR>
 nnoremap <leader><CR>     :Buffers<CR>
