@@ -25,32 +25,38 @@
     "editor.tabSize": 2
   },
   "[json]": {
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "editor.fontFamily": "'Operator Mono Lig', 'Cascadia Code', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  "editor.fontFamily": "Iosevka, 'Operator Mono Lig', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.fontLigatures": true,
   // "workbench.colorCustomizations": {
   //   "titleBar.inactiveBackground": "#1b2b34"
   // },
   "go.useLanguageServer": true,
-  "go.lintTool": "golangci-lint",
-  "go.lintFlags": [
-    "--fast"
-  ],
+  "go.formatTool": "goimports",
+  "go.lintTool": "golint",
+  "go.vetOnSave": "package",
+  // "go.lintTool": "golangci-lint",
+  // "go.lintFlags": [
+  //   "--fast"
+  // ],
   "[go]": {
     "editor.tabSize": 8,
-    "editor.snippetSuggestions": "none",
+    // "editor.defaultFormatter": "ms-vscode.Go",
+    "editor.snippetSuggestions": "top",
     "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    }
+    // "editor.codeActionsOnSave": {
+    //   "source.organizeImports": true
+    // }
   },
   "gopls": {
-    "usePlaceholders": true, // add parameter placeholders when completing a function
-    "completionDocumentation": true, // for documentation in completion items
+    "usePlaceholders": true,
     "completeUnimported": true,
     "deepCompletion": true
   },
@@ -59,7 +65,6 @@
   "prettier.singleQuote": true,
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
-  "eslint.autoFixOnSave": true, // formatting only supports LF line endings
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -90,22 +95,25 @@
       }
     ]
   },
-  "workbench.colorTheme": "Halcyon",
   "files.associations": {
     "*.pgsql": "sql"
   },
   "extensions.ignoreRecommendations": false,
   "editor.formatOnSave": true,
-  "editor.minimap.enabled": true,
-  "editor.fontLigatures": true,
-  "editor.fontSize": 16,
   "terminal.integrated.fontSize": 15,
-  // "elm.compiler": "./node_modules/.bin/elm",
-  "elm.compiler": "/usr/local/bin/elm",
-  // "elm.makeCommand": "./node_modules/.bin/elm-make"
-  "elm.makeCommand": "/usr/local/bin/elm make",
   "languageServerHaskell.hlintOn": true,
   "languageServerHaskell.liquidOn": true,
   "languageServerHaskell.useCustomHieWrapper": true,
-  "languageServerHaskell.useCustomHieWrapperPath": "hie-wrapper"
+  "languageServerHaskell.useCustomHieWrapperPath": "hie-wrapper",
+  "editor.minimap.renderCharacters": false,
+  "workbench.colorTheme": "Palenight Theme",
+  "editor.minimap.enabled": false,
+  "workbench.iconTheme": "field-lights-monochrome-minimalistic",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "scm.diffDecorationsGutterVisibility": "hover"
 }

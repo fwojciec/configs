@@ -36,6 +36,8 @@ set smartcase
 set mouse=a
 set noshowmode
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+set tabstop=4
+set shiftwidth=4
 
 syntax on
 filetype plugin indent on
@@ -182,7 +184,12 @@ vnoremap p "_dP " better paste
 " }}}
 
 " Airline {{{
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.notexists = '❔'
+let g:airline_symbols.dirty= '❕'
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline#extensions#tabline#left_sep = ' '
