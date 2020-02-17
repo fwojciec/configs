@@ -55,6 +55,11 @@ if [[ `uname` = "Darwin" ]]; then
 	alias ctags="`brew --prefix`/bin/ctags"
 	alias ls="gls -hF --color=auto --group-directories-first"
 fi
+if [[ `uname` = "Linux" ]]; then
+	alias pgstart="sudo service postgresql start"
+	alias pgrun="sudo -u postgres psql"
+fi
+
 
 # GoLang configuration
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
