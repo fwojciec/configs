@@ -70,6 +70,16 @@ augroup end
 " }}}
 
 " Coc Settings {{{
+let g:coc_global_extensions = [
+            \ 'coc-eslint',
+            \ 'coc-tsserver',
+            \ 'coc-emmet',
+            \ 'coc-css',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-prettier'
+            \ ]
+
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
