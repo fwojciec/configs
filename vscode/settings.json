@@ -32,8 +32,8 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "editor.fontFamily": "Iosevka, 'Operator Mono Lig', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
-  "editor.fontSize": 16,
+  "editor.fontFamily": "'Operator Mono Lig', 'Iosevka Term', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  "editor.fontSize": 15,
   "editor.fontLigatures": true,
   // "workbench.colorCustomizations": {
   //   "titleBar.inactiveBackground": "#1b2b34"
@@ -106,7 +106,7 @@
   "languageServerHaskell.useCustomHieWrapper": true,
   "languageServerHaskell.useCustomHieWrapperPath": "hie-wrapper",
   "editor.minimap.renderCharacters": false,
-  "workbench.colorTheme": "Palenight Theme",
+  "workbench.colorTheme": "Overnight Slumber",
   "editor.minimap.enabled": false,
   "workbench.iconTheme": "field-lights-monochrome-minimalistic",
   "editor.codeActionsOnSave": {
