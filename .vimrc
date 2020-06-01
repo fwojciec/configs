@@ -1,3 +1,4 @@
+" Plugins {{{
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
@@ -9,7 +10,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-python/python-syntax'
 call plug#end()
+" }}}
 
 " General settings {{{
 set number
@@ -64,11 +67,25 @@ augroup end
 
 " COC configuration {{{
 let g:coc_global_extensions = [
+			\ 'coc-eslint',
+			\ 'coc-tsserver',
+			\ 'coc-emmet',
 			\ 'coc-css',
 			\ 'coc-html',
 			\ 'coc-json',
 			\ 'coc-python'
 			\ ]
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -86,6 +103,9 @@ function! s:show_documentation()
 		call CocAction('doHover')
 	endif
 endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 " }}}
 
 " FZF settings {{{
@@ -107,4 +127,32 @@ nnoremap <leader>fl       :Lines<CR>
 nnoremap <leader>ag       :Ag! <C-R><C-W><CR>
 nnoremap <leader>gf       :GoDecls <CR>
 nnoremap <leader>gd       :GoDeclsDir <CR>
+" }}}
+
+" Mappings {{{
+" FZF mappings
+nnoremap <leader><leader> :GitFiles<CR>
+nnoremap <leader>fi       :Files<CR>
+nnoremap <leader><CR>     :Buffers<CR>
+nnoremap <leader>fl       :Lines<CR>
+nnoremap <leader>ag       :Ag<CR>
+" }}}
+
+" Airline {{{
+let g:airline_powerline_fonts = 1
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
+" let g:airline_symbols.notexists = '❔'
+" let g:airline_symbols.dirty= '❕'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" }}}
+
+" Python {{{
+" let g:python_highlight_all = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_string_format = 1
 " }}}
