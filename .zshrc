@@ -85,4 +85,3 @@ export FZF_DEFAULT_OPTS="--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E
 # autocompletion initialization
 autoload -Uz compinit; compinit
 fpath+=${ZDOTDIR:-~}/.zsh_functions
-
