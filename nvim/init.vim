@@ -1,10 +1,11 @@
 " Plugins {{{
 call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
@@ -24,6 +25,7 @@ call plug#end()
 " }}}
 
 " General settings {{{
+" I assume the vim-sensible plugin is resent
 set number
 set relativenumber
 set clipboard=unnamed
@@ -41,9 +43,6 @@ set mouse=a
 set noshowmode
 set tabstop=4
 set shiftwidth=4
-
-syntax on
-filetype plugin indent on
 " }}}
 
 " Colorscheme {{{
