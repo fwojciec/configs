@@ -24,6 +24,9 @@
   "[scss]": {
     "editor.tabSize": 2
   },
+  "[scala]": {
+    "editor.tabSize": 2
+  },
   "[json]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -32,9 +35,19 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "editor.fontFamily": "'Operator Mono Lig', 'Iosevka Term', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
-  "editor.fontSize": 15,
-  "editor.fontLigatures": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[markdown]": {
+    "editor.tabSize": 2
+  },
+  "editor.fontFamily": "'Operator Mono Lig', 'Iosevka Nerd Font', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  "editor.fontSize": 17,
+  "editor.fontLigatures": false,
   // "workbench.colorCustomizations": {
   //   "titleBar.inactiveBackground": "#1b2b34"
   // },
@@ -61,8 +74,6 @@
     "deepCompletion": true
   },
   "files.eol": "\n",
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
   "eslint.validate": [
@@ -75,13 +86,9 @@
   "terminal.integrated.fontWeightBold": "500",
   "eslint.alwaysShowStatus": true,
   "terminal.integrated.shell.osx": "/bin/zsh",
-  "prettier.printWidth": 100,
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": true,
   "breadcrumbs.enabled": false,
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
   "editor.renderIndentGuides": false,
   "editor.fontWeight": "400",
   "editor.letterSpacing": 0.1,
@@ -96,7 +103,8 @@
     ]
   },
   "files.associations": {
-    "*.pgsql": "sql"
+    "*.pgsql": "sql",
+    "pylintrc": "ini"
   },
   "extensions.ignoreRecommendations": false,
   "editor.formatOnSave": true,
@@ -106,14 +114,38 @@
   "languageServerHaskell.useCustomHieWrapper": true,
   "languageServerHaskell.useCustomHieWrapperPath": "hie-wrapper",
   "editor.minimap.renderCharacters": false,
-  "workbench.colorTheme": "Overnight Slumber",
   "editor.minimap.enabled": false,
-  "workbench.iconTheme": "field-lights-monochrome-minimalistic",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "gitlens.codeLens.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  "gitlens.hovers.currentLine.over": "line",
-  "scm.diffDecorationsGutterVisibility": "hover"
+  "scm.diffDecorationsGutterVisibility": "hover",
+  "workbench.startupEditor": "newUntitledFile",
+  "C_Cpp.updateChannel": "Insiders",
+  "editor.links": false,
+  "elixirLS.suggestSpecs": false,
+  "emmet.includeLanguages": {
+    "HTML (EEx)": "html"
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "python.jediEnabled": false,
+  "workbench.colorTheme": "Ocean Dark Extended",
+  "python.linting.pylintUseMinimalCheckers": false,
+  "python.formatting.autopep8Args": [
+    "--max-line-length",
+    "100",
+    "--experimental"
+  ],
+  "java.semanticHighlighting.enabled": true,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "workbench.iconTheme": "ayu",
+  "editor.columnSelection": false,
 }

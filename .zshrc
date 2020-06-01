@@ -22,7 +22,7 @@ DEFAULT_USER="filip"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-machine docker-compose fzf go)
+plugins=(git docker docker-machine docker-compose fzf golang pyenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,3 +85,4 @@ export FZF_DEFAULT_OPTS="--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E
 # autocompletion initialization
 autoload -Uz compinit; compinit
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+

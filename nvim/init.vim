@@ -5,18 +5,21 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'sheerun/vim-polyglot'
-Plug 'Raimondi/delimitMate'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'rust-lang/rust.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-python/python-syntax'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'cousine/go-present-slide-syntax.vim'
+" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 " }}}
 
@@ -36,7 +39,6 @@ set ignorecase
 set smartcase
 set mouse=a
 set noshowmode
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 set tabstop=4
 set shiftwidth=4
 
@@ -48,6 +50,7 @@ filetype plugin indent on
 set termguicolors
 set background=dark
 colorscheme nord
+" colorscheme palenight
 " }}}
 
 " FileType AutoCommands {{{
@@ -66,6 +69,8 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.hsc setlocal expandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.lhs setlocal expandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.scala setlocal expandtab tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.sbt setlocal expandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=4 shiftwidth=4 foldmethod=marker
 augroup end
@@ -79,7 +84,10 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-html',
             \ 'coc-json',
-            \ 'coc-prettier'
+            \ 'coc-prettier',
+            \ 'coc-elixir',
+            \ 'coc-metals',
+            \ 'coc-python'
             \ ]
 
 function! s:check_back_space() abort
@@ -101,12 +109,15 @@ function! s:show_documentation()
     endif
 endfunction
 
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -126,29 +137,6 @@ nmap <leader>rn <Plug>(coc-rename)
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,javascript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-    autocmd BufWritePre *.hs :call CocAction('format')
-    " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
-augroup end
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-
-" Prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " }}}
 
 " vim-go configuration {{{
@@ -174,14 +162,14 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " Mappings {{{
 " FZF mappings
-nnoremap <leader><leader> :GFiles<CR>
+nnoremap <leader><leader> :GitFiles<CR>
 nnoremap <leader>fi       :Files<CR>
 nnoremap <leader><CR>     :Buffers<CR>
 nnoremap <leader>fl       :Lines<CR>
-nnoremap <leader>ag       :Ag! <C-R><C-W><CR>
-nnoremap <leader>gf       :GoDecls <CR>
-nnoremap <leader>gd       :GoDeclsDir <CR>
-vnoremap p "_dP " better paste
+nnoremap <leader>ag       :Ag<CR>
+" nnoremap <leader>gf       :GoDecls <CR>
+" nnoremap <leader>gd       :GoDeclsDir <CR>
+" vnoremap p "_dP " better paste
 " }}}
 
 " Airline {{{
@@ -198,15 +186,21 @@ let g:airline_symbols.dirty= '❕'
 " }}}
 
 " DelimitMate {{{
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_smart_quotes = 1
-let g:delimitMate_expand_inside_quotes = 0
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
+" let g:delimitMate_expand_cr = 1
+" let g:delimitMate_expand_space = 1
+" let g:delimitMate_smart_quotes = 1
+" let g:delimitMate_expand_inside_quotes = 0
+" let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+" imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 " }}}
 
 " Rust {{{
 let g:rustfmt_autosave = 1
+" }}}
+
+" Python {{{
+" let g:python_highlight_all = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_string_format = 1
 " }}}
