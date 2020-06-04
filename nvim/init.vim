@@ -18,6 +18,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-python/python-syntax'
+Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'cousine/go-present-slide-syntax.vim'
 " Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
@@ -43,6 +44,7 @@ set mouse=a
 set noshowmode
 set tabstop=4
 set shiftwidth=4
+let mapleader=" "
 " }}}
 
 " Colorscheme {{{
@@ -176,8 +178,8 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.notexists = '❔'
-let g:airline_symbols.dirty= '❕'
+" let g:airline_symbols.notexists = '❔'
+" let g:airline_symbols.dirty= '❕'
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline#extensions#tabline#left_sep = ' '
