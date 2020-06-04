@@ -3,11 +3,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'arcticicestudio/nord-vim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-python/python-syntax'
@@ -33,6 +34,7 @@ set noshowmode
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 set tabstop=4
 set shiftwidth=4
+let mapleader= " "
 
 syntax on
 filetype plugin indent on
@@ -41,7 +43,8 @@ filetype plugin indent on
 " Colorscheme {{{
 set termguicolors
 set background=dark
-colorscheme nord
+" colorscheme nord
+colorscheme gruvbox
 " }}}
 
 " FileType AutoCommands {{{
@@ -93,6 +96,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -110,9 +117,15 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " FZF settings {{{
 function! s:fzf_statusline()
-	highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
-	highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
-	highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+	" Nord colors
+	" highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
+	" highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
+	" highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+
+	" GruvBox colors
+	highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
+	highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+	highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
 	setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
@@ -155,4 +168,12 @@ let g:airline_powerline_fonts = 1
 " let g:python_highlight_all = 1
 let g:python_highlight_string_templates = 1
 let g:python_highlight_string_format = 1
+" }}}
+
+" Mappings {{{
+" Move around splits with <c-hjkl>
+" nnoremap <C-j> <c-w>j
+" nnoremap <C-k> <c-w>k
+" nnoremap <C-h> <c-w>h
+" nnoremap <C-l> <c-w>l
 " }}}

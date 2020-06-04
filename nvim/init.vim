@@ -1,26 +1,22 @@
 " Plugins {{{
 call plug#begin()
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'neovimhaskell/haskell-vim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
-Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'rust-lang/rust.vim'
+Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-python/python-syntax'
-" Plug 'sheerun/vim-polyglot'
 " Plug 'cousine/go-present-slide-syntax.vim'
-" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 " }}}
 
@@ -43,13 +39,14 @@ set mouse=a
 set noshowmode
 set tabstop=4
 set shiftwidth=4
+let mapleader=" "
 " }}}
 
 " Colorscheme {{{
 set termguicolors
 set background=dark
-colorscheme nord
-" colorscheme palenight
+" colorscheme nord
+colorscheme gruvbox
 " }}}
 
 " FileType AutoCommands {{{
@@ -112,7 +109,7 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -151,9 +148,12 @@ let g:haskell_indent_after_bare_where = 1
 
 " FZF settings {{{
 function! s:fzf_statusline()
-    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
-    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
-    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
+    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
+    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
+    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
     setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
