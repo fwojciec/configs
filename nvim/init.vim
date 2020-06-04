@@ -15,9 +15,9 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'vim-python/python-syntax'
-Plug 'MaxMEllon/vim-jsx-pretty'
-" Plug 'sheerun/vim-polyglot'
+" Plug 'vim-python/python-syntax'
+" Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'sheerun/vim-polyglot'
 " Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
 " }}}
@@ -58,9 +58,9 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 " filetype=javascript.tsx
     autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 " filetype=typescript.tsx
     autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.hs setlocal expandtab tabstop=2 shiftwidth=2
@@ -111,7 +111,7 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
