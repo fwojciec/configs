@@ -42,6 +42,7 @@ set mouse=a
 set noshowmode
 set tabstop=4
 set shiftwidth=4
+set winwidth=100
 let mapleader=" "
 " }}}
 
