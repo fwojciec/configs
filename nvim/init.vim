@@ -15,9 +15,10 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 Plug 'neovimhaskell/haskell-vim'
-" Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax'
+Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
 " }}}
@@ -48,6 +49,7 @@ let mapleader=" "
 set termguicolors
 set background=dark
 " colorscheme nord
+let g:gruvbox_bold = 0
 colorscheme gruvbox
 " }}}
 
@@ -69,7 +71,7 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.scala setlocal expandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.sbt setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 autoindent
     autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=4 shiftwidth=4 foldmethod=marker
 augroup end
 " }}}
