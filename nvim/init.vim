@@ -17,6 +17,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-python/python-syntax'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'jparise/vim-graphql'
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'cousine/go-present-slide-syntax.vim'

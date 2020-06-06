@@ -34,7 +34,8 @@
     "json",
     "scala",
     "elixir",
-    "python"
+    "python",
+    "scss"
   ],
   "eslint.filetypes": [
     "javascript",
