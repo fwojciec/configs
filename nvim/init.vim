@@ -19,7 +19,7 @@ Plug 'vim-python/python-syntax'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
@@ -45,15 +45,16 @@ set noshowmode
 set tabstop=4
 set shiftwidth=4
 set winwidth=100
+set re=0 " see https://github.com/HerringtonDarkholme/yats.vim#config
 let mapleader=" "
 " }}}
 
 " Colorscheme {{{
 set termguicolors
 set background=dark
-" colorscheme nord
-let g:gruvbox_bold = 0
-colorscheme gruvbox
+colorscheme nord
+" let g:gruvbox_bold = 0
+" colorscheme gruvbox
 " }}}
 
 " FileType AutoCommands {{{
@@ -63,9 +64,9 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 " filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2  filetype=javascript.tsx
     autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 " filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2  filetype=typescript.tsx
     autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.hs setlocal expandtab tabstop=2 shiftwidth=2
@@ -155,12 +156,12 @@ let g:haskell_indent_after_bare_where = 1
 
 " FZF settings {{{
 function! s:fzf_statusline()
-    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
-    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
-    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
-    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
-    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
-    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
+    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
+    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
+    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
     setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
@@ -209,4 +210,11 @@ let g:rustfmt_autosave = 1
 " let g:python_highlight_all = 1
 let g:python_highlight_string_templates = 1
 let g:python_highlight_string_format = 1
+" }}}
+
+" Terminal {{{
+augroup TerminalStuff
+    au!
+    autocmd TermOpen * setlocal nonumber norelativenumber winwidth&
+augroup end
 " }}}
