@@ -180,6 +180,12 @@ nnoremap <leader>ag       :Ag<CR>
 " nnoremap <leader>gf       :GoDecls <CR>
 " nnoremap <leader>gd       :GoDeclsDir <CR>
 " vnoremap p "_dP " better paste
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 " }}}
 
 " Airline {{{
