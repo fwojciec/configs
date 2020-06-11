@@ -47,6 +47,9 @@ set shiftwidth=4
 set winwidth=100
 set re=0 " see https://github.com/HerringtonDarkholme/yats.vim#config
 let mapleader=" "
+" Permanent undo
+set undodir=~/.vimdid
+set undofile
 " }}}
 
 " Colorscheme {{{
