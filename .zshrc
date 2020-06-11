@@ -6,7 +6,7 @@ bindkey "^[e" end-of-line
 
 # Path
 # COREUTILS_PATH=/usr/local/opt/coreutils/libexec/gnubin
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/bin:$HOME/.local/bin
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -55,11 +55,6 @@ if [[ `uname` = "Darwin" ]]; then
 	alias ctags="`brew --prefix`/bin/ctags"
 	alias ls="gls -hF --color=auto --group-directories-first"
 fi
-if [[ `uname` = "Linux" ]]; then
-	alias pgstart="sudo service postgresql start"
-	alias pgrun="sudo -u postgres psql"
-fi
-
 
 # GoLang configuration
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
@@ -74,9 +69,9 @@ if [ -f "$HOME/.ghcup/env" ]; then
 	source $HOME/.ghcup/env
 fi
 
-# Edit line in vim with ctrl-e:
+# Edit line in vim with ctrl-v:
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^z' edit-command-line
+bindkey '^v' edit-command-line
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -57,5 +57,5 @@
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
-  "python.linting.mypyEnabled": true
+  "python.linting.mypyEnabled": false
 }
