@@ -50,7 +50,7 @@ let mapleader=" "
 " }}}
 
 " Colorscheme {{{
-set termguicolors
+" set termguicolors
 set background=dark
 colorscheme nord
 " let g:gruvbox_bold = 0
