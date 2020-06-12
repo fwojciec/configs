@@ -1,0 +1,50 @@
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+*.foreground:   #D8DEE9
+*.background:   #2E3440
+*.cursorColor:  #D8DEE9
+*fading: 35
+*fadeColor: #4C566A
+
+*.color0: #3B4252
+*.color1: #BF616A
+*.color2: #A3BE8C
+*.color3: #EBCB8B
+*.color4: #81A1C1
+*.color5: #B48EAD
+*.color6: #88C0D0
+*.color7: #E5E9F0
+*.color8: #4C566A
+*.color9: #BF616A
+*.color10: #A3BE8C
+*.color11: #EBCB8B
+*.color12: #81A1C1
+*.color13: #B48EAD
+*.color14: #8FBCBB
+*.color15: #ECEFF4
+
+URxvt*geometry: 150x50
+URxvt*buffered: true
+URxvt*font: xft:Iosevka Nerd Font Mono:style=Regular:size=14:antialias=true
+URxvt*italicFont: xft:Iosevka Nerd Font Mono:style=Italic:size=14:antialias=true
+URxvt*boldFont: xft:Iosevka Nerd Font Mono:style=Bold:size=14:antialias=true
+URxvt*boldItalicFont: Iosevka Nerd Font Mono:style=Bold Italic:size=14:antialias=true
+URxvt*letterSpace: -1
+URxvt*scrollBar: false
+URxvt*depth: 32
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,tabbed
+URxvt*urlLauncher: chromium
+URxvt*borderless: 1
+URxvt*loginShell: true
+URxvt*secondaryScroll:  true    # Enable Shift-PageUp/Down in screen
+URxvt*saveLines: 5000
+URxvt*termName: rxvt-unicode
+URxvt*matcher.button: 1
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 4
+URxvt.tabbed.tab-bg: 0
