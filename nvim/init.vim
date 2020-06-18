@@ -14,10 +14,12 @@ Plug 'andymass/vim-matchup'
 Plug 'junegunn/vim-slash'
 Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -64,11 +66,12 @@ set undofile
 " }}}
 
 " Colorscheme {{{
-" set termguicolors
+set termguicolors
 set background=dark
-" colorscheme nord
+colorscheme nord
 " let g:gruvbox_bold = 0
-colorscheme gruvbox
+" colorscheme gruvbox
+" colorscheme onehalfdark
 " }}}
 
 " FileType AutoCommands {{{
@@ -134,7 +137,7 @@ let g:coc_status_warning_sign='W'
 " vim-go configuration {{{
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
-let g:go_metalinter_autosave=1
+" let g:go_metalinter_autosave=1
 " }}}
 
 " vim-haskell settings {{{
@@ -144,12 +147,12 @@ let g:haskell_indent_after_bare_where = 1
 
 " FZF settings {{{
 function! s:fzf_statusline()
-    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
-    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
-    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
-    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
-    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
-    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
+    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
+    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
+    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
     setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
@@ -161,7 +164,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
