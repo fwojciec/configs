@@ -1,35 +1,43 @@
 " Plugins {{{
 call plug#begin()
+" tpope is a separate category
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+
+" interface
+Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'andymass/vim-matchup'
+Plug 'junegunn/vim-slash'
 Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
+
+" filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-slash'
+
+" completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" language support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'cousine/go-present-slide-syntax.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
 " }}}
 
 " General settings {{{
-" I assume the vim-sensible plugin is resent
+" I assume the vim-sensible plugin is present
 set number
 set relativenumber
 set clipboard=unnamed
@@ -58,21 +66,20 @@ set undofile
 " Colorscheme {{{
 " set termguicolors
 set background=dark
-colorscheme nord
+" colorscheme nord
 " let g:gruvbox_bold = 0
-" colorscheme gruvbox
+colorscheme gruvbox
 " }}}
 
 " FileType AutoCommands {{{
 augroup AutoCommands
-    autocmd BufWritePost init.vim so $MYVIMRC | AirlineRefresh
-    autocmd BufWritePost init.vim AirlineRefresh
+    autocmd BufWritePost init.vim nested so $MYVIMRC
     autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2  filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=javascript.tsx
     autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2  filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=typescript.tsx
     autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.hs setlocal expandtab tabstop=2 shiftwidth=2
@@ -95,8 +102,6 @@ let g:coc_global_extensions = [
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-prettier',
-            \ 'coc-elixir',
-            \ 'coc-metals',
             \ 'coc-python'
             \ ]
 
@@ -119,34 +124,11 @@ function! s:show_documentation()
     endif
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent>gd <Plug>(coc-definition)
-nmap <silent>gy <Plug>(coc-type-definition)
-nmap <silent>gi <Plug>(coc-implementation)
-nmap <silent>gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+let g:coc_status_error_sign='E'
+let g:coc_status_warning_sign='W'
 " }}}
 
 " vim-go configuration {{{
@@ -162,60 +144,36 @@ let g:haskell_indent_after_bare_where = 1
 
 " FZF settings {{{
 function! s:fzf_statusline()
-    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
-    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
-    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
-    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
-    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
-    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
+    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
+    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
+    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
+    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
+    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
     setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 " }}}
 
-" Mappings {{{
-" FZF mappings
-nnoremap <leader><leader> :GitFiles<CR>
-nnoremap <leader>fi       :Files<CR>
-nnoremap <leader><CR>     :Buffers<CR>
-nnoremap <leader>fl       :Lines<CR>
-nnoremap <leader>ag       :Ag<CR>
-" nnoremap <leader>gf       :GoDecls <CR>
-" nnoremap <leader>gd       :GoDeclsDir <CR>
-" vnoremap p "_dP " better paste
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-" }}}
+" Lightline {{{
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
-" Airline {{{
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-" let g:airline_symbols.notexists = '❔'
-" let g:airline_symbols.dirty= '❕'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = ''
-" }}}
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'fugitive': 'FugitiveHead',
+      \ },
+      \ }
 
-" DelimitMate {{{
-" let g:delimitMate_expand_cr = 1
-" let g:delimitMate_expand_space = 1
-" let g:delimitMate_smart_quotes = 1
-" let g:delimitMate_expand_inside_quotes = 0
-" let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
-
-" imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
-" }}}
-
-" Rust {{{
-let g:rustfmt_autosave = 1
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " }}}
 
 " Python {{{
@@ -229,4 +187,51 @@ augroup TerminalStuff
     au!
     autocmd TermOpen * setlocal nonumber norelativenumber winwidth&
 augroup end
+" }}}
+
+" Mappings {{{
+nnoremap <leader><leader> :GitFiles<CR>
+nnoremap <leader><CR>     :Buffers<CR>
+nnoremap <leader>fi       :Files<CR>
+nnoremap <leader>fl       :Lines<CR>
+nnoremap <leader>ag       :Ag<CR>
+" nnoremap <leader>gf       :GoDecls <CR>
+" nnoremap <leader>gd       :GoDeclsDir <CR>
+
+" better paste
+vnoremap p "_dP
+
+" don't use arrow keys!
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent><leader>d <Plug>(coc-definition)
+nmap <silent><leader>td <Plug>(coc-type-definition)
+nmap <silent><leader>i <Plug>(coc-implementation)
+nmap <silent><leader>r <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}}
