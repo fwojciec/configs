@@ -1,17 +1,19 @@
 " Plugins {{{
+let g:plug_shallow = 0
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'arcticicestudio/nord-vim'
-Plug 'gruvbox-community/gruvbox'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-python/python-syntax'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': 'git submodule update --init --recursive && ./install.py --go-completer --rust-completer --ts-completer' }
 call plug#end()
 " }}}
 
@@ -31,7 +33,6 @@ set ignorecase
 set smartcase
 set mouse=a
 set noshowmode
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 set tabstop=4
 set shiftwidth=4
 let mapleader= " "
@@ -43,8 +44,7 @@ filetype plugin indent on
 " Colorscheme {{{
 set termguicolors
 set background=dark
-" colorscheme nord
-colorscheme gruvbox
+colorscheme nord
 " }}}
 
 " FileType AutoCommands {{{
@@ -68,51 +68,12 @@ augroup AutoCommands
 augroup end
 " }}}
 
-" COC configuration {{{
-let g:coc_global_extensions = [
-			\ 'coc-eslint',
-			\ 'coc-tsserver',
-			\ 'coc-emmet',
-			\ 'coc-css',
-			\ 'coc-html',
-			\ 'coc-json',
-			\ 'coc-python'
-			\ ]
+" YouCompleteMe {{{
+nmap <silent> <leader>d :YcmCompleter GoToDefinition<CR>
+nmap <silent> gy :YcmCompleter GetType<CR>
+nmap <silent> gr :YcmCompleter GoToReferences<CR>
+let g:ycm_autoclose_preview_window_after_completion=1
 
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
 " }}}
 
 " FZF settings {{{

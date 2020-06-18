@@ -129,7 +129,7 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "python.jediEnabled": false,
-  "workbench.colorTheme": "Ocean Dark Extended",
+  "workbench.colorTheme": "City Lights",
   "python.linting.pylintUseMinimalCheckers": false,
   "python.formatting.autopep8Args": [
     "--max-line-length",
@@ -147,5 +147,5 @@
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
   "workbench.iconTheme": "ayu",
-  "editor.columnSelection": false,
+  "editor.columnSelection": false
 }

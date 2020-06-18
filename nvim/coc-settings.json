@@ -53,9 +53,9 @@
     "javascript react": "javascript.tsx"
   },
   "metals.statusBarEnabled": true,
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
-  "python.linting.mypyEnabled": false
+  "python.linting.mypyEnabled": true
 }
