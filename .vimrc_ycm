@@ -1,0 +1,188 @@
+" Plugins {{{
+let g:plug_shallow = 0
+
+call plug#begin('~/.vim/plugged')
+" tpope is a separate category
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+
+" interface
+Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'andymass/vim-matchup'
+Plug 'junegunn/vim-slash'
+Plug 'arcticicestudio/nord-vim'
+Plug 'gruvbox-community/gruvbox'
+Plug 'joshdick/onedark.vim'
+
+" filesystem
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
+
+" completion and linting
+Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': 'git submodule update --init --recursive && ./install.py --go-completer --rust-completer --ts-completer' }
+Plug 'dense-analysis/ale'
+
+" language support
+Plug 'vim-python/python-syntax'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'jparise/vim-graphql'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+call plug#end()
+" }}}
+
+" General settings {{{
+set number
+set relativenumber
+set clipboard=unnamed
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+set hlsearch
+set ignorecase
+set smartcase
+set mouse=a
+set noshowmode
+set tabstop=4
+set shiftwidth=4
+let mapleader= " "
+syntax on
+filetype plugin indent on
+" Permanent undo
+set undodir=~/.vimdid
+set undofile
+" }}}
+
+" Colorscheme {{{
+set termguicolors
+set background=dark
+set cursorline
+colorscheme onedark
+" }}}
+
+" FileType AutoCommands {{{
+augroup AutoCommands
+	autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=javascript.tsx
+	autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=typescript.tsx
+	autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.hs setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.hsc setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.lhs setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.scala setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.sbt setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 shiftwidth=4
+	autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=4 shiftwidth=4 foldmethod=marker
+augroup end
+" }}}
+
+" YouCompleteMe {{{
+let g:ycm_autoclose_preview_window_after_completion=1
+" }}}
+
+" FZF settings {{{
+let g:fzf_colors =
+\ { "fg":      ["fg", "Normal"],
+  \ "bg":      ["bg", "Normal"],
+  \ "hl":      ["fg", "IncSearch"],
+  \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
+  \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
+  \ "hl+":     ["fg", "IncSearch"],
+  \ "info":    ["fg", "IncSearch"],
+  \ "border":  ["fg", "Ignore"],
+  \ "prompt":  ["fg", "Comment"],
+  \ "pointer": ["fg", "IncSearch"],
+  \ "marker":  ["fg", "IncSearch"],
+  \ "spinner": ["fg", "IncSearch"],
+  \ "header":  ["fg", "WildMenu"] }
+" }}}
+" Mappings {{{
+" FZF mappings
+" }}}
+
+" Python {{{
+" let g:python_highlight_all = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_string_format = 1
+" }}}
+
+" Lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'fugitive': 'FugitiveHead',
+      \ },
+      \ }
+
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" }}}
+
+" VimRooter {{{
+let g:rooter_silent_chdir = 1
+" }}}
+
+" Mappings {{{
+" FZF
+nnoremap <silent><leader><leader> :GFiles<CR>
+nnoremap <silent><leader><CR>     :Buffers<CR>
+nnoremap <silent><leader>fi       :Files<CR>
+nnoremap <silent><leader>fl       :Lines<CR>
+nnoremap <silent><leader>ag       :Ag! <C-R><C-W><CR>
+
+" better paste
+vnoremap p "_dP
+
+" don't use arrow keys!
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" YouCompleteMe
+nmap <silent> <leader>d :YcmCompleter GoToDefinition<CR>
+nmap <silent> gy :YcmCompleter GetType<CR>
+nmap <silent> gr :YcmCompleter GoToReferences<CR>
+
+" Ale
+nmap <silent> ]g :ALENextWrap<CR>
+nmap <silent> [g :ALEPreviousWrap<CR>
+" }}}
+
+" Ale {{{
+let b:ale_linters = {
+	\ 'javascript': ['eslint'],
+	\ 'python': ['flake8'],
+	\ }
+let b:ale_fixers = {
+	\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+	\ 'javascript': ['prettier', 'eslint'],
+	\ 'javascript.tsx': ['prettier', 'eslint'],
+	\ 'typescript': ['prettier', 'eslint'],
+	\ 'typescript.tsx': ['prettier', 'eslint'],
+	\ 'python': ['autopep8'],
+	\ }
+" }}}

@@ -147,5 +147,6 @@
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
   "workbench.iconTheme": "ayu",
-  "editor.columnSelection": false
+  "editor.columnSelection": false,
+  "python.languageServer": "Microsoft"
 }

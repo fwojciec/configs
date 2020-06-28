@@ -32,10 +32,10 @@
     "typescriptreact",
     "javascriptreact",
     "json",
-    "python",
     "scss",
     "markdown",
-    "rust"
+    "rust",
+    "python"
   ],
   "eslint.filetypes": [
     "javascript",
@@ -52,7 +52,6 @@
     "typescript-react": "typescript.tsx",
     "javascript react": "javascript.tsx"
   },
-  "metals.statusBarEnabled": true,
   "python.jediEnabled": true,
   "python.formatting.provider": "black",
   "python.linting.enabled": true,

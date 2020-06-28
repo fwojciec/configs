@@ -6,15 +6,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 
 " interface
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'andymass/vim-matchup'
 Plug 'junegunn/vim-slash'
 Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'joshdick/onedark.vim'
 
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -23,6 +23,7 @@ Plug 'airblade/vim-rooter'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neovim/nvim-lsp'
 
 " language support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -35,6 +36,10 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'blueyed/smarty.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'lifepillar/pgsql.vim'
+Plug 'cespare/vim-toml'
 call plug#end()
 " }}}
 
@@ -42,11 +47,12 @@ call plug#end()
 " I assume the vim-sensible plugin is present
 set number
 set relativenumber
+set cursorline
 set clipboard=unnamed
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
@@ -58,20 +64,32 @@ set noshowmode
 set tabstop=4
 set shiftwidth=4
 set winwidth=100
+set noemoji
 set re=0 " see https://github.com/HerringtonDarkholme/yats.vim#config
 let mapleader=" "
 " Permanent undo
 set undodir=~/.vimdid
 set undofile
+
+if filereadable('/usr/local/bin/python3')
+    " Avoid search, speeding up start-up.
+    let g:python3_host_prog='/usr/local/bin/python3'
+endif
 " }}}
 
 " Colorscheme {{{
-set termguicolors
+if (has("termguicolors"))
+	" set Vim-specific sequences for RGB colors
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
 set background=dark
-colorscheme nord
+let g:onedark_terminal_italics = 1
+let g:onedark_hide_endofbuffer = 1
+colorscheme onedark
 " let g:gruvbox_bold = 0
 " colorscheme gruvbox
-" colorscheme onehalfdark
 " }}}
 
 " FileType AutoCommands {{{
@@ -93,6 +111,7 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.sbt setlocal expandtab tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 autoindent
     autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=4 shiftwidth=4 foldmethod=marker
+    autocmd BufNewFile,BufRead *.pgsql setlocal expandtab tabstop=4 shiftwidth=4
 augroup end
 " }}}
 
@@ -105,7 +124,8 @@ let g:coc_global_extensions = [
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-prettier',
-            \ 'coc-python'
+            \ 'coc-python',
+            \ 'coc-elixir'
             \ ]
 
 function! s:check_back_space() abort
@@ -146,28 +166,32 @@ let g:haskell_indent_after_bare_where = 1
 " }}}
 
 " FZF settings {{{
-function! s:fzf_statusline()
-    highlight fzf1 ctermfg=1 ctermbg=0 guifg=#BF616A guibg=#3B4252
-    highlight fzf2 ctermfg=4 ctermbg=0 guifg=#81A1C1 guibg=#3B4252
-    highlight fzf3 ctermfg=14 ctermbg=0 guifg=#8FBCBB guibg=#3B4252
-    " highlight fzf1 ctermfg=1 ctermbg=0 guifg=#fb4934 guibg=#3c3836
-    " highlight fzf2 ctermfg=4 ctermbg=0 guifg=#fe8019 guibg=#3c3836
-    " highlight fzf3 ctermfg=14 ctermbg=0 guifg=#fe8019 guibg=#3c3836
-    setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
+let g:fzf_colors =
+\ { "fg":      ["fg", "Normal"],
+  \ "bg":      ["bg", "Normal"],
+  \ "hl":      ["fg", "IncSearch"],
+  \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
+  \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
+  \ "hl+":     ["fg", "IncSearch"],
+  \ "info":    ["fg", "IncSearch"],
+  \ "border":  ["fg", "Ignore"],
+  \ "prompt":  ["fg", "Comment"],
+  \ "pointer": ["fg", "IncSearch"],
+  \ "marker":  ["fg", "IncSearch"],
+  \ "spinner": ["fg", "IncSearch"],
+  \ "header":  ["fg", "WildMenu"] }
+
+" remove status line from terminal buffer containing fzf
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " }}}
 
 " Lightline {{{
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
@@ -192,12 +216,16 @@ augroup TerminalStuff
 augroup end
 " }}}
 
+" VimRooter {{{
+let g:rooter_silent_chdir = 1
+" }}}
+
 " Mappings {{{
-nnoremap <leader><leader> :GitFiles<CR>
-nnoremap <leader><CR>     :Buffers<CR>
-nnoremap <leader>fi       :Files<CR>
-nnoremap <leader>fl       :Lines<CR>
-nnoremap <leader>ag       :Ag<CR>
+nnoremap <silent><leader><leader> :GitFiles<CR>
+nnoremap <silent><leader><CR>     :Buffers<CR>
+nnoremap <silent><leader>fi       :Files<CR>
+nnoremap <silent><leader>fl       :Lines<CR>
+nnoremap <silent><leader>ag       :Ag<CR>
 " nnoremap <leader>gf       :GoDecls <CR>
 " nnoremap <leader>gd       :GoDeclsDir <CR>
 
