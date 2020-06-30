@@ -16,6 +16,7 @@ ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
 
 # ZSH theme
 # ZSH_THEME="spaceship"
+ZSH_THEME=""
 DEFAULT_USER="filip"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -47,7 +48,6 @@ alias grep="grep --color=auto"
 alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
-alias e="nvim"
 alias glint="golangci-lint run"
 alias ls="ls -hF --color=auto --group-directories-first"
 if [[ `uname` = "Darwin" ]]; then
@@ -62,12 +62,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # Disables shared history
-unsetopt share_history
-
-# Haskell ghcup
-if [ -f "$HOME/.ghcup/env" ]; then
-	source $HOME/.ghcup/env
-fi
+# unsetopt share_history
 
 # Edit line in vim with ctrl-v:
 autoload edit-command-line; zle -N edit-command-line
@@ -82,10 +77,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
 '
 
-# autocompletion initialization
-autoload -Uz compinit; compinit
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
 # rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -93,15 +84,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ -d "$HOME/.pyenv" ]; then
 	export PYENV_ROOT="$HOME/.pyenv"
 	export PATH="$PYENV_ROOT/bin:$PATH"
-	export PYENV_VIRTUALENV_DISABLE_PROMPT=0
+	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-fi
-
-# nvm
-if [ -d "$HOME/.nvm" ]; then
-	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	# eval "$(pyenv virtualenv-init -)"
 fi
 
 eval "$(starship init zsh)"

@@ -1,6 +1,12 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
 
+[character]
+symbol = "➜"
+
+[cmd_duration]
+disabled = true
+
 [aws]
 disabled = true
 

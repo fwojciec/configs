@@ -90,6 +90,7 @@ let g:onedark_hide_endofbuffer = 1
 colorscheme onedark
 " let g:gruvbox_bold = 0
 " colorscheme gruvbox
+let g:semshi#simplify_markup = 0
 " }}}
 
 " FileType AutoCommands {{{
