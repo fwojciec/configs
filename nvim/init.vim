@@ -19,7 +19,7 @@ Plug 'joshdick/onedark.vim'
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -63,7 +63,8 @@ set mouse=a
 set noshowmode
 set tabstop=4
 set shiftwidth=4
-set winwidth=100
+set expandtab
+" set winwidth=100
 set noemoji
 set re=0 " see https://github.com/HerringtonDarkholme/yats.vim#config
 let mapleader=" "
@@ -96,28 +97,37 @@ let g:semshi#simplify_markup = 0
 " FileType AutoCommands {{{
 augroup AutoCommands
     autocmd BufWritePost init.vim nested so $MYVIMRC
-    autocmd BufNewFile,BufRead *.html setlocal noexpandtab tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=javascript.tsx
-    autocmd BufNewFile,BufRead *.ts setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal expandtab tabstop=2 shiftwidth=2 filetype=typescript.tsx
-    autocmd BufNewFile,BufRead *.yam setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.yaml setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.hs setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.hsc setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.lhs setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.cabal setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.scala setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.sbt setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4 autoindent
-    autocmd BufNewFile,BufRead *.vim setlocal expandtab tabstop=4 shiftwidth=4 foldmethod=marker
-    autocmd BufNewFile,BufRead *.pgsql setlocal expandtab tabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.hsc setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.lhs setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.cabal setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.scala setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
+    autocmd BufNewFile,BufRead *.vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
+    autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
+
+    " Jump to last cursor position unless it's invalid or in an event handler
+    autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal g`\"" |
+            \ endif
 augroup end
 " }}}
 
 " Coc Settings {{{
 let g:coc_global_extensions = [
+            \ 'coc-snippets',
             \ 'coc-eslint',
             \ 'coc-tsserver',
             \ 'coc-emmet',
@@ -148,6 +158,21 @@ function! s:show_documentation()
     endif
 endfunction
 
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -156,9 +181,10 @@ let g:coc_status_warning_sign='W'
 " }}}
 
 " vim-go configuration {{{
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-" let g:go_metalinter_autosave=1
+let g:go_metalinter_autosave = 1 
+let g:go_highlight_diagnostic_errors = 0
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = 'goimports'
 " }}}
 
 " vim-haskell settings {{{
@@ -234,22 +260,22 @@ nnoremap <silent><leader>ag       :Ag<CR>
 vnoremap p "_dP
 
 " don't use arrow keys!
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent><leader>d <Plug>(coc-definition)
-nmap <silent><leader>td <Plug>(coc-type-definition)
-nmap <silent><leader>i <Plug>(coc-implementation)
-nmap <silent><leader>r <Plug>(coc-references)
+nmap <silent><leader>gd <Plug>(coc-definition)
+nmap <silent><leader>gy <Plug>(coc-type-definition)
+nmap <silent><leader>gi <Plug>(coc-implementation)
+nmap <silent><leader>gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

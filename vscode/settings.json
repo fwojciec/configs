@@ -129,7 +129,7 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "python.jediEnabled": false,
-  "workbench.colorTheme": "City Lights",
+  "workbench.colorTheme": "Atom One Dark",
   "python.linting.pylintUseMinimalCheckers": false,
   "python.formatting.autopep8Args": [
     "--max-line-length",

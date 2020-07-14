@@ -50,6 +50,7 @@ alias rm="rm -v"
 alias cls="clear"
 alias glint="golangci-lint run"
 alias ls="ls -hF --color=auto --group-directories-first"
+alias ssh="TERM=screen-256color ssh"
 if [[ `uname` = "Darwin" ]]; then
 	alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 	alias ctags="`brew --prefix`/bin/ctags"
@@ -86,7 +87,7 @@ if [ -d "$HOME/.pyenv" ]; then
 	export PATH="$PYENV_ROOT/bin:$PATH"
 	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 	eval "$(pyenv init -)"
-	# eval "$(pyenv virtualenv-init -)"
+	eval "$(pyenv virtualenv-init -)"
 fi
 
 eval "$(starship init zsh)"
