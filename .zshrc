@@ -23,7 +23,7 @@ DEFAULT_USER="filip"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose fzf golang pyenv)
+plugins=(git docker docker-compose fzf golang pyenv gcloud)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -32,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 export EDITOR='nvim'
@@ -51,6 +51,8 @@ alias cls="clear"
 alias glint="golangci-lint run"
 alias ls="ls -hF --color=auto --group-directories-first"
 alias ssh="TERM=screen-256color ssh"
+alias tmux="tmux -u"
+alias vim="nvim"
 if [[ `uname` = "Darwin" ]]; then
 	alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 	alias ctags="`brew --prefix`/bin/ctags"
@@ -91,3 +93,6 @@ if [ -d "$HOME/.pyenv" ]; then
 fi
 
 eval "$(starship init zsh)"
+
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
