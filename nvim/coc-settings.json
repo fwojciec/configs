@@ -32,17 +32,20 @@
     "typescriptreact",
     "javascriptreact",
     "json",
+    "css",
     "scss",
     "markdown",
     "rust",
     "python",
-    "yaml"
+    "yaml",
+    "xml"
   ],
   "eslint.filetypes": [
     "javascript",
     "typescript",
     "typescriptreact",
     "javascriptreact",
+    "javascript.jsx",
     "typescript.tsx"
   ],
   "diagnostic.signOffset": 9999999,
@@ -51,12 +54,14 @@
   "diagnostic.infoSign": "-",
   "emmet.includeLanguages": {
     "typescript-react": "typescript.tsx",
-    "javascript react": "javascript.tsx"
+    "javascript-react": "javascript.tsx",
+    "smarty": "html"
   },
   "python.jediEnabled": false,
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
-  "python.linting.mypyEnabled": true
+  "python.linting.mypyEnabled": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true
 }

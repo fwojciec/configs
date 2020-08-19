@@ -15,6 +15,7 @@ Plug 'junegunn/vim-slash'
 Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'joshdick/onedark.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -40,6 +41,7 @@ Plug 'blueyed/smarty.vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cespare/vim-toml'
+Plug 'uarun/vim-protobuf'
 call plug#end()
 " }}}
 
@@ -64,6 +66,7 @@ set noshowmode
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set showtabline=2
 " set winwidth=100
 set noemoji
 set re=0 " see https://github.com/HerringtonDarkholme/yats.vim#config
@@ -72,9 +75,9 @@ let mapleader=" "
 set undodir=~/.vimdid
 set undofile
 
-if filereadable('/usr/local/bin/python3')
+if filereadable('/Users/filip/.pyenv/versions/3.8.3/bin/python')
     " Avoid search, speeding up start-up.
-    let g:python3_host_prog='/usr/local/bin/python3'
+    let g:python3_host_prog='/Users/filip/.pyenv/versions/3.8.3/bin/python'
 endif
 " }}}
 
@@ -85,37 +88,40 @@ if (has("termguicolors"))
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
-set background=dark
-let g:onedark_terminal_italics = 1
-let g:onedark_hide_endofbuffer = 1
-colorscheme onedark
-" let g:gruvbox_bold = 0
-" colorscheme gruvbox
-let g:semshi#simplify_markup = 0
+" set background=dark
+" let g:onedark_terminal_italics = 1
+" let g:onedark_hide_endofbuffer = 1
+" colorscheme onedark
+let g:gruvbox_bold = 0
+let g:gruvbox_italic = 1
+let g:gruvbox_invert_selection = 0
+colorscheme gruvbox
 " }}}
 
 " FileType AutoCommands {{{
 augroup AutoCommands
     autocmd BufWritePost init.vim nested so $MYVIMRC
-    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.json setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
-    autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
-    autocmd BufNewFile,BufRead *.yaml setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.toml setlocal tabstop=2 shiftwidth=2
+    autocmd FileType go setlocal noexpandtab tabstop=8 shiftwidth=8
+    autocmd FileType html setlocal tabstop=2 shiftwidth=2
+    autocmd FileType json setlocal tabstop=2 shiftwidth=2
+    autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+    autocmd FileType toml setlocal tabstop=2 shiftwidth=2
+    autocmd FileType css setlocal tabstop=2 shiftwidth=2
+    autocmd FileType scss setlocal tabstop=2 shiftwidth=2
+    autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
+    autocmd FileType vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
     autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.hsc setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.lhs setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.cabal setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.scala setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
-    autocmd BufNewFile,BufRead *.vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
     autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
+    autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
+    autocmd BufNewFile,BufRead ~/Work/www/templates/**/*.html setlocal tabstop=4 shiftwidth=4 filetype=smarty
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
@@ -181,10 +187,13 @@ let g:coc_status_warning_sign='W'
 " }}}
 
 " vim-go configuration {{{
-let g:go_metalinter_autosave = 1 
+" let g:go_metalinter_autosave = 1 
+let g:go_metalinter_enabled = ['vet', 'golint']
 let g:go_highlight_diagnostic_errors = 0
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = 'goimports'
+let g:go_echo_go_info = 0
+let g:go_template_autocreate=0
 " }}}
 
 " vim-haskell settings {{{
@@ -215,18 +224,32 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 
 " Lightline {{{
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'cocstatus' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
       \   'currentfunction': 'CocCurrentFunction',
       \   'fugitive': 'FugitiveHead',
       \ },
+      \ 'tabline': {
+      \   'left': [ ['buffers'] ],
+      \   'right': [ [] ]
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ },
+      \ 'component_raw': { 'buffers': 1 }
       \ }
 
+      " \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      " \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+let g:lightline#bufferline#clickable = 1
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " }}}
 
@@ -260,12 +283,12 @@ nnoremap <silent><leader>ag       :Ag<CR>
 vnoremap p "_dP
 
 " don't use arrow keys!
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -282,6 +305,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>prn :CocSearch <C-R>=expand('<cword>')<CR><CR>
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -292,4 +316,9 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+augroup FileTypeMappings
+    autocmd FileType python nnoremap <buffer><silent><leader>si :CocCommand python.sortImports<CR>
+    autocmd FileType go nnoremap <buffer><silent><leader>l :GoMetaLinter<CR>
+augroup end
 " }}}
