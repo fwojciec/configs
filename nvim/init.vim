@@ -75,9 +75,9 @@ let mapleader=" "
 set undodir=~/.vimdid
 set undofile
 
-if filereadable('/Users/filip/.pyenv/versions/3.8.3/bin/python')
+if filereadable('/Users/filip/.pyenv/versions/3.8.5/bin/python')
     " Avoid search, speeding up start-up.
-    let g:python3_host_prog='/Users/filip/.pyenv/versions/3.8.3/bin/python'
+    let g:python3_host_prog='/Users/filip/.pyenv/versions/3.8.5/bin/python'
 endif
 " }}}
 
