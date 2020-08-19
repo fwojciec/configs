@@ -3,3 +3,7 @@
 	email = fwojciec@gmail.com
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[merge]
+	conflictstyle = diff3
