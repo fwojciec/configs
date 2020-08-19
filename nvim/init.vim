@@ -92,8 +92,9 @@ endif
 " let g:onedark_terminal_italics = 1
 " let g:onedark_hide_endofbuffer = 1
 " colorscheme onedark
-let g:gruvbox_bold = 0
-let g:gruvbox_italic = 1
+" let g:gruvbox_bold = 0
+" let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
 " }}}
