@@ -93,7 +93,9 @@ fi
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Source local customizations
-. ~/.zshrc_local
+if [ -f "$HOME/.zshrc_local" ]; then
+    . ~/.zshrc_local
+fi
 
 # Starship prompt
 eval "$(starship init zsh)"
