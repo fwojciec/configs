@@ -52,7 +52,7 @@ alias glint="golangci-lint run"
 alias ls="ls -hF --color=auto --group-directories-first"
 alias ssh="TERM=screen-256color ssh"
 alias tmux="tmux -u"
-alias vim="nvim"
+# alias vim="nvim"
 if [[ `uname` = "Darwin" ]]; then
 	alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 	alias ctags="`brew --prefix`/bin/ctags"
@@ -96,3 +96,6 @@ eval "$(starship init zsh)"
 
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Source local customizations
+. ~/.zshrc_local
