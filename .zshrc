@@ -73,12 +73,9 @@ bindkey '^v' edit-command-line
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_OPTS="--color=bg+:#3B4252,bg:#2E3440,spinner:#81A1C1,hl:#616E88,fg:#D8DEE9,header:#616E88,info:#81A1C1,pointer:#81A1C1,marker:#81A1C1,fg+:#D8DEE9,prompt:#81A1C1,hl+:#81A1C1"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color=dark
---color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
---color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
-'
+--color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+--color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
 # rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -92,10 +89,11 @@ if [ -d "$HOME/.pyenv" ]; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
-eval "$(starship init zsh)"
-
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Source local customizations
 . ~/.zshrc_local
+
+# Starship prompt
+eval "$(starship init zsh)"
