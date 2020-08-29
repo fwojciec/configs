@@ -42,6 +42,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cespare/vim-toml'
 Plug 'uarun/vim-protobuf'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 call plug#end()
 " }}}
 
@@ -192,9 +193,16 @@ let g:coc_status_warning_sign='W'
 let g:go_metalinter_enabled = ['vet', 'golint']
 let g:go_highlight_diagnostic_errors = 0
 let g:go_fmt_autosave = 1
-let g:go_fmt_command = 'goimports'
+let g:go_fmt_command = "gopls"
+let g:go_imports_autosave = 1
+let g:go_imports_mode = "gopls"
+" let g:go_fmt_command = 'goimports'
 let g:go_echo_go_info = 0
 let g:go_template_autocreate=0
+let g:go_debug_windows = {
+      \ 'vars':       'rightbelow 60vnew',
+      \ 'stack':      'rightbelow 10new',
+\ }
 " }}}
 
 " vim-haskell settings {{{
