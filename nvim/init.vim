@@ -20,6 +20,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'antoinemadec/coc-fzf'
 " Plug 'airblade/vim-rooter'
 
 " completion
@@ -230,9 +231,13 @@ let g:fzf_colors =
   \ "spinner": ["fg", "IncSearch"],
   \ "header":  ["fg", "WildMenu"] }
 
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+nnoremap <silent> <space>c       :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <space>d       :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
 " remove status line from terminal buffer containing fzf
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" autocmd! FileType fzf set laststatus=0 noshowmode noruler
+"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " }}}
 
 " Lightline {{{
