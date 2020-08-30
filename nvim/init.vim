@@ -150,6 +150,8 @@ let g:coc_global_extensions = [
             \ 'coc-diagnostic',
             \ 'coc-xml',
             \ 'coc-yaml',
+            \ 'coc-yank',
+            \ 'coc-vimlsp',
             \ ]
 
 function! s:check_back_space() abort
@@ -232,9 +234,6 @@ let g:fzf_colors =
   \ "header":  ["fg", "WildMenu"] }
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-nnoremap <silent> <space>c       :<C-u>CocFzfList commands<CR>
-nnoremap <silent> <space>d       :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
 " remove status line from terminal buffer containing fzf
 " autocmd! FileType fzf set laststatus=0 noshowmode noruler
 "   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -350,4 +349,9 @@ augroup FileTypeMappings
     autocmd FileType python nnoremap <buffer><silent><leader>si :CocCommand python.sortImports<CR>
     autocmd FileType go nnoremap <buffer><silent><leader>l :GoMetaLinter<CR>
 augroup end
+
+nnoremap <silent> <space>c       :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <space>d       :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
+nnoremap <silent> <space>y       :<C-u>CocFzfList yank<CR>
 " }}}
