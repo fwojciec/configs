@@ -10,30 +10,34 @@ Plug 'tpope/vim-unimpaired'
 
 " interface
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/vim-slash'
 Plug 'gruvbox-community/gruvbox'
 Plug 'mengelbrecht/lightline-bufferline'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'joshdick/onedark.vim'
-" Plug 'machakann/vim-highlightedyank'
 
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'antoinemadec/coc-fzf'
-" Plug 'airblade/vim-rooter'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+" quality of life
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'junegunn/vim-slash'
+Plug 'machakann/vim-highlightedyank'
+Plug 'airblade/vim-rooter'
 
 " language support
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
-Plug 'pangloss/vim-javascript'
-Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'chemzqm/vim-jsx-improve'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'blueyed/smarty.vim'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cespare/vim-toml'
@@ -121,9 +125,9 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead ~/Work/www/templates/**/*.html setlocal tabstop=4 shiftwidth=4 filetype=smarty
 
     " Jump to last cursor position unless it's invalid or in an event handler
@@ -145,12 +149,10 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-prettier',
             \ 'coc-python',
-            \ 'coc-elixir',
             \ 'coc-go',
             \ 'coc-diagnostic',
             \ 'coc-xml',
             \ 'coc-yaml',
-            \ 'coc-yank',
             \ 'coc-vimlsp',
             \ ]
 
@@ -298,6 +300,10 @@ augroup end
 let g:rooter_silent_chdir = 1
 " }}}
 
+" {{{ vim-highlightedyank
+let g:highlightedyank_highlight_duration = 100
+" }}}
+
 " Mappings {{{
 nnoremap <silent><leader><leader> :GitFiles<CR>
 nnoremap <silent><leader><CR>     :Buffers<CR>
@@ -347,11 +353,5 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 augroup FileTypeMappings
     autocmd FileType python nnoremap <buffer><silent><leader>si :CocCommand python.sortImports<CR>
-    autocmd FileType go nnoremap <buffer><silent><leader>l :GoMetaLinter<CR>
 augroup end
-
-nnoremap <silent> <space>c       :<C-u>CocFzfList commands<CR>
-nnoremap <silent> <space>d       :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
-nnoremap <silent> <space>y       :<C-u>CocFzfList yank<CR>
 " }}}
