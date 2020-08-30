@@ -9,17 +9,12 @@
           "hlintOn": true
         }
       }
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true,
-        "completeUnimported": true,
-        "deepCompletion": true
-      }
     }
+  },
+  "go.goplsOptions": {
+    "usePlaceholders": true,
+    "completeUnimported": true,
+    "deepCompletion": true
   },
   "suggest.minTriggerInputLength": 1,
   "json.format.enable": false,
@@ -38,7 +33,8 @@
     "rust",
     "python",
     "yaml",
-    "xml"
+    "xml",
+    "go"
   ],
   "eslint.filetypes": [
     "javascript",
@@ -62,5 +58,24 @@
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
-  "python.linting.mypyEnabled": true
+  "python.linting.mypyEnabled": true,
+  "diagnostic-languageserver.filetypes": {
+    "go": ["golangci-lint"]
+  },
+  "diagnostic-languageserver.linters": {
+    "golangci-lint": {
+      "command": "golangci-lint",
+      "rootPatterns": [".git", "go.mod"],
+      "debounce": 100,
+      "args": ["run", "--out-format", "json", "%file"],
+      "sourceName": "golangci-lint",
+      "parseJson": {
+        "errorsRoot": "Issues",
+        "line": "Pos.Line",
+        "column": "Pos.Column",
+        "message": "${Text} [${FromLinter}]",
+        "security": "Severity"
+      }
+    }
+  }
 }

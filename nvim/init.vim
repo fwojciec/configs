@@ -27,7 +27,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neovim/nvim-lsp'
 
 " language support
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'cousine/go-present-slide-syntax.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'neovimhaskell/haskell-vim'
@@ -144,7 +144,11 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-prettier',
             \ 'coc-python',
-            \ 'coc-elixir'
+            \ 'coc-elixir',
+            \ 'coc-go',
+            \ 'coc-diagnostic',
+            \ 'coc-xml',
+            \ 'coc-yaml',
             \ ]
 
 function! s:check_back_space() abort
@@ -189,20 +193,20 @@ let g:coc_status_warning_sign='W'
 " }}}
 
 " vim-go configuration {{{
-" let g:go_metalinter_autosave = 1 
-let g:go_metalinter_enabled = ['vet', 'golint']
-let g:go_highlight_diagnostic_errors = 0
-let g:go_fmt_autosave = 1
-let g:go_fmt_command = "gopls"
-let g:go_imports_autosave = 1
-let g:go_imports_mode = "gopls"
-" let g:go_fmt_command = 'goimports'
-let g:go_echo_go_info = 0
-let g:go_template_autocreate=0
-let g:go_debug_windows = {
-      \ 'vars':       'rightbelow 60vnew',
-      \ 'stack':      'rightbelow 10new',
-\ }
+" " let g:go_metalinter_autosave = 1 
+" let g:go_metalinter_enabled = ['vet', 'golint']
+" let g:go_highlight_diagnostic_errors = 0
+" let g:go_fmt_autosave = 1
+" let g:go_fmt_command = "gopls"
+" let g:go_imports_autosave = 1
+" let g:go_imports_mode = "gopls"
+" " let g:go_fmt_command = 'goimports'
+" let g:go_echo_go_info = 0
+" let g:go_template_autocreate=0
+" let g:go_debug_windows = {
+"       \ 'vars':       'rightbelow 60vnew',
+"       \ 'stack':      'rightbelow 10new',
+" \ }
 " }}}
 
 " vim-haskell settings {{{
@@ -260,6 +264,16 @@ let g:lightline = {
       " \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
 let g:lightline#bufferline#clickable = 1
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" }}}
+
+" Go {{{
+augroup GoAutoCommands
+    autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
+    autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
+    autocmd FileType go nmap gtd :CocCommand go.tags.add datastore<cr>
+    autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
+    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+augroup end
 " }}}
 
 " Python {{{
