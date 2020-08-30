@@ -33,16 +33,17 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'jparise/vim-graphql'
-Plug 'chemzqm/vim-jsx-improve'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'blueyed/smarty.vim'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cespare/vim-toml'
 Plug 'uarun/vim-protobuf'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+" Plug 'pangloss/vim-javascript'
+" Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -79,12 +80,9 @@ let mapleader=" "
 " Permanent undo
 set undodir=~/.vimdid
 set undofile
+" }}}
 
-if filereadable('/Users/filip/.pyenv/versions/3.8.5/bin/python')
-    " Avoid search, speeding up start-up.
-    let g:python3_host_prog='/Users/filip/.pyenv/versions/3.8.5/bin/python'
-endif
-
+" fast startup {{{
 let g:python3_host_prog = '~/.pyenv/shims/python3'
 let g:python_host_prog = '~/.pyenv/shims/python2'
 let g:ruby_host_prog = exepath('neovim-ruby-host')
@@ -130,9 +128,9 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
     autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
     autocmd BufNewFile,BufRead ~/Work/www/templates/**/*.html setlocal tabstop=4 shiftwidth=4 filetype=smarty
 
     " Jump to last cursor position unless it's invalid or in an event handler
