@@ -10,12 +10,12 @@ Plug 'tpope/vim-unimpaired'
 
 " interface
 Plug 'itchyny/lightline.vim'
-Plug 'machakann/vim-highlightedyank'
 Plug 'junegunn/vim-slash'
-Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'joshdick/onedark.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'joshdick/onedark.vim'
+" Plug 'machakann/vim-highlightedyank'
 
 " filesystem
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -25,13 +25,9 @@ Plug 'antoinemadec/coc-fzf'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neovim/nvim-lsp'
 
 " language support
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'cousine/go-present-slide-syntax.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -39,11 +35,14 @@ Plug 'jparise/vim-graphql'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'blueyed/smarty.vim'
-Plug 'elixir-editors/vim-elixir'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cespare/vim-toml'
 Plug 'uarun/vim-protobuf'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+" Plug 'neovimhaskell/haskell-vim'
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
 " }}}
 
@@ -99,6 +98,7 @@ endif
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = 0
 colorscheme gruvbox
+
 " }}}
 
 " FileType AutoCommands {{{
@@ -272,6 +272,7 @@ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 " }}}
 
 " Go {{{
+let g:go_highlight_trailing_whitespace_error = 0
 augroup GoAutoCommands
     autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
     autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
