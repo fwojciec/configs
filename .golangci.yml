@@ -1,0 +1,16 @@
+linters-settings:
+  errcheck:
+    exclude: ~/.config/errcheck/exclude.txt
+  gocyclo:
+    min-complexity: 5
+  golint:
+    min-confidence: 0
+  govet:
+    check-shadowing: true
+
+severity:
+  default-severity: warning
+  rules:
+    - linters:
+        - errcheck
+      severity: note
