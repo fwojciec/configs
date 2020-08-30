@@ -1,8 +1,15 @@
+linters:
+  disable-all: true
+  enable:
+    - golint
+    - govet
+    - gofmt
+    - gocyclo
+    - errcheck
+
 linters-settings:
-  errcheck:
-    exclude: ~/.config/errcheck/exclude.txt
   gocyclo:
-    min-complexity: 5
+    min-complexity: 10
   golint:
     min-confidence: 0
   govet:
