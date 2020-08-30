@@ -277,7 +277,7 @@ augroup GoAutoCommands
     autocmd FileType go nmap gty :CocCommand go.tags.add yaml<cr>
     autocmd FileType go nmap gtd :CocCommand go.tags.add datastore<cr>
     autocmd FileType go nmap gtx :CocCommand go.tags.clear<cr>
-    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+    autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 augroup end
 " }}}
 
