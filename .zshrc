@@ -97,5 +97,10 @@ if [ -f "$HOME/.zshrc_local" ]; then
     . ~/.zshrc_local
 fi
 
+# rbenv
+if which rbenv > /dev/null; then
+    eval "$(rbenv init -)";
+fi
+
 # Starship prompt
 eval "$(starship init zsh)"

@@ -84,6 +84,10 @@ if filereadable('/Users/filip/.pyenv/versions/3.8.5/bin/python')
     " Avoid search, speeding up start-up.
     let g:python3_host_prog='/Users/filip/.pyenv/versions/3.8.5/bin/python'
 endif
+
+let g:python3_host_prog = '~/.pyenv/shims/python3'
+let g:python_host_prog = '~/.pyenv/shims/python2'
+let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
 " }}}
 
 " Colorscheme {{{
