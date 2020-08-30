@@ -87,6 +87,7 @@ endif
 
 let g:python3_host_prog = '~/.pyenv/shims/python3'
 let g:python_host_prog = '~/.pyenv/shims/python2'
+let g:ruby_host_prog = exepath('neovim-ruby-host')
 let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
 " }}}
 
