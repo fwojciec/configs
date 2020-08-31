@@ -42,8 +42,6 @@ Plug 'lifepillar/pgsql.vim'
 Plug 'cespare/vim-toml'
 Plug 'uarun/vim-protobuf'
 Plug 'martinda/Jenkinsfile-vim-syntax'
-" Plug 'pangloss/vim-javascript'
-" Plug 'MaxMEllon/vim-jsx-pretty'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
