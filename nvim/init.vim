@@ -15,9 +15,11 @@ Plug 'mengelbrecht/lightline-bufferline'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'joshdick/onedark.vim'
 
-" filesystem
+" fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'antoinemadec/coc-fzf'
+
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -355,4 +357,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 augroup FileTypeMappings
     autocmd FileType python nnoremap <buffer><silent><leader>si :CocCommand python.sortImports<CR>
 augroup end
+
+"coc-fzf
+nnoremap <silent> <space>c :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <space>l :<C-u>CocFzfList<CR>
 " }}}
