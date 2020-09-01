@@ -1,9 +1,3 @@
-# Keybindings
-bindkey "[D" backward-word
-bindkey "[C" forward-word
-bindkey "^[a" beginning-of-line
-bindkey "^[e" end-of-line
-
 # Path
 # COREUTILS_PATH=/usr/local/opt/coreutils/libexec/gnubin
 export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin
@@ -15,7 +9,6 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/configs/.oh_my_zsh_custom
 
 # ZSH theme
-# ZSH_THEME="spaceship"
 ZSH_THEME=""
 DEFAULT_USER="filip"
 
@@ -53,14 +46,15 @@ alias ls="ls -hF --color=auto --group-directories-first"
 alias ssh="TERM=screen-256color ssh"
 alias tmux="tmux -u"
 # alias vim="nvim"
+
 if [[ `uname` = "Darwin" ]]; then
-	alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-	alias ctags="`brew --prefix`/bin/ctags"
+	# alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+	# alias ctags="`brew --prefix`/bin/ctags"
 	alias ls="gls -hF --color=auto --group-directories-first"
 fi
 
 # GoLang configuration
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+# export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -92,14 +86,14 @@ fi
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
 
-# Source local customizations
-if [ -f "$HOME/.zshrc_local" ]; then
-    . ~/.zshrc_local
-fi
-
 # rbenv
 if which rbenv > /dev/null; then
     eval "$(rbenv init -)";
+fi
+
+# Source local customizations
+if [ -f "$HOME/.zshrc_local" ]; then
+    . ~/.zshrc_local
 fi
 
 # Starship prompt
