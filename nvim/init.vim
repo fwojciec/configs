@@ -7,6 +7,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
 
 " interface
 Plug 'itchyny/lightline.vim'
@@ -83,7 +84,7 @@ set undofile
 " }}}
 
 " fast startup {{{
-let g:python3_host_prog = '~/.pyenv/shims/python3'
+let g:python3_host_prog = '~/.pyenv/versions/3.8.5/bin/python'
 let g:python_host_prog = '~/.pyenv/shims/python2'
 let g:ruby_host_prog = exepath('neovim-ruby-host')
 let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
@@ -360,5 +361,6 @@ augroup end
 
 "coc-fzf
 nnoremap <silent> <space>c :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <space>o :<C-u>CocFzfList outline<CR>
 nnoremap <silent> <space>l :<C-u>CocFzfList<CR>
 " }}}
