@@ -7,7 +7,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-dispatch'
 
 " interface
 Plug 'itchyny/lightline.vim'
@@ -21,7 +20,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 
-
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
@@ -31,20 +29,26 @@ Plug 'junegunn/vim-slash'
 Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
 
-" language support
-Plug 'rust-lang/rust.vim'
-Plug 'vim-python/python-syntax'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'jparise/vim-graphql'
-Plug 'pangloss/vim-javascript'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
+" Syntax
+Plug 'sheerun/vim-polyglot'
 Plug 'blueyed/smarty.vim'
-Plug 'lifepillar/pgsql.vim'
-Plug 'cespare/vim-toml'
-Plug 'uarun/vim-protobuf'
-Plug 'martinda/Jenkinsfile-vim-syntax'
+
+" Testing
+Plug 'vim-test/vim-test'
+
+" language support
+" Plug 'rust-lang/rust.vim'
+" Plug 'vim-python/python-syntax'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'jparise/vim-graphql'
+" Plug 'pangloss/vim-javascript'
+" Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'lifepillar/pgsql.vim'
+" Plug 'cespare/vim-toml'
+" Plug 'uarun/vim-protobuf'
+" Plug 'martinda/Jenkinsfile-vim-syntax'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
