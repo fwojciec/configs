@@ -40,6 +40,11 @@ _comp_options+=(globdots)
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
 
+# Local settings
+if [ -f $ZDOTDIR/.zshrc_local ]; then
+    source $ZDOTDIR/.zshrc_local
+fi
+
 # Fix some keybindings
 # Make sure that the terminal is in application mode when zle is active, since
 # only then values from $terminfo are valid
@@ -70,14 +75,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
 --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 
-# pyenv
-# if which pyenv > /dev/null 2>&1; then
-# 	export PYENV_ROOT="$HOME/.pyenv"
-# 	export PATH="$PYENV_ROOT/bin:$PATH"
-# 	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# 	eval "$(pyenv init -)"
-# 	eval "$(pyenv virtualenv-init -)"
-# fi
 
 # Starship prompt
 eval "$(starship init zsh)"
