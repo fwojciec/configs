@@ -9,3 +9,5 @@
 	conflictstyle = diff3
 [http]
 	sslVerify = true
+[pull]
+	rebase = false
