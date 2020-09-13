@@ -58,6 +58,9 @@ disabled = true
 [ocaml]
 disabled = true
 
+[package]
+disabled = true
+
 [php]
 disabled = true
 
