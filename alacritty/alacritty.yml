@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 150
-    lines: 50
+    columns: 180
+    lines: 40
 
   # Window position (changes require restart)
   #
@@ -49,8 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: none
-
+  decorations: buttonless
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -60,8 +59,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: SimpleFullscreen
-
+  # startup_mode: SimpleFullscreen
   # Window title
   #title: Alacritty
   # Window class (Linux/BSD only):
@@ -153,14 +151,14 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 10
+    y: 8
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
+    # Glyph offset determines the locations of the glyphs within their cells with
+    # the default being at the bottom. Increasing `x` moves the glyph to the right,
+    # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 3
+    y: 2
 
   # Thin stroke font rendering (macOS only)
   use_thin_strokes: true
