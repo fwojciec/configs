@@ -94,9 +94,9 @@ set undofile
 " }}}
 
 " Fast startup {{{
-let g:python3_host_prog = '~/.pyenv/versions/3.8.5/bin/python'
-let g:python_host_prog = '~/.pyenv/shims/python2'
-let g:ruby_host_prog = '~/.gem/ruby/2.7.0/bin/neovim-ruby-host'
+let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.8.5/bin/python'
+let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
+let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.7.0/bin/neovim-ruby-host'
 let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
 " }}}
 
