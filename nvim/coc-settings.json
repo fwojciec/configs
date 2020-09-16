@@ -12,6 +12,7 @@
     }
   },
   "go.goplsOptions": {
+    "usePlaceholders": false,
     "completeUnimported": true,
     "deepCompletion": true,
     "analyses": {

@@ -16,7 +16,7 @@ Plug 'gruvbox-community/gruvbox'
 " Plug 'joshdick/onedark.vim'
 
 " fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 
@@ -29,7 +29,7 @@ Plug 'airblade/vim-rooter'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Custom
-" Plug 'fwojciec/vim-go-motion'
+Plug 'fwojciec/vim-go-motion'
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
@@ -79,6 +79,7 @@ set noshowmode " hide -- INSERT --
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set scrolloff=5
 " set showtabline=2
 if exists('&inccommand')
     set inccommand=split
@@ -331,7 +332,8 @@ let g:fzf_colors =
   \ "spinner": ["fg", "IncSearch"],
   \ "header":  ["fg", "WildMenu"] }
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'down': '~40%' }
 " }}}
 
 " Lightline {{{
