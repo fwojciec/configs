@@ -45,33 +45,35 @@
   "[markdown]": {
     "editor.tabSize": 2
   },
-  "editor.fontFamily": "'Operator Mono Lig', 'Iosevka Nerd Font', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
-  "editor.fontSize": 17,
-  "editor.fontLigatures": false,
-  // "workbench.colorCustomizations": {
-  //   "titleBar.inactiveBackground": "#1b2b34"
-  // },
+  "editor.fontFamily": "'Fira Code', 'Operator Mono Lig', 'Iosevka Nerd Font', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  "editor.fontSize": 15,
+  "editor.fontLigatures": true,
   "go.useLanguageServer": true,
   "go.formatTool": "goimports",
-  "go.lintTool": "golint",
   "go.vetOnSave": "package",
-  // "go.lintTool": "golangci-lint",
-  // "go.lintFlags": [
-  //   "--fast"
-  // ],
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "--fast"
+  ],
   "[go]": {
     "editor.tabSize": 8,
-    // "editor.defaultFormatter": "ms-vscode.Go",
     "editor.snippetSuggestions": "top",
-    "editor.formatOnSave": true,
-    // "editor.codeActionsOnSave": {
-    //   "source.organizeImports": true
-    // }
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll": true
+    }
   },
   "gopls": {
-    "usePlaceholders": true,
+    "usePlaceholders": false,
     "completeUnimported": true,
-    "deepCompletion": true
+    "deepCompletion": true,
+    "analyses": {
+      "fillreturns": true,
+      "undeclaredname": true,
+      "unusedparams": true,
+      "nonewvars": true,
+      "gc_details": true
+    }
   },
   "files.eol": "\n",
   "git.enableSmartCommit": true,
