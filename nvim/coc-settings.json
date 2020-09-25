@@ -19,8 +19,7 @@
       "fillreturns": true,
       "undeclaredname": true,
       "unusedparams": true,
-      "nonewvars": true,
-      "gc_details": true
+      "nonewvars": true
     }
   },
   "go.tags": {
@@ -51,9 +50,10 @@
     "javascript.jsx",
     "typescript.tsx"
   ],
-  "diagnostic.errorSign": "-",
-  "diagnostic.warningSign": "-",
-  "diagnostic.infoSign": "-",
+  "diagnostic.errorSign": "--",
+  "diagnostic.warningSign": "--",
+  "diagnostic.infoSign": "--",
+  "diagnostic.hintSign": "--",
   "emmet.includeLanguages": {
     "typescript-react": "typescript.tsx",
     "javascript-react": "javascript.tsx",
