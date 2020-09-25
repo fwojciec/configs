@@ -9,6 +9,13 @@ M.mapper = function(mode, key, result)
   vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
 end
 
+M.define_disgnostic_signs = function()
+  vim.fn.sign_define('LspDiagnosticsErrorSign', {text = '->', texthl = 'LspDiagnosticsError'})
+  vim.fn.sign_define('LspDiagnosticsWarningSign', {text = '->', texthl = 'LspDiagnosticsWarning'})
+  vim.fn.sign_define('LspDiagnosticsInformationSign', {text = '->', texthl = 'LspDiagnosticsInformation'})
+  vim.fn.sign_define('LspDiagnosticsHintSign', {text = '->', texthl = 'LspDiagnosticsHint'})
+end
+
 M.on_attach = function(client, bufnr)
   lsp_status.register_progress()
 
@@ -39,6 +46,7 @@ M.on_attach = function(client, bufnr)
   M.mapper('n', '<leader>rr', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>')
 
   vim.cmd('setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+  M.define_disgnostic_signs()
 end
 
 nvim_lsp.gopls.setup{

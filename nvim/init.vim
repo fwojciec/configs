@@ -88,16 +88,17 @@ set shiftwidth=4
 set expandtab
 set scrolloff=5
 set completeopt=menuone,noinsert,noselect
-" set showtabline=2
-if exists('&inccommand')
-    set inccommand=split
-endif
-" set winwidth=100
 set noemoji
+" set showtabline=2
+" if exists('&inccommand')
+"     set inccommand=split
+" endif
+" set winwidth=100
 " set re=0 " see https://github.com/HerringtonDarkholme/yats.vim#config
-let mapleader=" "
-" Permanent undo
-set undodir=~/.vimdid
+" }}}
+
+" Permanent undo {{{
+set undodir=~/.local/share/nvim/.vimdid
 set undofile
 " }}}
 
@@ -230,6 +231,9 @@ let g:dispatch_no_maps = 1 " no default mappings
 " }}}
 
 " Mappings {{{
+let mapleader='<space>'
+
+" fzf
 nnoremap <silent><leader><leader> :GitFiles<CR>
 nnoremap <silent><leader><CR>     :Buffers<CR>
 nnoremap <silent><leader>fi       :Files<CR>
@@ -252,21 +256,7 @@ inoremap <right> <nop>
 nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
 " }}}
 
-" Nvim lua lsp {{{
-lua require("lsp")
-
-call sign_define("LspDiagnosticsErrorSign", {"text" : "->", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "->", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "->", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : "->", "texthl" : "LspDiagnosticsHint"})
-
-let g:diagnostic_enable_underline = 0
-" let g:completion_auto_change_source = 1
-" let g:completion_enable_auto_paren = 0
-" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-" let g:completion_matching_ignore_case = 0
-" let g:completion_sorting = 'none'
-" let g:completion_enable_snippet = 'vim-vsnip'
+" Vsnip {{{
 let g:vsnip_snippet_dir = expand('$HOME/.config/nvim/vsnip')
 "
 " Expand
@@ -283,23 +273,29 @@ smap <expr> <C-j>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-j
 imap <expr> <C-k>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-k>'
 smap <expr> <C-k>   vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-k>'
 
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+" nmap        s   <Plug>(vsnip-select-text)
+" xmap        s   <Plug>(vsnip-select-text)
+" nmap        S   <Plug>(vsnip-cut-text)
+" xmap        S   <Plug>(vsnip-cut-text)
+" }}}
+
+" Nvim lua lsp {{{
+lua require("lsp")
+
+let g:diagnostic_enable_underline = 0
+" let g:completion_auto_change_source = 1
+" let g:completion_enable_auto_paren = 0
+" let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+" let g:completion_matching_ignore_case = 0
+" let g:completion_sorting = 'none'
+" let g:completion_enable_snippet = 'vim-vsnip'
+
 inoremap <silent><expr> <Tab>     pumvisible() ? '<C-n>' : '<Tab>'
 inoremap <silent><expr> <S-Tab>   pumvisible() ? '<C-p>' : '<S-Tab>'
 inoremap <silent><expr> <CR>      pumvisible() ? '<C-y>' : '<CR>'
 inoremap <silent><expr> <C-Space> '<C-x><C-o>'
+
 " inoremap <silent><expr> <c-space> completion#trigger_completion()
-
-
-" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-" nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
-" nnoremap <silent> ]g    <cmd>NextDiagnosticCycle<CR>
-" nnoremap <silent> [g    <cmd>PrevDiagnosticCycle<CR>
 " }}}
