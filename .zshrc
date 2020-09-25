@@ -74,6 +74,12 @@ bindkey -M emacs "${terminfo[kend]}"  end-of-line
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
 --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+# NORD COLORS
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+#     --color=fg:#e5e9f0,bg:#2e3440,hl:#81a1c1
+#     --color=fg+:#e5e9f0,bg+:#2e3440,hl+:#81a1c1
+#     --color=info:#ebcb8b,prompt:#bf616a,pointer:#b48ead
+#     --color=marker:#a3be8c,spinner:#b48ead,header:#a3be8c'
 
 
 # Starship prompt

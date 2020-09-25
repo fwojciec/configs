@@ -10,6 +10,9 @@ export PATH=$PATH:$GOPATH/bin
 # rust cargo
 export PATH=$HOME/.cargo/bin:$PATH
 
+# dotnet
+export PATH=$HOME/.dotnet:$PATH
+
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home)
 
