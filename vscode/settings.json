@@ -49,12 +49,12 @@
   "editor.fontSize": 15,
   "editor.fontLigatures": true,
   "go.useLanguageServer": true,
-  "go.formatTool": "goimports",
-  "go.vetOnSave": "package",
   "go.lintTool": "golangci-lint",
   "go.lintFlags": [
-    "--fast"
+    "--config",
+    "~/.golangci.yml"
   ],
+  "go.lintOnSave": "package",
   "[go]": {
     "editor.tabSize": 8,
     "editor.snippetSuggestions": "top",
@@ -64,7 +64,7 @@
     }
   },
   "gopls": {
-    "usePlaceholders": false,
+    "usePlaceholders": true,
     "completeUnimported": true,
     "deepCompletion": true,
     "analyses": {
@@ -75,80 +75,151 @@
       "gc_details": true
     }
   },
-  "files.eol": "\n",
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
+  "eslint.alwaysShowStatus": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "terminal.integrated.fontSize": 15,
   "terminal.integrated.fontWeight": "400",
   "terminal.integrated.fontWeightBold": "500",
-  "eslint.alwaysShowStatus": true,
   "terminal.integrated.shell.osx": "/bin/zsh",
   "window.zoomLevel": 0,
-  "workbench.activityBar.visible": true,
+  "workbench.activityBar.visible": false,
   "breadcrumbs.enabled": false,
   "editor.renderIndentGuides": false,
-  "editor.fontWeight": "400",
-  "editor.letterSpacing": 0.1,
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": "entity.other.inherited-class",
-        "settings": {
-          "fontStyle": ""
-        }
-      }
-    ]
-  },
   "files.associations": {
     "*.pgsql": "sql",
     "pylintrc": "ini"
   },
   "extensions.ignoreRecommendations": false,
   "editor.formatOnSave": true,
-  "terminal.integrated.fontSize": 15,
-  "languageServerHaskell.hlintOn": true,
-  "languageServerHaskell.liquidOn": true,
-  "languageServerHaskell.useCustomHieWrapper": true,
-  "languageServerHaskell.useCustomHieWrapperPath": "hie-wrapper",
   "editor.minimap.renderCharacters": false,
   "editor.minimap.enabled": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
   "scm.diffDecorationsGutterVisibility": "hover",
   "workbench.startupEditor": "newUntitledFile",
-  "C_Cpp.updateChannel": "Insiders",
   "editor.links": false,
-  "elixirLS.suggestSpecs": false,
+  "editor.tabCompletion": "on",
   "emmet.includeLanguages": {
     "HTML (EEx)": "html"
   },
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "python.jediEnabled": false,
-  "workbench.colorTheme": "Gruvbox Dark Hard",
-  "python.linting.pylintUseMinimalCheckers": false,
-  "python.formatting.autopep8Args": [
-    "--max-line-length",
-    "100",
-    "--experimental"
-  ],
-  "java.semanticHighlighting.enabled": true,
-  "files.exclude": {
-    "**/.classpath": true,
-    "**/.project": true,
-    "**/.settings": true,
-    "**/.factorypath": true
-  },
+  "editor.occurrencesHighlight": false,
+  "python.pythonPath": "/Users/filip/.pyenv/shims/python",
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
-  "workbench.iconTheme": "ayu",
+  "workbench.iconTheme": "field-lights-minimalistic",
   "editor.columnSelection": false,
-  "python.languageServer": "Microsoft"
+  "python.languageServer": "Microsoft",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "gruvboxMaterial.italicComments": false,
+  "gruvboxMaterial.darkContrast": "hard",
+  "editor.renderWhitespace": "none",
+  // "editor.lineNumbers": "relative",
+  // "vim.incsearch": true,
+  // "vim.useCtrlKeys": true,
+  // "vim.useSystemClipboard": true,
+  // "vim.hlsearch": false,
+  // "vim.leader": "<space>",
+  // "vim.surround": true,
+  // "vim.highlightedyank.enable": true,
+  // "vim.highlightedyank.duration": 50,
+  // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+  // "vim.enableNeovim": true,
+  // "vim.neovimPath": "/usr/local/bin/nvim",
+  // "vim.normalModeKeyBindings": [
+  //   {
+  //     "before": [
+  //       "[",
+  //       "g"
+  //     ],
+  //     "commands": [
+  //       "editor.action.marker.prev"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "]",
+  //       "g"
+  //     ],
+  //     "commands": [
+  //       "editor.action.marker.next"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "[",
+  //       "G"
+  //     ],
+  //     "commands": [
+  //       "editor.action.marker.prevInFiles"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "]",
+  //       "G"
+  //     ],
+  //     "commands": [
+  //       "editor.action.marker.nextInFiles"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "<leader>",
+  //       "g"
+  //     ],
+  //     "commands": [
+  //       "workbench.view.scm"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "<leader>",
+  //       "e"
+  //     ],
+  //     "commands": [
+  //       "workbench.view.explorer"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "[",
+  //       "b"
+  //     ],
+  //     "commands": [
+  //       "workbench.action.previousEditor"
+  //     ]
+  //   },
+  //   {
+  //     "before": [
+  //       "]",
+  //       "b"
+  //     ],
+  //     "commands": [
+  //       "workbench.action.nextEditor"
+  //     ]
+  //   }
+  // ],
+  // "vim.normalModeKeyBindingsNonRecursive": [
+  //   {
+  //     "before": [
+  //       "K"
+  //     ],
+  //     "after": [
+  //       "g",
+  //       "h"
+  //     ]
+  //   },
+  // ],
 }
