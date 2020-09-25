@@ -6,10 +6,11 @@ linters:
     - gofmt
     - gocyclo
     - errcheck
+    - deadcode
 
 linters-settings:
   gocyclo:
-    min-complexity: 10
+    min-complexity: 15
   golint:
     min-confidence: 0
   govet:
