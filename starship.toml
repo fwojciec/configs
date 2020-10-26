@@ -1,9 +1,6 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
 
-[character]
-symbol = "➜"
-
 [cmd_duration]
 disabled = true
 
@@ -32,6 +29,9 @@ disabled = true
 disabled = true
 
 [erlang]
+disabled = true
+
+[gcloud]
 disabled = true
 
 [golang]

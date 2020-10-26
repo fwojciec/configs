@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/filip/Projects/Python/datastore-emulator-python/tests'
+let g:netrw_dirhist_4='/Users/filip/Projects/Python/datastore-emulator-python/datastore-emulator-python'
+let g:netrw_dirhist_3='/Users/filip/Work/Python/datastore-emulator-python'
+let g:netrw_dirhist_2='/Users/filip/Projects/Python/testdriven.io/fastapi-tdd-docker/project/tests'
+let g:netrw_dirhist_1='/Users/filip/Projects/Python/testdriven.io/fastapi-tdd-docker/project'
+let g:netrw_dirhist_0='/Users/filip/Projects/Python/testdriven.io/fastapi-tdd-docker'
+let g:netrw_dirhist_9='/Users/filip/Projects/Python/testdriven.io'
+let g:netrw_dirhist_8='/Users/filip/Work/gae-warehouse/.vim'
+let g:netrw_dirhist_7='/Users/filip/Work/Go/mob-empikgo-story-contest/firestore'
+let g:netrw_dirhist_6='/Users/filip/Work/Go/export-offer-go/mocks'

@@ -92,7 +92,7 @@
   "terminal.integrated.fontWeightBold": "500",
   "terminal.integrated.shell.osx": "/bin/zsh",
   "window.zoomLevel": 0,
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "breadcrumbs.enabled": false,
   "editor.renderIndentGuides": false,
   "files.associations": {
@@ -118,7 +118,7 @@
   },
   "workbench.iconTheme": "field-lights-minimalistic",
   "editor.columnSelection": false,
-  "python.languageServer": "Microsoft",
+  "python.languageServer": "Pylance",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "workbench.colorTheme": "Gruvbox Material Dark",

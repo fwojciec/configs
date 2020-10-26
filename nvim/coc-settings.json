@@ -1,32 +1,12 @@
 {
-  "languageserver": {
-    "haskell": {
-      "command": "hie-wrapper",
-      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
-      "filetypes": ["hs", "lhs", "haskell"],
-      "initializationOptions": {
-        "languageServerHaskell": {
-          "hlintOn": true
-        }
-      }
-    }
-  },
   "go.goplsOptions": {
-    "usePlaceholders": false,
+    "usePlaceholders": true,
     "completeUnimported": true,
-    "deepCompletion": true,
-    "analyses": {
-      "fillreturns": true,
-      "undeclaredname": true,
-      "unusedparams": true,
-      "nonewvars": true
-    }
+    "deepCompletion": true
   },
   "go.tags": {
     "transform": "snakecase"
   },
-  "json.format.enable": false,
-  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "typescript",
@@ -59,15 +39,14 @@
     "javascript-react": "javascript.tsx",
     "smarty": "html"
   },
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.mypyEnabled": true,
-  "python.venvPath": "~/.pyenv/",
   "diagnostic-languageserver.filetypes": {
-    "go": ["golangci-lint"]
+    "go": []
   },
   "diagnostic-languageserver.linters": {
     "golangci-lint": {
@@ -91,5 +70,13 @@
         "note": "info"
       }
     }
-  }
+  },
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.floatEnable": true,
+  "suggest.autoTrigger": "always",
+  "coc.preferences.promptInput": false,
+  "snippets.enableStatusItem": false,
+  "javascript.suggestionActions.enabled": false,
+  "prettier.semi": false,
+  "prettier.singleQuote": true
 }

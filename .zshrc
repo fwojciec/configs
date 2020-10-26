@@ -22,14 +22,11 @@ if [[ `uname` = "Darwin" ]]; then
 	alias ls="gls -hF --color=auto --group-directories-first"
 fi
 
-# Edit line in vim with ctrl-v:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^v' edit-command-line
-
 # Autocompletion
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
+
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -45,33 +42,49 @@ if [ -f $ZDOTDIR/.zshrc_local ]; then
     source $ZDOTDIR/.zshrc_local
 fi
 
-# Fix some keybindings
-# Make sure that the terminal is in application mode when zle is active, since
-# only then values from $terminfo are valid
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-  function zle-line-init() {
-    echoti smkx
-  }
-  function zle-line-finish() {
-    echoti rmkx
-  }
-  zle -N zle-line-init
-  zle -N zle-line-finish
-fi
+# keybindings and stuff
+bindkey -v
+export KEYTIMEOUT=1
 
-bindkey -e
+# restore backspace functionality
+bindkey "^?" backward-delete-char
+
+# history search
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey -M emacs "${terminfo[kcuu1]}" up-line-or-beginning-search
-bindkey -M viins "${terminfo[kcud1]}" down-line-or-beginning-search
-bindkey -M emacs "${terminfo[khome]}" beginning-of-line
-bindkey -M emacs "${terminfo[kend]}"  end-of-line
+bindkey '^k' up-line-or-beginning-search
+bindkey '^j' down-line-or-beginning-search
+
+# enable bracket word objects in vi mode
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+	for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+		bindkey -M $m $c select-bracketed
+	done
+done
+
+# enable quote word objects in vi mode
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+	for c in {a,i}{\',\",\`}; do
+		bindkey -M $m $c select-quoted
+	done
+done
+
+# Edit line in vim with ctrl-v:
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--layout=reverse --inline-info
 --color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
 --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 # NORD COLORS

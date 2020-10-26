@@ -1,14 +1,16 @@
 local M = {}
 
-M.organize_imports_sync = function(timeout_ms)
-  local context = { source = { organizeImports = true } }
-  vim.validate { context = { context, 't', true } }
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
+M.format_file = function()
+  if #vim.lsp.buf_get_clients() == 0 then return end
+  vim.lsp.buf.formatting_sync(nil, 1000)
+end
 
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+M.organize_imports = function()
+  if #vim.lsp.buf_get_clients() == 0 then return end
+  local params = vim.lsp.util.make_range_params()
+  params.context = { source = { organizeImports = true } } 
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
   if not result then return end
-  if not result[1] then return end
   result = result[1].result
   if not result then return end
   local edit = result[1].edit

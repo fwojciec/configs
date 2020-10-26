@@ -10,4 +10,4 @@ nmap <silent> <leader>T  :TestFile -race<CR>
 nmap <silent> <leader>ts :TestSuite -race<CR>
 nmap <silent> <leader>tl :TestLast -race<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
-nmap <silent> <leader>gcl  :Dispatch golangci-lint run --config ~/.golangci.yml --out-format tab<CR>
+nmap <silent> <leader>l  :Dispatch golangci-lint run --config ~/.golangci.yml --out-format tab<CR>
