@@ -5,6 +5,7 @@ export EDITOR="/usr/local/bin/nvim"
 
 # GoLang configuration
 export GOPATH=$HOME/go
+export GOPRIVATE=gitlab.com/virtualo-group/*
 export PATH=$PATH:$GOPATH/bin
 
 # rust cargo
