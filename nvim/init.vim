@@ -27,14 +27,14 @@ Plug 'AndrewRadev/splitjoin.vim'
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-" Custom
+" " Custom
 Plug 'fwojciec/vim-go-motion'
 
-" Syntax
+" " Syntax
 Plug 'sheerun/vim-polyglot'
 Plug 'blueyed/smarty.vim'
 
-" Testing
+" " Testing
 Plug 'vim-test/vim-test'
 
 " language support
@@ -60,7 +60,6 @@ call plug#end()
 " General settings {{{
 " I assume the vim-sensible plugin is present
 syntax on
-
 set guicursor=
 set number
 set relativenumber
@@ -82,7 +81,7 @@ set termguicolors
 set scrolloff=5
 set noshowmode
 set completeopt=menuone,noinsert,noselect
-set shortmess+=c
+set shortmess+=cI
 set signcolumn=number " no need for gutter to display diagnostics info
 set mouse=a
 set noemoji
@@ -102,10 +101,10 @@ let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
 
 " Colorscheme {{{
 if (has("termguicolors"))
-	" set Vim-specific sequences for RGB colors
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-	set termguicolors
+    " set Vim-specific sequences for RGB colors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
 endif
 " set background=dark
 " let g:onedark_terminal_italics = 1
@@ -148,27 +147,27 @@ augroup AutoCommands
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal g`\"" |
-            \ endif
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
 augroup end
 " }}}
 
 " FZF settings {{{
 let g:fzf_colors =
-\ { "fg":      ["fg", "Normal"],
-  \ "bg":      ["bg", "Normal"],
-  \ "hl":      ["fg", "IncSearch"],
-  \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
-  \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
-  \ "hl+":     ["fg", "IncSearch"],
-  \ "info":    ["fg", "IncSearch"],
-  \ "border":  ["fg", "Ignore"],
-  \ "prompt":  ["fg", "Comment"],
-  \ "pointer": ["fg", "IncSearch"],
-  \ "marker":  ["fg", "IncSearch"],
-  \ "spinner": ["fg", "IncSearch"],
-  \ "header":  ["fg", "WildMenu"] }
+            \ { "fg":      ["fg", "Normal"],
+            \ "bg":      ["bg", "Normal"],
+            \ "hl":      ["fg", "IncSearch"],
+            \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
+            \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
+            \ "hl+":     ["fg", "IncSearch"],
+            \ "info":    ["fg", "IncSearch"],
+            \ "border":  ["fg", "Ignore"],
+            \ "prompt":  ["fg", "Comment"],
+            \ "pointer": ["fg", "IncSearch"],
+            \ "marker":  ["fg", "IncSearch"],
+            \ "spinner": ["fg", "IncSearch"],
+            \ "header":  ["fg", "WildMenu"] }
 
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 let g:fzf_layout = { 'down': '~40%' }
@@ -176,17 +175,17 @@ let g:fzf_layout = { 'down': '~40%' }
 
 " Lightline {{{
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'cocstatus', 'currentfunction', 'filename' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction',
-      \   'fugitive': 'FugitiveHead',
-      \ }
-      \ }
+            \ 'colorscheme': 'gruvbox',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'fugitive', 'cocstatus', 'readonly', 'relativepath', 'modified' ] ]
+            \ },
+            \ 'component_function': {
+            \   'cocstatus': 'coc#status',
+            \   'currentfunction': 'CocCurrentFunction',
+            \   'fugitive': 'FugitiveHead',
+            \ }
+            \ }
 augroup Lightline
     autocmd!
     autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
@@ -244,6 +243,10 @@ nnoremap <silent><leader>ag       :Ag<CR>
 
 " better paste
 vnoremap p "_dP
+" Y yanks from the cursor to the end of line as expected
+nnoremap Y y$
+" Visually select the text that was last edited/pasted (Vimcast#26).
+noremap gV `[v`]
 
 " don't use arrow keys!
 nnoremap <up> <nop>
@@ -309,23 +312,27 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -340,6 +347,9 @@ function! s:show_documentation()
     endif
 endfunction
 
+" Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -348,12 +358,26 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+" Note coc#float#scroll works on neovim >= 0.4.3 or vim >= 8.2.0750
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+" NeoVim-only mapping for visual mode scroll
+" Useful on signatureHelp after jump placeholder of snippet expansion
+if has('nvim')
+  vnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#nvim_scroll(1, 1) : "\<C-f>"
+  vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
+endif
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
