@@ -45,6 +45,9 @@
   "[markdown]": {
     "editor.tabSize": 2
   },
+  "[yaml]": {
+    "editor.renderIndentGuides": true
+  },
   "editor.fontFamily": "'Fira Code', 'Operator Mono Lig', 'Iosevka Nerd Font', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
   "editor.fontSize": 15,
   "editor.fontLigatures": true,
@@ -99,7 +102,7 @@
     "*.pgsql": "sql",
     "pylintrc": "ini"
   },
-  "extensions.ignoreRecommendations": false,
+  "extensions.ignoreRecommendations": true,
   "editor.formatOnSave": true,
   "editor.minimap.renderCharacters": false,
   "editor.minimap.enabled": false,
@@ -116,7 +119,7 @@
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
-  "workbench.iconTheme": "field-lights-minimalistic",
+  "workbench.iconTheme": "vs-seti",
   "editor.columnSelection": false,
   "python.languageServer": "Pylance",
   "python.linting.enabled": true,
@@ -125,101 +128,144 @@
   "gruvboxMaterial.italicComments": false,
   "gruvboxMaterial.darkContrast": "hard",
   "editor.renderWhitespace": "none",
-  // "editor.lineNumbers": "relative",
-  // "vim.incsearch": true,
-  // "vim.useCtrlKeys": true,
-  // "vim.useSystemClipboard": true,
-  // "vim.hlsearch": false,
-  // "vim.leader": "<space>",
-  // "vim.surround": true,
-  // "vim.highlightedyank.enable": true,
-  // "vim.highlightedyank.duration": 50,
-  // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
-  // "vim.enableNeovim": true,
-  // "vim.neovimPath": "/usr/local/bin/nvim",
-  // "vim.normalModeKeyBindings": [
-  //   {
-  //     "before": [
-  //       "[",
-  //       "g"
-  //     ],
-  //     "commands": [
-  //       "editor.action.marker.prev"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "]",
-  //       "g"
-  //     ],
-  //     "commands": [
-  //       "editor.action.marker.next"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "[",
-  //       "G"
-  //     ],
-  //     "commands": [
-  //       "editor.action.marker.prevInFiles"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "]",
-  //       "G"
-  //     ],
-  //     "commands": [
-  //       "editor.action.marker.nextInFiles"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "<leader>",
-  //       "g"
-  //     ],
-  //     "commands": [
-  //       "workbench.view.scm"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "<leader>",
-  //       "e"
-  //     ],
-  //     "commands": [
-  //       "workbench.view.explorer"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "[",
-  //       "b"
-  //     ],
-  //     "commands": [
-  //       "workbench.action.previousEditor"
-  //     ]
-  //   },
-  //   {
-  //     "before": [
-  //       "]",
-  //       "b"
-  //     ],
-  //     "commands": [
-  //       "workbench.action.nextEditor"
-  //     ]
-  //   }
-  // ],
-  // "vim.normalModeKeyBindingsNonRecursive": [
-  //   {
-  //     "before": [
-  //       "K"
-  //     ],
-  //     "after": [
-  //       "g",
-  //       "h"
-  //     ]
-  //   },
-  // ],
+  "editor.lineNumbers": "relative",
+  "vim.incsearch": true,
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+  "vim.hlsearch": false,
+  "vim.leader": "<space>",
+  "vim.surround": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.duration": 50,
+  "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "[",
+        "g"
+      ],
+      "commands": [
+        "editor.action.marker.prev"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "g"
+      ],
+      "commands": [
+        "editor.action.marker.next"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "G"
+      ],
+      "commands": [
+        "editor.action.marker.prevInFiles"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "G"
+      ],
+      "commands": [
+        "editor.action.marker.nextInFiles"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g"
+      ],
+      "commands": [
+        "workbench.view.scm"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "workbench.view.explorer"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.previousEditor"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.nextEditor"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "K"
+      ],
+      "after": [
+        "g",
+        "h"
+      ]
+    },
+    {
+      "before": [
+        "=",
+        "="
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.reindentselectedlines",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "="
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.reindentselectedlines",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "python.showStartPage": false,
+  "aws.profile": "profile:default",
+  "aws.onDefaultRegionMissing": "add",
+  "yaml.customTags": [
+    "!Equals sequence",
+    "!FindInMap sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!Join sequence",
+    "!Ref",
+    "!Select sequence",
+    "!Split sequence",
+    "!Sub"
+  ],
+  "terminal.integrated.lineHeight": 1.2
 }

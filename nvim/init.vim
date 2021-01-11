@@ -14,6 +14,8 @@ Plug 'gruvbox-community/gruvbox'
 " Plug 'mengelbrecht/lightline-bufferline'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'joshdick/onedark.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'Yggdroot/indentLine'
 
 " fzf
 Plug '/usr/local/opt/fzf'
@@ -53,7 +55,7 @@ Plug 'vim-test/vim-test'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'cousine/go-present-slide-syntax.vim'
+Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
 " }}}
 
@@ -87,6 +89,7 @@ set mouse=a
 set noemoji
 set updatetime=50
 set clipboard+=unnamedplus
+set nofixendofline
 if exists('&inccommand')
     set inccommand=split
 endif
@@ -129,7 +132,10 @@ augroup AutoCommands
     autocmd FileType css setlocal tabstop=2 shiftwidth=2
     autocmd FileType scss setlocal tabstop=2 shiftwidth=2
     autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
+    autocmd FileType python let b:indentLine_enabled=1
     autocmd FileType vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
+    autocmd FileType scss setl iskeyword+=@-@
+    autocmd FileType yaml let b:indentLine_enabled=1
     " enable comments in json files
     autocmd FileType json syntax match Comment +\/\/.\+$+
     autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 shiftwidth=2
@@ -200,7 +206,6 @@ augroup GoAutoCommands
     autocmd FileType go nmap gtd :CocCommand go.tags.add datastore<cr>
     autocmd FileType go nmap gtx :CocCommand go.tags.add xml<cr>
     autocmd FileType go nmap gtc :CocCommand go.tags.clear<cr>
-    " autocmd BufWritePre *.go :silent call CocAction('organizeImport')
     autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 augroup end
 " }}}
@@ -229,6 +234,11 @@ augroup end
 " vim test {{{
 let test#strategy = 'neovim'
 " let test#neovim#term_position = "botright 15"
+" }}}
+
+" Terraform {{{
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 " }}}
 
 " Mappings {{{
@@ -286,6 +296,11 @@ nmap <silent> <leader>tv :TestVisit<CR>
 nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
 " }}}
 
+" IndentLine {
+let g:indentLine_enabled = 0
+let g:indentLine_char = '⦙'
+" }
+
 " Coc Settings {{{
 let g:coc_global_extensions = [
             \ 'coc-snippets',
@@ -302,6 +317,7 @@ let g:coc_global_extensions = [
             \ 'coc-xml',
             \ 'coc-yaml',
             \ 'coc-vimlsp',
+            \ 'coc-toml',
             \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.

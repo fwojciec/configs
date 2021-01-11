@@ -19,3 +19,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Lazy load pyenv-virtualenv
 export ZSH_PYENV_LAZY_VIRTUALENV=true
+
+# DynamoDB local
+export DDBLOCAL_LIB=$HOME/.ddblocal/DynamoDBLocal_lib
+export DDBLOCAL_JAR=$HOME/.ddblocal/DynamoDBLocal.jar
