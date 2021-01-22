@@ -13,14 +13,11 @@ alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
 alias glint="golangci-lint run --no-config"
-alias ls="ls -hF --color=auto --group-directories-first"
+# alias ls="ls -hF --color=auto --group-directories-first"
+alias ls="gls -hF --color=auto --group-directories-first"
 alias ssh="TERM=screen-256color ssh"
 alias tmux="tmux -u"
-
-# Mac-only aliases
-if [[ `uname` = "Darwin" ]]; then
-	alias ls="gls -hF --color=auto --group-directories-first"
-fi
+alias vim="nvim"
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -28,6 +25,9 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+autoload -Uz bashcompinit
+bashcompinit
+complete -C /usr/local/bin/terraform terraform
 
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
@@ -99,9 +99,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # Rust
 source $HOME/.cargo/env
-
-# Terraform
-complete -C /usr/local/bin/terraform terraform
 
 # Starship prompt
 eval "$(starship init zsh)"

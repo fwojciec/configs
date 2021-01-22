@@ -6,7 +6,6 @@ export EDITOR="/usr/local/bin/nvim"
 # GoLang configuration
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GOPRIVATE=gitlab.com/virtualo-group/*
 
 # rust cargo
 export PATH=$HOME/.cargo/bin:$PATH
@@ -15,7 +14,8 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.dotnet:$PATH
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 
 # Lazy load pyenv-virtualenv
 export ZSH_PYENV_LAZY_VIRTUALENV=true

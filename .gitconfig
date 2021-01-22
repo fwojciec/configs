@@ -11,3 +11,5 @@
 	sslVerify = true
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

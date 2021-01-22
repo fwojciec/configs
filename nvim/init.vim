@@ -296,10 +296,10 @@ nmap <silent> <leader>tv :TestVisit<CR>
 nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
 " }}}
 
-" IndentLine {
+"{{{IndentLine
 let g:indentLine_enabled = 0
 let g:indentLine_char = '⦙'
-" }
+"}}}
 
 " Coc Settings {{{
 let g:coc_global_extensions = [

@@ -33,22 +33,13 @@
     "go",
     "terraform"
   ],
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript.tsx"
-  ],
   "diagnostic.errorSign": "--",
   "diagnostic.warningSign": "--",
   "diagnostic.infoSign": "--",
   "diagnostic.hintSign": "--",
   "emmet.includeLanguages": {
     "typescript-react": "typescript.tsx",
-    "javascript-react": "javascript.tsx",
-    "smarty": "html"
+    "javascript-react": "javascript.tsx"
   },
   "python.jediEnabled": true,
   "python.formatting.provider": "black",
