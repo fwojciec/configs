@@ -20,6 +20,9 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/
 # Lazy load pyenv-virtualenv
 export ZSH_PYENV_LAZY_VIRTUALENV=true
 
+# neovim path
+export PATH=$HOME/temp/neovim/build/bin:$PATH
+
 # DynamoDB local
 export DDBLOCAL_LIB=$HOME/.ddblocal/DynamoDBLocal_lib
 export DDBLOCAL_JAR=$HOME/.ddblocal/DynamoDBLocal.jar

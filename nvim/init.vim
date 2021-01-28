@@ -28,6 +28,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " " Custom
 Plug 'fwojciec/vim-go-motion'
@@ -98,8 +99,9 @@ endif
 " Fast startup {{{
 let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.0/bin/python'
 let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
-let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.7.0/bin/neovim-ruby-host'
+let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
 let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
+let g:loaded_perl_provider = 0
 " }}}
 
 " Colorscheme {{{
@@ -150,6 +152,7 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
     autocmd BufNewFile,BufRead ~/Work/www/templates/**/*.html setlocal tabstop=4 shiftwidth=4 filetype=smarty
+    autocmd BufNewFile,BufRead requirements*.txt setlocal filetype=requirements
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
@@ -199,6 +202,10 @@ augroup end
 " }}}
 
 " Go {{{
+" let g:go_highlight_trailing_whitespace_error=0
+" let g:go_highlight_string_spellcheck=1
+" let g:go_highlight_format_strings=1
+
 augroup GoAutoCommands
     autocmd!
     autocmd FileType go nmap gtj :CocCommand go.tags.add json<cr>
@@ -294,6 +301,9 @@ nmap <silent> <leader>tv :TestVisit<CR>
 " terminal
 " tnoremap <Esc> <C-\><C-n>
 nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
+
+" tree-sitter reparse
+nmap <leader>we :write \| edit \| TSBufEnable highlight<CR>
 " }}}
 
 "{{{IndentLine
@@ -469,4 +479,28 @@ augroup end
 
 let g:coc_status_error_sign='E'
 let g:coc_status_warning_sign='W'
+" }}}
+
+" {{{treesitter
+" https://github.com/nvim-treesitter/nvim-treesitter#available-modules
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "gnr",
+      scope_incremental = "gnc",
+      node_decremental = "gnm",
+    },
+  },
+}
+EOF
 " }}}
