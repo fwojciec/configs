@@ -30,14 +30,14 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" " Custom
+" Custom
 Plug 'fwojciec/vim-go-motion'
 
-" " Syntax
+" Syntax
 Plug 'sheerun/vim-polyglot'
 Plug 'blueyed/smarty.vim'
 
-" " Testing
+" Testing
 Plug 'vim-test/vim-test'
 
 " language support
@@ -98,10 +98,11 @@ endif
 
 " Fast startup {{{
 let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.0/bin/python'
-let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
+" let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
 let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
 let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
 let g:loaded_perl_provider = 0
+let g:loaded_python_provider = 0
 " }}}
 
 " Colorscheme {{{
@@ -133,6 +134,7 @@ augroup AutoCommands
     autocmd FileType toml setlocal tabstop=2 shiftwidth=2
     autocmd FileType css setlocal tabstop=2 shiftwidth=2
     autocmd FileType scss setlocal tabstop=2 shiftwidth=2
+    autocmd FileType lua setlocal tabstop=2 shiftwidth=2
     autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
     autocmd FileType python let b:indentLine_enabled=1
     autocmd FileType vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
@@ -321,7 +323,7 @@ let g:coc_global_extensions = [
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-prettier',
-            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-go',
             \ 'coc-diagnostic',
             \ 'coc-xml',
@@ -483,24 +485,5 @@ let g:coc_status_warning_sign='W'
 
 " {{{treesitter
 " https://github.com/nvim-treesitter/nvim-treesitter#available-modules
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "gnr",
-      scope_incremental = "gnc",
-      node_decremental = "gnm",
-    },
-  },
-}
-EOF
+lua require("treesitter")
 " }}}

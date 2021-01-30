@@ -41,7 +41,7 @@
     "typescript-react": "typescript.tsx",
     "javascript-react": "javascript.tsx"
   },
-  "python.jediEnabled": true,
+  /* "python.jediEnabled": true, */
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
@@ -83,17 +83,36 @@
   "prettier.singleQuote": true,
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
+  "sh.enable": true,
+  "yaml.format.enable": true,
   "yaml.customTags": [
-    "!Equals sequence",
-    "!FindInMap sequence",
-    "!GetAtt",
-    "!GetAZs",
-    "!ImportValue",
-    "!Join sequence",
-    "!Ref",
-    "!Select sequence",
-    "!Split sequence",
-    "!Sub"
+      "!And",
+      "!If",
+      "!Not",
+      "!Equals",
+      "!Or",
+      "!FindInMap",
+      "!Base64",
+      "!Cidr",
+      "!Ref",
+      "!Sub",
+      "!GetAtt",
+      "!GetAZs",
+      "!ImportValue",
+      "!Select",
+      "!Split",
+      "!Join"
   ],
-  "sh.enable": true
+  "json.schemas": [
+      {
+          "fileMatch": [
+              "*-template.json"
+          ],
+          "url": "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json"
+      }
+  ],
+  "yaml.schemas": {
+      "https://raw.githubusercontent.com/awslabs/goformation/v4.15.0/schema/sam.schema.json": "*template.yaml",
+      "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json": "*-template.yaml"
+  }
 }

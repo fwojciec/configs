@@ -1,0 +1,275 @@
+" Plugins {{{
+call plug#begin('~/.local/share/nvim/plugged')
+" tpope is a separate category
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
+
+" interface
+Plug 'itchyny/lightline.vim'
+Plug 'gruvbox-community/gruvbox'
+Plug 'chriskempson/base16-vim'
+Plug 'Yggdroot/indentLine'
+
+" fzf
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+" quality of life
+Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'airblade/vim-rooter'
+" Plug 'junegunn/vim-slash'
+
+" completion
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Syntax
+Plug 'sheerun/vim-polyglot'
+Plug 'cousine/go-present-slide-syntax.vim'
+
+" Testing
+Plug 'vim-test/vim-test'
+call plug#end()
+" }}}
+
+" General settings {{{
+syntax on
+set guicursor=
+set number
+set relativenumber
+set nohlsearch
+set hidden
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
+set smartcase
+set nobackup
+set noswapfile
+set undodir=~/.local/share/nvim/.vimdid
+set undofile
+set incsearch
+set termguicolors
+set scrolloff=5
+set noshowmode
+set completeopt=menuone,noinsert,noselect
+set shortmess+=cI
+set signcolumn=number " no need for gutter to display diagnostics info
+set mouse=a
+set noemoji
+set updatetime=50
+set clipboard+=unnamedplus
+set nofixendofline
+if exists('&inccommand')
+    set inccommand=split
+endif
+" }}}
+
+" Fast startup {{{
+let g:python3_host_prog = expand("$HOME").'/.pyenv/shims/python3'
+let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
+let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
+let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
+let g:loaded_perl_provider = 0
+" }}}
+
+" Colorscheme {{{
+if (has("termguicolors"))
+    " set Vim-specific sequences for RGB colors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+" set background=dark
+" let g:onedark_terminal_italics = 1
+" let g:onedark_hide_endofbuffer = 1
+" colorscheme onedark
+" let g:gruvbox_italic = 1
+let g:gruvbox_underline = 0
+let g:gruvbox_bold = 0
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+" }}}
+
+" FileType AutoCommands {{{
+augroup AutoCommands
+    autocmd!
+    autocmd BufWritePost init.vim nested so $MYVIMRC
+    autocmd FileType html setlocal tabstop=2 shiftwidth=2
+    autocmd FileType json setlocal tabstop=2 shiftwidth=2
+    autocmd FileType yaml setlocal tabstop=2 shiftwidth=2
+    autocmd FileType toml setlocal tabstop=2 shiftwidth=2
+    autocmd FileType css setlocal tabstop=2 shiftwidth=2
+    autocmd FileType scss setlocal tabstop=2 shiftwidth=2
+    autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
+    autocmd FileType python let b:indentLine_enabled=1
+    autocmd FileType vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
+    autocmd FileType scss setl iskeyword+=@-@
+    autocmd FileType yaml let b:indentLine_enabled=1
+    " enable comments in json files
+    autocmd FileType json syntax match Comment +\/\/.\+$+
+    autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.hsc setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.lhs setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.cabal setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.scala setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
+    autocmd BufNewFile,BufRead requirements*.txt setlocal filetype=requirements
+
+    " Jump to last cursor position unless it's invalid or in an event handler
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+augroup end
+let b:vimsyn_embed='lPr'
+" }}}
+
+" FZF settings {{{
+let g:fzf_colors =
+            \ { "fg":      ["fg", "Normal"],
+            \ "bg":      ["bg", "Normal"],
+            \ "hl":      ["fg", "IncSearch"],
+            \ "fg+":     ["fg", "CursorLine", "CursorColumn", "Normal"],
+            \ "bg+":     ["bg", "CursorLine", "CursorColumn"],
+            \ "hl+":     ["fg", "IncSearch"],
+            \ "info":    ["fg", "IncSearch"],
+            \ "border":  ["fg", "Ignore"],
+            \ "prompt":  ["fg", "Comment"],
+            \ "pointer": ["fg", "IncSearch"],
+            \ "marker":  ["fg", "IncSearch"],
+            \ "spinner": ["fg", "IncSearch"],
+            \ "header":  ["fg", "WildMenu"] }
+
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+let g:fzf_layout = { 'down': '~40%' }
+" }}}
+
+" Lightline {{{
+let g:lightline = {
+            \ 'colorscheme': 'gruvbox',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'fugitive', 'readonly', 'relativepath', 'modified' ] ]
+            \ },
+            \ 'component_function': {
+            \   'fugitive': 'FugitiveHead',
+            \ }
+            \ }
+" }}}
+
+" Go {{{
+" let g:go_highlight_trailing_whitespace_error=0
+" let g:go_highlight_string_spellcheck=1
+" let g:go_highlight_format_strings=1
+" }}}
+
+" Python {{{
+" let g:python_highlight_all = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_string_format = 1
+let g:python_highlight_space_errors = 0
+" }}}
+
+" Terminal {{{
+augroup TerminalStuff
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber winwidth&
+augroup end
+" }}}
+
+" {{{ vim-highlightedyank
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup end
+" }}}
+
+" vim test {{{
+let test#strategy = 'neovim'
+" let test#neovim#term_position = "botright 15"
+" }}}
+
+" Terraform {{{
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+" }}}
+
+" Mappings {{{
+let mapleader=' '
+
+" fzf
+nnoremap <silent><leader><leader> :GitFiles<CR>
+nnoremap <silent><leader><CR>     :Buffers<CR>
+nnoremap <silent><leader>fi       :Files<CR>
+nnoremap <silent><leader>fl       :Lines<CR>
+nnoremap <silent><leader>ag       :Ag<CR>
+
+" better paste
+vnoremap p "_dP
+" Y yanks from the cursor to the end of line as expected
+nnoremap Y y$
+" Visually select the text that was last edited/pasted (Vimcast#26).
+noremap gV `[v`]
+
+" don't use arrow keys!
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+
+" vim test
+nmap <silent> <leader>t  :TestNearest<CR>
+nmap <silent> <leader>T  :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+
+" terminal
+" tnoremap <Esc> <C-\><C-n>
+nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
+
+" tree-sitter reparse
+nmap <leader>we :write \| edit \| TSBufEnable highlight<CR>
+" }}}
+
+" IndentLine {{{
+let g:indentLine_enabled = 0
+let g:indentLine_char = '⦙'
+"}}}
+
+" treesitter {{{
+" https://github.com/nvim-treesitter/nvim-treesitter#available-modules
+lua require("treesitter")
+" }}}
+
+" lsp {{{
+lua require("lsp")
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+" }}}

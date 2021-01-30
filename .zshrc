@@ -18,6 +18,7 @@ alias ls="gls -hF --color=auto --group-directories-first"
 alias ssh="TERM=screen-256color ssh"
 alias tmux="tmux -u"
 alias vim="nvim"
+alias pv="pyenv version"
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -29,8 +30,8 @@ zstyle ':completion:*' list-suffixes zstyle ':completion:*' expand prefix suff
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+autoload bashcompinit
+bashcompinit
 
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
