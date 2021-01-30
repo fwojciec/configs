@@ -1,4 +1,4 @@
-setlocal noexpandtab tabstop=8 shiftwidth=8
+setlocal noexpandtab tabstop=4 shiftwidth=4
 setlocal formatoptions-=t
 setlocal nowrap
 
