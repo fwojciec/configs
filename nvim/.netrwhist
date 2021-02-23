@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/filip/Projects/AWS/cookiecutter-serverless-template-python/.vim'
 let g:netrw_dirhist_2='/Users/filip/Projects/AWS/serverless-project-template/tests/unit/__pycache__'
 let g:netrw_dirhist_1='/Users/filip/Projects/terraform/terraform-course/first-steps/.terraform/providers/registry.terraform.io/hashicorp/aws/3.20.0/darwin_amd64'
 let g:netrw_dirhist_0='/Users/filip/Projects/terraform/terraform-course/first-steps/.terraform/providers/registry.terraform.io/hashicorp/aws/3.20.0'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/Users/filip/Projects/terraform/terraform-course/first-st
 let g:netrw_dirhist_6='/Users/filip/Projects/terraform/terraform-course/first-steps/.terraform/providers'
 let g:netrw_dirhist_5='/Users/filip/Projects/terraform/terraform-course/first-steps/.terraform'
 let g:netrw_dirhist_4='/Users/filip/.terraform.d'
-let g:netrw_dirhist_3='/Users/filip/Work/Go/export-offer-go/storage'

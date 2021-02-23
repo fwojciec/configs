@@ -14,7 +14,7 @@ Plug 'gruvbox-community/gruvbox'
 " Plug 'mengelbrecht/lightline-bufferline'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'joshdick/onedark.vim'
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 
 " fzf
@@ -28,14 +28,14 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Custom
 Plug 'fwojciec/vim-go-motion'
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
-Plug 'blueyed/smarty.vim'
+" Plug 'blueyed/smarty.vim'
 
 " Testing
 Plug 'vim-test/vim-test'
@@ -56,7 +56,7 @@ Plug 'vim-test/vim-test'
 " Plug 'neovimhaskell/haskell-vim'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'cousine/go-present-slide-syntax.vim'
+" Plug 'cousine/go-present-slide-syntax.vim'
 call plug#end()
 " }}}
 
@@ -91,13 +91,14 @@ set noemoji
 set updatetime=50
 set clipboard+=unnamedplus
 set nofixendofline
+set textwidth=80
 if exists('&inccommand')
     set inccommand=split
 endif
 " }}}
 
 " Fast startup {{{
-let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.0/bin/python'
+let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.1/bin/python'
 " let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
 let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
 let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
@@ -116,7 +117,7 @@ endif
 " let g:onedark_terminal_italics = 1
 " let g:onedark_hide_endofbuffer = 1
 " colorscheme onedark
-" let g:gruvbox_italic = 1
+let g:gruvbox_italic = 1
 let g:gruvbox_underline = 0
 let g:gruvbox_bold = 0
 let g:gruvbox_invert_selection = 0
@@ -138,7 +139,7 @@ augroup AutoCommands
     autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
     autocmd FileType python let b:indentLine_enabled=1
     autocmd FileType vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
-    autocmd FileType scss setl iskeyword+=@-@
+    " autocmd FileType scss setl iskeyword+=@-@
     autocmd FileType yaml let b:indentLine_enabled=1
     " enable comments in json files
     autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -150,11 +151,12 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.tsx
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.jsx
     autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
-    autocmd BufNewFile,BufRead ~/Work/www/templates/**/*.html setlocal tabstop=4 shiftwidth=4 filetype=smarty
     autocmd BufNewFile,BufRead requirements*.txt setlocal filetype=requirements
+    autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
+    autocmd BufNewFile,BufRead .prettierrc setlocal filetype=json
 
     " Jump to last cursor position unless it's invalid or in an event handler
     autocmd BufReadPost *
@@ -204,9 +206,9 @@ augroup end
 " }}}
 
 " Go {{{
-" let g:go_highlight_trailing_whitespace_error=0
-" let g:go_highlight_string_spellcheck=1
-" let g:go_highlight_format_strings=1
+let g:go_highlight_trailing_whitespace_error=0
+let g:go_highlight_string_spellcheck=1
+let g:go_highlight_format_strings=1
 
 augroup GoAutoCommands
     autocmd!
@@ -224,6 +226,11 @@ augroup end
 let g:python_highlight_string_templates = 1
 let g:python_highlight_string_format = 1
 let g:python_highlight_space_errors = 0
+
+augroup PythonAutocommands
+    autocmd!
+    autocmd FileType python nnoremap <buffer><silent><leader>si :CocCommand python.sortImports<CR>
+augroup end
 " }}}
 
 " Terminal {{{
@@ -281,11 +288,6 @@ cnoremap <C-j> <Down>
 " Project-rename the current word
 nnoremap <leader>prn :CocSearch <C-R>=expand('<cword>')<CR><CR>
 
-augroup FileTypeMappings
-    autocmd!
-    autocmd FileType python nnoremap <buffer><silent><leader>si :CocCommand python.sortImports<CR>
-augroup end
-
 " vim test
 nmap <silent> <leader>t  :TestNearest<CR>
 nmap <silent> <leader>T  :TestFile<CR>
@@ -293,19 +295,9 @@ nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 
-"coc-fzf
-" nnoremap <silent><space>a :<C-u>CocFzfList diagnostics<CR>
-" nnoremap <silent><space>b :<C-u>CocFzfList diagnostics --current-buf<CR>
-" nnoremap <silent><space>c :<C-u>CocFzfList commands<CR>
-" nnoremap <silent><space>o :<C-u>CocFzfList outline<CR>
-" nnoremap <silent><space>l :<C-u>CocFzfList<CR>
-
 " terminal
 " tnoremap <Esc> <C-\><C-n>
 nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
-
-" tree-sitter reparse
-nmap <leader>we :write \| edit \| TSBufEnable highlight<CR>
 " }}}
 
 "{{{IndentLine
@@ -325,7 +317,6 @@ let g:coc_global_extensions = [
             \ 'coc-prettier',
             \ 'coc-pyright',
             \ 'coc-go',
-            \ 'coc-diagnostic',
             \ 'coc-xml',
             \ 'coc-yaml',
             \ 'coc-vimlsp',
@@ -385,7 +376,7 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-augroup mygroup
+augroup CocAutocommands
     autocmd!
     " Setup formatexpr specified filetype(s).
     autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
@@ -394,12 +385,14 @@ augroup mygroup
 augroup end
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-" Note coc#float#scroll works on neovim >= 0.4.3 or vim >= 8.2.0750
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 " NeoVim-only mapping for visual mode scroll
 " Useful on signatureHelp after jump placeholder of snippet expansion
 if has('nvim')
@@ -469,21 +462,13 @@ vmap <C-j> <Plug>(coc-snippets-select)
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" Highlight symbol under cursor on CursorHold
-augroup CocNvim
-    autocmd!
-    " autocmd CursorHold * silent call CocActionAsync('highlight')
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 let g:coc_status_error_sign='E'
 let g:coc_status_warning_sign='W'
 " }}}
 
 " {{{treesitter
-" https://github.com/nvim-treesitter/nvim-treesitter#available-modules
-lua require("treesitter")
+" " https://github.com/nvim-treesitter/nvim-treesitter#available-modules
+" lua require("treesitter")
+" " tree-sitter reparse
+" nmap <leader>we :write \| edit \| TSBufEnable highlight<CR>
 " }}}

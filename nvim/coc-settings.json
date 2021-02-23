@@ -79,8 +79,8 @@
   "coc.preferences.promptInput": false,
   "snippets.enableStatusItem": false,
   "javascript.suggestionActions.enabled": false,
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
+  /* "prettier.semi": false, */
+  /* "prettier.singleQuote": true, */
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "sh.enable": true,
