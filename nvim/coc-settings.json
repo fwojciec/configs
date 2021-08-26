@@ -7,12 +7,26 @@
       "filetypes": ["terraform", "tf"],
       "initializationOptions": {},
       "settings": {}
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"]
     }
   },
   "go.goplsOptions": {
     "usePlaceholders": true,
     "completeUnimported": true,
-    "deepCompletion": true
+    "deepCompletion": true,
+    "ui.semanticTokens": true,
+    "buildFlags": ["-tags=integration"]
   },
   "go.tags": {
     "transform": "snakecase"
@@ -81,38 +95,36 @@
   "javascript.suggestionActions.enabled": false,
   /* "prettier.semi": false, */
   /* "prettier.singleQuote": true, */
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "sh.enable": true,
   "yaml.format.enable": true,
   "yaml.customTags": [
-      "!And",
-      "!If",
-      "!Not",
-      "!Equals",
-      "!Or",
-      "!FindInMap",
-      "!Base64",
-      "!Cidr",
-      "!Ref",
-      "!Sub",
-      "!GetAtt",
-      "!GetAZs",
-      "!ImportValue",
-      "!Select",
-      "!Split",
-      "!Join"
+    "!And",
+    "!If",
+    "!Not",
+    "!Equals",
+    "!Or",
+    "!FindInMap",
+    "!Base64",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Split",
+    "!Join"
   ],
   "json.schemas": [
-      {
-          "fileMatch": [
-              "*-template.json"
-          ],
-          "url": "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json"
-      }
+    {
+      "fileMatch": ["*-template.json"],
+      "url": "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json"
+    }
   ],
   "yaml.schemas": {
-      "https://raw.githubusercontent.com/awslabs/goformation/v4.15.0/schema/sam.schema.json": "*template.yaml",
-      "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json": "*-template.yaml"
-  }
+    "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json": "*-template.yaml"
+    /* "https://raw.githubusercontent.com/aws/serverless-application-model/develop/samtranslator/validator/sam_schema/schema.json": "template.yaml" */
+  },
+  "coc.preferences.extensionUpdateCheck": "never"
 }

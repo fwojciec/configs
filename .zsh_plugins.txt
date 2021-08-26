@@ -2,4 +2,4 @@ davidparsson/zsh-pyenv-lazy
 greymd/docker-zsh-completion
 ohmyzsh/ohmyzsh path:plugins/golang
 ohmyzsh/ohmyzsh path:plugins/git
-macunha1/zsh-terraform
+lukechilds/zsh-nvm

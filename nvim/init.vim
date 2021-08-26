@@ -11,11 +11,15 @@ Plug 'tpope/vim-dispatch'
 " interface
 Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
+" Plug 'srcery-colors/srcery-vim'
+Plug 'haishanh/night-owl.vim'
 " Plug 'mengelbrecht/lightline-bufferline'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'joshdick/onedark.vim'
 " Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'sainnhe/gruvbox-material'
 
 " fzf
 Plug '/usr/local/opt/fzf'
@@ -23,12 +27,13 @@ Plug 'junegunn/fzf.vim'
 
 " quality of life
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'dhruvasagar/vim-table-mode'
 " Plug 'airblade/vim-rooter'
 " Plug 'junegunn/vim-slash'
 
 " completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Custom
 Plug 'fwojciec/vim-go-motion'
@@ -91,7 +96,7 @@ set noemoji
 set updatetime=50
 set clipboard+=unnamedplus
 set nofixendofline
-set textwidth=80
+" set textwidth=80
 if exists('&inccommand')
     set inccommand=split
 endif
@@ -113,7 +118,7 @@ if (has("termguicolors"))
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-" set background=dark
+" set background=light
 " let g:onedark_terminal_italics = 1
 " let g:onedark_hide_endofbuffer = 1
 " colorscheme onedark
@@ -123,6 +128,10 @@ let g:gruvbox_bold = 0
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
+" let g:dracula_italic = 0
+" colorscheme dracula
+" let g:gruvbox_material_background = 'hard'
+" colorscheme gruvbox-material
 " }}}
 
 " FileType AutoCommands {{{
@@ -136,6 +145,7 @@ augroup AutoCommands
     autocmd FileType css setlocal tabstop=2 shiftwidth=2
     autocmd FileType scss setlocal tabstop=2 shiftwidth=2
     autocmd FileType lua setlocal tabstop=2 shiftwidth=2
+    autocmd FileType markdown setlocal tabstop=2 softtabstop=2 shiftwidth=2 autoindent
     autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 autoindent
     autocmd FileType python let b:indentLine_enabled=1
     autocmd FileType vim setlocal tabstop=4 shiftwidth=4 foldmethod=marker
@@ -217,7 +227,15 @@ augroup GoAutoCommands
     autocmd FileType go nmap gtd :CocCommand go.tags.add datastore<cr>
     autocmd FileType go nmap gtx :CocCommand go.tags.add xml<cr>
     autocmd FileType go nmap gtc :CocCommand go.tags.clear<cr>
+    autocmd FileType go nmap <leader>m :silent !go generate ./mocks/... <CR>\|:silent CocRestart<CR>
     autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+augroup end
+" }}}
+
+" Rust {{{
+augroup RustAutoCommands
+    autocmd!
+    autocmd FileType rust nmap gh :CocCommand rust-analyzer.toggleInlayHints<cr>
 augroup end
 " }}}
 
@@ -266,6 +284,9 @@ nnoremap <silent><leader><CR>     :Buffers<CR>
 nnoremap <silent><leader>fi       :Files<CR>
 nnoremap <silent><leader>fl       :Lines<CR>
 nnoremap <silent><leader>ag       :Ag<CR>
+
+" coc
+nnoremap <silent><leader>rr       :silent CocRestart<CR>
 
 " better paste
 vnoremap p "_dP
@@ -467,8 +488,8 @@ let g:coc_status_warning_sign='W'
 " }}}
 
 " {{{treesitter
-" " https://github.com/nvim-treesitter/nvim-treesitter#available-modules
-" lua require("treesitter")
-" " tree-sitter reparse
-" nmap <leader>we :write \| edit \| TSBufEnable highlight<CR>
+" https://github.com/nvim-treesitter/nvim-treesitter#available-modules
+lua require("treesitter")
+" tree-sitter reparse
+nmap <leader>we :write \| edit \| TSBufEnable highlight<CR>
 " }}}

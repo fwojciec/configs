@@ -48,8 +48,8 @@
   "[yaml]": {
     "editor.renderIndentGuides": true
   },
-  "editor.fontFamily": "'Fira Code', 'Operator Mono Lig', 'Iosevka Nerd Font', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
-  "editor.fontSize": 15,
+  "editor.fontFamily": "'Iosevka Term', 'Fira Code', 'Operator Mono Lig', 'Iosevka Nerd Font', Monaco, 'Fira Mono', 'Office Code Pro D', Menlo, 'Courier New', monospace",
+  "editor.fontSize": 17,
   "editor.fontLigatures": true,
   "go.useLanguageServer": true,
   "go.lintTool": "golangci-lint",
@@ -76,7 +76,11 @@
       "unusedparams": true,
       "nonewvars": true,
       "gc_details": true
-    }
+    },
+    "ui.semanticTokens": true,
+    "buildFlags": [
+      "-tags=integration"
+    ]
   },
   "git.enableSmartCommit": true,
   "git.confirmSync": false,
@@ -267,5 +271,11 @@
     "!Split sequence",
     "!Sub"
   ],
-  "terminal.integrated.lineHeight": 1.2
+  "terminal.integrated.lineHeight": 1.2,
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ]
 }

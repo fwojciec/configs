@@ -13,25 +13,17 @@ alias mv="mv -v"
 alias rm="rm -v"
 alias cls="clear"
 alias glint="golangci-lint run --no-config"
-# alias ls="ls -hF --color=auto --group-directories-first"
 alias ls="gls -hF --color=auto --group-directories-first"
-alias ssh="TERM=screen-256color ssh"
-alias tmux="tmux -u"
-alias vim="nvim"
-alias pv="pyenv version"
+alias pev="pyenv version"
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# case insensitive path-completion 
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-# partial completion suggestions
-zstyle ':completion:*' list-suffixes zstyle ':completion:*' expand prefix suffix 
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
-autoload bashcompinit
-bashcompinit
+# autoload bashcompinit
+# bashcompinit
 
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
