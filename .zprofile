@@ -33,4 +33,7 @@ export DDBLOCAL_LIB=$HOME/.ddblocal/DynamoDBLocal_lib
 export DDBLOCAL_JAR=$HOME/.ddblocal/DynamoDBLocal.jar
 
 # Haskell
-source $HOME/.ghcup/env
+# source $HOME/.ghcup/env
+
+# Homebrew
+export PATH=/opt/homebrew/bin:$PATH

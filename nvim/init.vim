@@ -22,7 +22,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'sainnhe/gruvbox-material'
 
 " fzf
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " quality of life
@@ -103,10 +103,10 @@ endif
 " }}}
 
 " Fast startup {{{
-let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.1/bin/python'
+let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.7/bin/python'
 " let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
-let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
-let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
+" let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
+let g:node_host_prog = expand("$HOME").'/.nvm/versions/node/v14.17.6/bin/neovim-node-host'
 let g:loaded_perl_provider = 0
 let g:loaded_python_provider = 0
 " }}}

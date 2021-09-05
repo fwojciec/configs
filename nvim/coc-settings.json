@@ -19,6 +19,13 @@
         "hie.yaml"
       ],
       "filetypes": ["haskell", "lhaskell"]
+    },
+    "golangci-lint-languageserver": {
+      "command": "golangci-lint-langserver",
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "command": ["golangci-lint", "run", "--out-format", "json"]
+      }
     }
   },
   "go.goplsOptions": {
@@ -55,48 +62,17 @@
     "typescript-react": "typescript.tsx",
     "javascript-react": "javascript.tsx"
   },
-  /* "python.jediEnabled": true, */
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
-  "python.linting.mypyEnabled": true,
-  "diagnostic-languageserver.filetypes": {
-    "go": []
-  },
-  "diagnostic-languageserver.linters": {
-    "golangci-lint": {
-      "command": "golangci-lint",
-      "rootPatterns": [".git", "go.mod"],
-      "debounce": 100,
-      "args": ["run", "--out-format", "json", "--config", "~/.golangci.yml"],
-      "sourceName": "golangci-lint",
-      "parseJson": {
-        "sourceName": "Pos.Filename",
-        "sourceNameFilter": true,
-        "errorsRoot": "Issues",
-        "line": "Pos.Line",
-        "column": "Pos.Column",
-        "message": "${Text} [${FromLinter}]",
-        "security": "Severity"
-      },
-      "securities": {
-        "error": "error",
-        "warning": "warning",
-        "note": "info"
-      }
-    }
-  },
-  "suggest.maxCompleteItemCount": 20,
+  "python.linting.mypyEnabled": false,
+  "suggest.maxCompleteItemCount": 30,
   "suggest.floatEnable": true,
   "suggest.autoTrigger": "always",
   "coc.preferences.promptInput": false,
   "snippets.enableStatusItem": false,
   "javascript.suggestionActions.enabled": false,
-  /* "prettier.semi": false, */
-  /* "prettier.singleQuote": true, */
-  "rust-analyzer.procMacro.enable": true,
-  "sh.enable": true,
   "yaml.format.enable": true,
   "yaml.customTags": [
     "!And",

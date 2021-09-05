@@ -7,14 +7,16 @@ SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
 # aliases
-alias cp="cp -v"
 alias grep="grep --color=auto"
-alias mv="mv -v"
-alias rm="rm -v"
 alias cls="clear"
 alias glint="golangci-lint run --no-config"
-alias ls="gls -hF --color=auto --group-directories-first"
+alias ls="ls -hF --color=auto --group-directories-first"
 alias pev="pyenv version"
+
+# MacOS specific aliases (i.e. don't use these when on a linux system via ssh)
+if [[ "$(uname)" = "Darwin" ]]; then
+    alias ls="exa --group-directories-first"
+fi
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
@@ -27,11 +29,6 @@ _comp_options+=(globdots)
 
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
-
-# Local settings
-if [ -f $ZDOTDIR/.zshrc_local ]; then
-    source $ZDOTDIR/.zshrc_local
-fi
 
 # keybindings and stuff
 bindkey -v
