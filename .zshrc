@@ -27,51 +27,24 @@ _comp_options+=(globdots)
 # autoload bashcompinit
 # bashcompinit
 
+# vim mode plugin overwrites keybindings, so this is to ensure these are set after vim plugin init
+function zvm_after_init() {
+    # history search
+    autoload -U up-line-or-beginning-search
+    autoload -U down-line-or-beginning-search
+    zle -N up-line-or-beginning-search
+    zle -N down-line-or-beginning-search
+    bindkey '^k' up-line-or-beginning-search
+    bindkey '^j' down-line-or-beginning-search
+    bindkey '^[[A' up-line-or-beginning-search # Up
+    bindkey '^[[B' down-line-or-beginning-search # Down
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
+
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
 
-# keybindings and stuff
-bindkey -v
-export KEYTIMEOUT=1
-
-# restore backspace functionality
-bindkey "^?" backward-delete-char
-
-# history search
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey '^k' up-line-or-beginning-search
-bindkey '^j' down-line-or-beginning-search
-bindkey '^[[A' up-line-or-beginning-search # Up
-bindkey '^[[B' down-line-or-beginning-search # Down
-
-# enable bracket word objects in vi mode
-autoload -U select-bracketed
-zle -N select-bracketed
-for m in visual viopp; do
-	for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-		bindkey -M $m $c select-bracketed
-	done
-done
-
-# enable quote word objects in vi mode
-autoload -U select-quoted
-zle -N select-quoted
-for m in visual viopp; do
-	for c in {a,i}{\',\",\`}; do
-		bindkey -M $m $c select-quoted
-	done
-done
-
-# Edit line in vim with ctrl-v:
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^v' edit-command-line
-
 # FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 # GRUVBOX COLORS
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -89,9 +62,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 # --color=dark
 # --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
 # --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
-
-# Rust
-source $HOME/.cargo/env
 
 # Starship prompt
 eval "$(starship init zsh)"

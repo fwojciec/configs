@@ -14,8 +14,8 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.dotnet:$PATH
 
 # Java
-# export JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 
 # Lazy load pyenv-virtualenv
 export ZSH_PYENV_LAZY_VIRTUALENV=true
@@ -34,6 +34,9 @@ export DDBLOCAL_JAR=$HOME/.ddblocal/DynamoDBLocal.jar
 
 # Haskell
 # source $HOME/.ghcup/env
+
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
 
 # Homebrew
 export PATH=/opt/homebrew/bin:$PATH

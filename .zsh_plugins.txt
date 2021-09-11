@@ -3,3 +3,4 @@ greymd/docker-zsh-completion
 ohmyzsh/ohmyzsh path:plugins/golang
 ohmyzsh/ohmyzsh path:plugins/git
 lukechilds/zsh-nvm
+jeffreytse/zsh-vi-mode
