@@ -44,6 +44,7 @@
     "typescriptreact",
     "javascriptreact",
     "json",
+    "jsonc",
     "css",
     "scss",
     "markdown",
@@ -74,33 +75,43 @@
   "snippets.enableStatusItem": false,
   "javascript.suggestionActions.enabled": false,
   "yaml.format.enable": true,
+  "yaml.validate": true,
+  "yaml.completion": true,
   "yaml.customTags": [
     "!And",
-    "!If",
-    "!Not",
-    "!Equals",
-    "!Or",
-    "!FindInMap",
     "!Base64",
     "!Cidr",
-    "!Ref",
-    "!Sub",
-    "!GetAtt",
+    "!Equals scalar",
+    "!Equals sequence",
+    "!FindInMap sequence",
     "!GetAZs",
+    "!GetAtt",
+    "!If",
     "!ImportValue",
+    "!Join sequence",
+    "!Not",
+    "!Or",
+    "!Ref",
     "!Select",
     "!Split",
-    "!Join"
+    "!Sub",
+    "!fn"
   ],
   "json.schemas": [
     {
       "fileMatch": ["*-template.json"],
-      "url": "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json"
+      "url": "https://raw.githubusercontent.com/aws-cloudformation/aws-cfn-lint-visual-studio-code/master/schema/all-spec.json"
+    },
+    {
+      "fileMatch": ["*.openapi.json"],
+      "url": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"
     }
   ],
+  /* https://github.com/aws-cloudformation/cloudformation-template-schema/issues/32 */
   "yaml.schemas": {
-    "https://s3.amazonaws.com/cfn-resource-specifications-us-east-1-prod/schemas/2.15.0/all-spec.json": "*-template.yaml"
+    "https://raw.githubusercontent.com/aws-cloudformation/aws-cfn-lint-visual-studio-code/master/schema/all-spec.json": "*-template.yaml"
     /* "https://raw.githubusercontent.com/aws/serverless-application-model/develop/samtranslator/validator/sam_schema/schema.json": "template.yaml" */
   },
+  "yaml.schemaStore.enable": true,
   "coc.preferences.extensionUpdateCheck": "never"
 }

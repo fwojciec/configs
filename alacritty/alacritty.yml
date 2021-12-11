@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-# env:
-# TERM variable
-#
-# This value is used to set the `$TERM` environment variable for
-# each instance of Alacritty. If it is not present, alacritty will
-# check the local terminfo database and use `alacritty` if it is
-# available, otherwise `xterm-256color` is used.
-# TERM: xterm-256color
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -94,19 +94,19 @@ window:
 
 # Font configuration
 font:
-  normal:
-    family: Fira Code
-    style: Retina
-  bold:
-    family: Fira Code
-    style: SemiBold
-  italic:
-    family: Fira Code
-    style: Retina
-  bold_italic:
-    family: Fira Code
-    style: SemiBold
-  size: 15.0
+  # normal:
+  #   family: Fira Code
+  #   style: Retina
+  # bold:
+  #   family: Fira Code
+  #   style: SemiBold
+  # italic:
+  #   family: Fira Code
+  #   style: Retina
+  # bold_italic:
+  #   family: Fira Code
+  #   style: SemiBold
+  # size: 15.0
   # normal:
   #   family: MesloLGS Nerd Font
   #   style: Regular
@@ -120,19 +120,19 @@ font:
   #   family: MesloLGS Nerd Font
   #   style: Bold Italic
   # size: 15.0
-  # normal:
-  #   family: Iosevka
-  #   style: Regular
-  # bold:
-  #   family: Iosevka
-  #   style: Semibold
-  # italic:
-  #   family: Iosevka
-  #   style: Oblique
-  # bold_italic:
-  #   family: Iosevka
-  #   style: Semibold Oblique
-  # size: 17.0
+  normal:
+    family: Iosevka Term
+    style: Medium
+  bold:
+    family: Iosevka Term
+    style: Semibold
+  italic:
+    family: Iosevka Term
+    style: Medium Oblique
+  bold_italic:
+    family: Iosevka Term
+    style: Semibold Oblique
+  size: 16.0
   # normal:
   #   family: Cascadia Code PL
   #   style: Regular
@@ -164,14 +164,14 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 8
+    y: 6
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 1
+    y: 5
 
   # Thin stroke font rendering (macOS only)
   use_thin_strokes: true
@@ -288,94 +288,94 @@ schemes:
   gruvbox: &gruvbox
     primary:
       # hard contrast: background = '#1d2021'
-      background: '#282828'
-      # background: '#1d2021'
+      # background: "#282828"
+      background: "#1d2021"
       # soft contrast: background = '#32302f'
-      foreground: '#ebdbb2'
+      foreground: "#ebdbb2"
 
     # Normal colors
     normal:
-      black: '#282828'
-      red: '#cc241d'
-      green: '#98971a'
-      yellow: '#d79921'
-      blue: '#458588'
-      magenta: '#b16286'
-      cyan: '#689d6a'
-      white: '#a89984'
+      black: "#282828"
+      red: "#cc241d"
+      green: "#98971a"
+      yellow: "#d79921"
+      blue: "#458588"
+      magenta: "#b16286"
+      cyan: "#689d6a"
+      white: "#a89984"
 
     # Bright colors
     bright:
-      black: '#928374'
-      red: '#fb4934'
-      green: '#b8bb26'
-      yellow: '#fabd2f'
-      blue: '#83a598'
-      magenta: '#d3869b'
-      cyan: '#8ec07c'
-      white: '#ebdbb2'
+      black: "#928374"
+      red: "#fb4934"
+      green: "#b8bb26"
+      yellow: "#fabd2f"
+      blue: "#83a598"
+      magenta: "#d3869b"
+      cyan: "#8ec07c"
+      white: "#ebdbb2"
 
   solarized_dark: &solarized_dark
     primary:
-      background: '#002b36' # base03
-      foreground: '#839496' # base0
+      background: "#002b36" # base03
+      foreground: "#839496" # base0
     cursor:
-      text: '#002b36' # base03
-      cursor: '#839496' # base0
+      text: "#002b36" # base03
+      cursor: "#839496" # base0
 
     # Normal colors
     normal:
-      black: '#073642' # base02
-      red: '#dc322f' # red
-      green: '#859900' # green
-      yellow: '#b58900' # yellow
-      blue: '#268bd2' # blue
-      magenta: '#d33682' # magenta
-      cyan: '#2aa198' # cyan
-      white: '#eee8d5' # base2
+      black: "#073642" # base02
+      red: "#dc322f" # red
+      green: "#859900" # green
+      yellow: "#b58900" # yellow
+      blue: "#268bd2" # blue
+      magenta: "#d33682" # magenta
+      cyan: "#2aa198" # cyan
+      white: "#eee8d5" # base2
 
     # Bright colors
     bright:
-      black: '#002b36' # base03
-      red: '#cb4b16' # orange
-      green: '#586e75' # base01
-      yellow: '#657b83' # base00
-      blue: '#839496' # base0
-      magenta: '#6c71c4' # violet
-      cyan: '#93a1a1' # base1
-      white: '#fdf6e3' # base3
+      black: "#002b36" # base03
+      red: "#cb4b16" # orange
+      green: "#586e75" # base01
+      yellow: "#657b83" # base00
+      blue: "#839496" # base0
+      magenta: "#6c71c4" # violet
+      cyan: "#93a1a1" # base1
+      white: "#fdf6e3" # base3
 
   onedark: &onedark # Default colors
     primary:
-      foreground: '0xabb2bf'
-      background: '0x282c34'
+      foreground: "0xabb2bf"
+      background: "0x282c34"
 
     # Cursor colors
     cursor:
-      text: '0x5c6370'
-      cursor: '0xabb2bf'
+      text: "0x5c6370"
+      cursor: "0xabb2bf"
 
     # Normal colors
     normal:
-      black: '0x5c6370'
-      red: '0xe06c75'
-      green: '0x98c379'
-      yellow: '0xe5c07b'
-      blue: '0x61afef'
-      magenta: '0xc678dd'
-      cyan: '0x56b6c2'
-      white: '0xabb2bf'
+      black: "0x5c6370"
+      red: "0xe06c75"
+      green: "0x98c379"
+      yellow: "0xe5c07b"
+      blue: "0x61afef"
+      magenta: "0xc678dd"
+      cyan: "0x56b6c2"
+      white: "0xabb2bf"
 
     # Bright colors
     bright:
-      black: '0x4b5263'
-      red: '0xbe5046'
-      green: '0x98c379'
-      yellow: '0xd19a66'
-      blue: '0x61afef'
-      magenta: '0xc678dd'
-      cyan: '0x56b6c2'
-      white: '0x3e4452'
+      black: "0x4b5263"
+      red: "0xbe5046"
+      green: "0x98c379"
+      yellow: "0xd19a66"
+      blue: "0x61afef"
+      magenta: "0xc678dd"
+      cyan: "0x56b6c2"
+      white: "0x3e4452"
 
 # Colors (Gruvbox dark)
 colors:
@@ -488,7 +488,7 @@ colors:
 bell:
   animation: EaseOutExpo
   duration: 0
-  color: '0xffffff'
+  color: "0xffffff"
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
@@ -775,7 +775,7 @@ key_bindings:
   - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt }
   - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
   - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
-  - { key: Space, mods: Alt, chars: ' ' }
+  - { key: Space, mods: Alt, chars: " " }
   - { key: Back, mods: Super, chars: "\x15" } # delete word/line
   - { key: Left, mods: Alt, chars: "\x1bb" } # one word left
   - { key: Right, mods: Alt, chars: "\x1bf" } # one word right

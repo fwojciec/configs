@@ -6,20 +6,20 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-dispatch'
 
 " interface
+Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
 " Plug 'srcery-colors/srcery-vim'
-Plug 'haishanh/night-owl.vim'
+" Plug 'haishanh/night-owl.vim'
 " Plug 'mengelbrecht/lightline-bufferline'
-Plug 'arcticicestudio/nord-vim'
-Plug 'joshdick/onedark.vim'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'joshdick/onedark.vim'
 " Plug 'chriskempson/base16-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'sainnhe/gruvbox-material'
+" Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'sainnhe/gruvbox-material'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -35,12 +35,8 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Custom
-Plug 'fwojciec/vim-go-motion'
-
 " Syntax
 Plug 'sheerun/vim-polyglot'
-" Plug 'blueyed/smarty.vim'
 
 " Testing
 Plug 'vim-test/vim-test'
@@ -96,6 +92,8 @@ set noemoji
 set updatetime=50
 set clipboard+=unnamedplus
 set nofixendofline
+set title
+set formatoptions-=t " prevents automatic wrapping
 " set textwidth=80
 if exists('&inccommand')
     set inccommand=split
@@ -103,7 +101,7 @@ endif
 " }}}
 
 " Fast startup {{{
-let g:python3_host_prog = expand("$HOME").'/.pyenv/versions/3.9.7/bin/python'
+let g:python3_host_prog = '/Users/filip/.pyenv/versions/neovim/bin/python'
 " let g:python_host_prog = expand("$HOME").'/.pyenv/shims/python2'
 " let g:ruby_host_prog = expand("$HOME").'/.gem/ruby/2.6.0/bin/neovim-ruby-host'
 let g:node_host_prog = expand("$HOME").'/.nvm/versions/node/v14.17.6/bin/neovim-node-host'
@@ -130,6 +128,7 @@ let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 " let g:dracula_italic = 0
 " colorscheme dracula
+" let g:gruvbox_material_better_performance = 1
 " let g:gruvbox_material_background = 'hard'
 " colorscheme gruvbox-material
 " }}}
@@ -320,6 +319,9 @@ nmap <silent> <leader>tv :TestVisit<CR>
 " terminal
 " tnoremap <Esc> <C-\><C-n>
 nmap <silent><leader>` :belowright 15split term://zsh \|:startinsert<CR>
+
+" no more :W
+nnoremap ; :
 " }}}
 
 "{{{IndentLine
