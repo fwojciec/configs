@@ -1,6 +1,9 @@
 # enable colors
 autoload -U colors && colors
 
+# disable vi mode
+bindkey -e
+
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
@@ -29,16 +32,10 @@ if type brew &>/dev/null; then
 fi
 
 zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-
-bindkey -M menuselect '^xg' clear-screen
-bindkey -M menuselect '^xi' vi-insert                      # Insert
-bindkey -M menuselect '^xh' accept-and-hold                # Hold
-bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
-bindkey -M menuselect '^xu' undo                           # Undo
+bindkey -M menuselect 'h' backward-char
+bindkey -M menuselect 'k' up-line-or-history
+bindkey -M menuselect 'j' down-line-or-history
+bindkey -M menuselect 'l' forward-char
 
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)   # With hidden files
@@ -72,23 +69,22 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-# autoload bashcompinit
-# bashcompinit
+# history search
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+bindkey '^k' history-beginning-search-backward-end 
+bindkey '^j' history-beginning-search-forward-end 
 
-# vim mode plugin overwrites keybindings, so this is to ensure these are set after vim plugin init
-function zvm_after_init() {
-    # history search
-    autoload -U up-line-or-beginning-search
-    autoload -U down-line-or-beginning-search
-    zle -N up-line-or-beginning-search
-    zle -N down-line-or-beginning-search
-    bindkey '^k' up-line-or-beginning-search
-    bindkey '^j' down-line-or-beginning-search
-    bindkey '^[[A' up-line-or-beginning-search # Up
-    bindkey '^[[B' down-line-or-beginning-search # Down
-    bindkey '^A' alias-expension
-    [ -f "$ZDOTDIR/.fzf.zsh" ] && source "$ZDOTDIR/.fzf.zsh"
-}
+# back/forward word bindings
+bindkey "^[[1;3D" backward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^B" backward-word
+bindkey "^F" forward-word
+
+[ -f "$ZDOTDIR/.fzf.zsh" ] && source "$ZDOTDIR/.fzf.zsh"
 
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
