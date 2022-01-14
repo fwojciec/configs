@@ -19,7 +19,7 @@ Plug 'gruvbox-community/gruvbox'
 " Plug 'joshdick/onedark.vim'
 " Plug 'chriskempson/base16-vim'
 " Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/gruvbox-material'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -120,17 +120,17 @@ endif
 " let g:onedark_terminal_italics = 1
 " let g:onedark_hide_endofbuffer = 1
 " colorscheme onedark
-let g:gruvbox_italic = 1
-let g:gruvbox_underline = 0
-let g:gruvbox_bold = 0
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+" let g:gruvbox_italic = 1
+" let g:gruvbox_underline = 0
+" let g:gruvbox_bold = 0
+" let g:gruvbox_invert_selection = 0
+" let g:gruvbox_contrast_dark = 'hard'
+" colorscheme gruvbox
 " let g:dracula_italic = 0
 " colorscheme dracula
 " let g:gruvbox_material_better_performance = 1
-" let g:gruvbox_material_background = 'hard'
-" colorscheme gruvbox-material
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
 " }}}
 
 " FileType AutoCommands {{{
@@ -197,7 +197,7 @@ let g:fzf_layout = { 'down': '~40%' }
 
 " Lightline {{{
 let g:lightline = {
-            \ 'colorscheme': 'gruvbox',
+            \ 'colorscheme': 'gruvbox_material',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive', 'cocstatus', 'readonly', 'relativepath', 'modified' ] ]
