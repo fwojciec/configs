@@ -160,9 +160,9 @@ augroup AutoCommands
     autocmd BufNewFile,BufRead *.sbt setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.pgsql setlocal tabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 filetype=javascript.jsx
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead requirements*.txt setlocal filetype=requirements
     autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
     autocmd BufNewFile,BufRead .prettierrc setlocal filetype=json

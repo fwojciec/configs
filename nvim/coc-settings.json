@@ -20,11 +20,55 @@
       ],
       "filetypes": ["haskell", "lhaskell"]
     },
+    "ocaml": {
+      "command": "ocamllsp",
+      "rootPatterns": ["dune-project"],
+      "filetypes": ["ocaml"],
+      "initializationOptions": {},
+      "settings": {}
+    },
     "golangci-lint-languageserver": {
       "command": "golangci-lint-langserver",
       "filetypes": ["go"],
       "initializationOptions": {
         "command": ["golangci-lint", "run", "--out-format", "json"]
+      }
+    },
+    "tailwind-lsp": {
+      "command": "tailwindcss-language-server",
+      "args": ["--stdio"],
+
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ],
+
+      "rootPatterns": [
+        "tailwind.config.js",
+        "tailwind.config.ts",
+        "postcss.config.js",
+        "postcss.config.ts",
+        "package.json",
+        "node_modules",
+        ".git"
+      ],
+      "settings": {
+        "tailwindCSS": {
+          "validate": true,
+          "lint": {
+            "cssConflict": "warning",
+            "invalidApply": "error",
+            "invalidScreen": "error",
+            "invalidVariant": "error",
+            "invalidConfigPath": "error",
+            "invalidTailwindDirective": "error",
+            "recommendedVariantOrder": "warning"
+          },
+          "classAttributes": ["class", "className", "classList", "ngClass"],
+          "experimental": {}
+        }
       }
     }
   },
@@ -72,7 +116,6 @@
   "suggest.floatEnable": true,
   "suggest.autoTrigger": "always",
   "coc.preferences.promptInput": false,
-  "snippets.enableStatusItem": false,
   "javascript.suggestionActions.enabled": false,
   "yaml.format.enable": true,
   "yaml.validate": true,
