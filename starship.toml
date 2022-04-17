@@ -49,6 +49,9 @@ disabled = true
 [julia]
 disabled = true
 
+[lua]
+disabled = true
+
 [kubernetes]
 disabled = true
 

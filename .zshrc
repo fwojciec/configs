@@ -31,6 +31,10 @@ if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
+# prompt
+# autoload -U promptinit; promptinit
+# prompt pure
+
 zmodload zsh/complist
 bindkey -M menuselect 'h' backward-char
 bindkey -M menuselect 'k' up-line-or-history
