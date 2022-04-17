@@ -8,7 +8,7 @@ local get_color = require("lualine.utils.utils").extract_highlight_colors
 lualine.setup({
 	options = {
 		section_separators = "",
-		component_separators = "",
+		component_separators = "¦",
 		theme = "auto",
 	},
 	sections = {
@@ -16,7 +16,7 @@ lualine.setup({
 			"branch",
 			{
 				"diagnostics",
-				symbols = { error = "𝔼", warn = "𝕎", info = "𝕀", hint = "𝕊" },
+				symbols = { error = "𝔼", warn = "𝕎", info = "𝕀", hint = "ℍ" },
 				diagnostics_color = {
 					error = { fg = get_color("DiagnosticSignError", "fg") },
 					warn = { fg = get_color("DiagnosticSignWarn", "fg") },
@@ -25,7 +25,6 @@ lualine.setup({
 				},
 			},
 		},
-		lualine_c = { "filename" },
 		lualine_x = {
 			"encoding",
 			{

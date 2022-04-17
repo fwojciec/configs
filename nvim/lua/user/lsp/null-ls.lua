@@ -26,7 +26,6 @@ null_ls.setup({
 		formatting.xmllint,
 		diagnostics.eslint_d,
 		diagnostics.flake8,
-		diagnostics.tsc,
 	},
 	on_attach = function(client)
 		if client.resolved_capabilities.document_formatting then

@@ -6,5 +6,5 @@ vim.g.loaded_python_provider = 0
 
 -- indentline
 vim.g.indent_blankline_enabled = false
-vim.g.indentLine_char = "⦙"
+vim.g.indent_blankline_char = "⦙"
 vim.g.indent_blankline_show_first_indent_level = false

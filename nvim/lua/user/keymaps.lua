@@ -1,21 +1,24 @@
 -- remap leader to space
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- telescope
-vim.api.nvim_set_keymap("n", "<leader><leader>", ":Telescope find_files<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader><CR>", ":Telescope buffers<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><leader>", ":Telescope find_files<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><CR>", ":Telescope buffers<CR>", { noremap = true, silent = true })
 
 -- editing
-vim.api.nvim_set_keymap("v", "p", "\"_dP", { noremap = true })
-vim.api.nvim_set_keymap("v", "Y", "y$", { noremap = true })
+vim.keymap.set("v", "p", '"_dP', { noremap = true })
+vim.keymap.set("v", "Y", "y$", { noremap = true })
 
 -- navigation
-vim.api.nvim_set_keymap("c", "<C-k>", "<Up>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-j>", "<Down>", { noremap = true })
+vim.keymap.set("c", "<C-k>", "<Up>", { noremap = true })
+vim.keymap.set("c", "<C-j>", "<Down>", { noremap = true })
 
 -- vim test
-vim.api.nvim_set_keymap("n", "<leader>t", ":TestNearest<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>T", ":TestFile<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>ts", ":TestSuite<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>tl", ":TestLast<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>tv", ":TestVisit<CR>", {})
+vim.keymap.set("n", "<leader>t", ":TestNearest<CR>", {})
+vim.keymap.set("n", "<leader>T", ":TestFile<CR>", {})
+vim.keymap.set("n", "<leader>ts", ":TestSuite<CR>", {})
+vim.keymap.set("n", "<leader>tl", ":TestLast<CR>", {})
+vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>", {})
+
+-- treesitter fix
+vim.keymap.set("n", "<leader>we", ":write | edit | TSBufEnable highlight<CR>", { noremap = true, silent = true })
