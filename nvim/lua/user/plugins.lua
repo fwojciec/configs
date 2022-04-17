@@ -44,6 +44,7 @@ return packer.startup(function(use)
 
 	-- Colorschemes
 	use("sainnhe/gruvbox-material")
+	use("ellisonleao/gruvbox.nvim")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip")
