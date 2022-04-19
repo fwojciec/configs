@@ -21,7 +21,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 5
 vim.opt.showmode = false
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append({ c = true, I = true })
 vim.opt.signcolumn = "number"
 vim.opt.mouse = "a"

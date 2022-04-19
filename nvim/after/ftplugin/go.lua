@@ -16,7 +16,7 @@ vim.b.go_highlight_generate_tags = 1
 vim.api.nvim_create_augroup("Go", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = "Go",
-	callback = function ()
+	callback = function()
 		vim.lsp.buf.formatting_sync()
-	end
+	end,
 })

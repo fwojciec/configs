@@ -2,8 +2,39 @@
 vim.g.mapleader = " "
 
 -- telescope
-vim.keymap.set("n", "<leader><leader>", ":Telescope find_files<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader><CR>", ":Telescope buffers<CR>", { noremap = true, silent = true })
+local telescope_builtin = require("telescope.builtin")
+local telescope_user = require("user.telescope")
+vim.keymap.set("n", "<leader><leader>", function()
+	telescope_user.project_files()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>ff", function()
+	telescope_user.project_files()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader><CR>", function()
+	telescope_builtin.buffers()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fb", function()
+	telescope_builtin.buffers()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fb", function()
+	telescope_builtin.buffers()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fd", function()
+	telescope_builtin.diagnostics()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fh", function()
+	telescope_builtin.help_tags()
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fg", function()
+	telescope_builtin.live_grep()
+end, { noremap = true, silent = true })
 
 -- editing
 vim.keymap.set("v", "p", '"_dP', { noremap = true })
