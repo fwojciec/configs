@@ -95,11 +95,18 @@ source $ZDOTDIR/.zsh_plugins.sh
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f'
+
 # GRUVBOX COLORS
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+# --layout=reverse --inline-info
+# --color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+# --color info:#76a065,prompt:#bdae93,spinner:#fabd2f,pointer:#76a065,marker:#fe8019,header:#665c54'
+# SUBSTRATA COLORS
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---layout=reverse --inline-info
---color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
---color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+ --color=fg:#b5b4c9,bg:#191c25,hl:#8296b0
+ --color=fg+:#f0ecfe,bg+:#272935,hl+:#a0b9d8
+ --color=info:#659ea2,prompt:#cf8164,pointer:#fe9f7c
+ --color=marker:#7dc2c7,spinner:#cf8164,header:#87afaf'
 # NORD COLORS
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 #     --color=fg:#e5e9f0,bg:#2e3440,hl:#81a1c1
