@@ -43,8 +43,12 @@ return packer.startup(function(use)
 	use("vim-test/vim-test")
 
 	-- Colorschemes
-	use("sainnhe/gruvbox-material")
-	use("ellisonleao/gruvbox.nvim")
+	-- use("sainnhe/gruvbox-material")
+	-- use("ellisonleao/gruvbox.nvim")
+	-- use("marko-cerovac/material.nvim")
+	-- use("bluz71/vim-nightfly-guicolors")
+	-- use("bluz71/vim-moonfly-colors")
+	use("kvrohit/substrata.nvim")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip")

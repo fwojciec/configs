@@ -104,16 +104,6 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["gruvbox-material"] = {
-    loaded = true,
-    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/gruvbox-material",
-    url = "https://github.com/sainnhe/gruvbox-material"
-  },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
-  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -163,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["substrata.nvim"] = {
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/substrata.nvim",
+    url = "https://github.com/kvrohit/substrata.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
