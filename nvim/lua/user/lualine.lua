@@ -10,6 +10,7 @@ lualine.setup({
 		section_separators = "",
 		component_separators = "¦",
 		theme = "auto",
+		globalstatus = true,
 	},
 	sections = {
 		lualine_b = {

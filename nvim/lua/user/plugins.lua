@@ -45,7 +45,7 @@ return packer.startup(function(use)
 	-- Colorschemes
 	-- use("sainnhe/gruvbox-material")
 	-- use("ellisonleao/gruvbox.nvim")
-	-- use("marko-cerovac/material.nvim")
+	use("marko-cerovac/material.nvim")
 	-- use("bluz71/vim-nightfly-guicolors")
 	-- use("bluz71/vim-moonfly-colors")
 	use("kvrohit/substrata.nvim")
