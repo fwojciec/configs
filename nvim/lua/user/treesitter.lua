@@ -17,6 +17,5 @@ configs.setup({
 	indent = { enable = true, disable = { "yaml", "go" } },
 	context_commentstring = {
 		enable = true,
-		enable_autocmd = false,
 	},
 })

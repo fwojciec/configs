@@ -33,22 +33,24 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 
 	-- tpope
-	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
 	use("tpope/vim-fugitive")
 	use("tpope/vim-unimpaired")
 
+	-- comments
+	use("numToStr/Comment.nvim")
+
 	-- testing
 	use("vim-test/vim-test")
 
 	-- Colorschemes
-	-- use("sainnhe/gruvbox-material")
+	use("sainnhe/gruvbox-material")
 	-- use("ellisonleao/gruvbox.nvim")
-	use("marko-cerovac/material.nvim")
+	-- use("marko-cerovac/material.nvim")
 	-- use("bluz71/vim-nightfly-guicolors")
 	-- use("bluz71/vim-moonfly-colors")
-	use("kvrohit/substrata.nvim")
+	-- use("kvrohit/substrata.nvim")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip")
@@ -73,6 +75,7 @@ return packer.startup(function(use)
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- status line
 	use("nvim-lualine/lualine.nvim")
