@@ -28,4 +28,5 @@ vim.opt.title = true
 vim.opt.formatoptions:remove("t")
 vim.opt.inccommand = "split"
 vim.opt.updatetime = 300
+vim.opt.showmode = false
 vim.opt.laststatus = 3
