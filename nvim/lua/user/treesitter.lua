@@ -14,7 +14,7 @@ configs.setup({
 		disable = { "" },
 		additional_vim_regex_highlighting = true,
 	},
-	indent = { enable = true, disable = { "yaml" } },
+	indent = { enable = true, disable = {} },
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false,

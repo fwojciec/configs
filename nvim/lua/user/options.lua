@@ -10,9 +10,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.smartindent = true
 vim.opt.wrap = false
-vim.opt.smartcase = true
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.undodir = utils.home_path(".local/share/nvim/.vimdid")
@@ -20,7 +18,6 @@ vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 5
-vim.opt.showmode = false
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append({ c = true, I = true })
 vim.opt.signcolumn = "number"
