@@ -24,7 +24,7 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.terraform_fmt,
 		formatting.xmllint,
-		diagnostics.eslint_d,
+		diagnostics.eslint,
 		diagnostics.flake8,
 	},
 	on_attach = function(client)
@@ -38,5 +38,12 @@ null_ls.setup({
 			})
 		end
 	end,
-	root_dir = null_ls_utils.root_pattern(".git"),
+	root_dir = null_ls_utils.root_pattern(
+		".null-ls-root",
+		"go.mod",
+		"package.json",
+		"pyrightconfig.json",
+		"Makefile",
+		".git"
+	),
 })
