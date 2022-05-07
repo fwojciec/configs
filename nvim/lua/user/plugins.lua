@@ -40,6 +40,7 @@ return packer.startup(function(use)
 
 	-- comments
 	use("numToStr/Comment.nvim")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- testing
 	use("vim-test/vim-test")
@@ -75,7 +76,6 @@ return packer.startup(function(use)
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- status line
 	use("nvim-lualine/lualine.nvim")
