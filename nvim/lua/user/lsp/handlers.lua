@@ -28,8 +28,8 @@ end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" or client.name == "sumneko_lua" or client.name == "gopls" then
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.document_formatting = false
+		client.server_capabilities.document_range_formatting = false
 	end
 	lsp_keymaps(bufnr)
 end
