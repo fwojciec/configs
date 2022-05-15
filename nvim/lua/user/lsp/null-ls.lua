@@ -11,6 +11,20 @@ end
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
+local group = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local format_callback = function(bufnr, async)
+	vim.lsp.buf.format({
+		bufnr = bufnr,
+		async = async,
+		filter = function(clients)
+			return vim.tbl_filter(function(client)
+				return client.name == "null-ls"
+			end, clients)
+		end,
+	})
+end
+
 null_ls.setup({
 	debug = false,
 	debounce = 150,
@@ -27,16 +41,25 @@ null_ls.setup({
 		diagnostics.eslint,
 		diagnostics.flake8,
 	},
-	on_attach = function(client)
-		if client.server_capabilities.document_formatting then
-			local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = group,
-				callback = function()
-					vim.lsp.buf.formatting_sync(nil, 2000)
-				end,
-			})
+	on_attach = function(client, bufnr)
+		if not client.supports_method("textDocument/formatting") then
+			return
 		end
+
+		-- execute sync format on write buffer
+		vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = group,
+			buffer = bufnr,
+			callback = function()
+				format_callback(bufnr, false)
+			end,
+		})
+
+		-- define custom Fromat command that performs asnyc formatting
+		vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+			format_callback(bufnr, true)
+		end, {})
 	end,
 	root_dir = null_ls_utils.root_pattern(
 		".null-ls-root",

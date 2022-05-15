@@ -23,14 +23,9 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, { buffer = bufnr })
 
-	vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, {})
 end
 
-M.on_attach = function(client, bufnr)
-	if client.name == "tsserver" or client.name == "sumneko_lua" or client.name == "gopls" then
-		client.server_capabilities.document_formatting = false
-		client.server_capabilities.document_range_formatting = false
-	end
+M.on_attach = function(_, bufnr)
 	lsp_keymaps(bufnr)
 end
 
