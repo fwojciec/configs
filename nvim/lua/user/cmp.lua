@@ -1,12 +1,5 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-	return
-end
-
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-	return
-end
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))

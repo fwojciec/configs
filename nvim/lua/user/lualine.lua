@@ -1,8 +1,4 @@
-local lualine_status_ok, lualine = pcall(require, "lualine")
-if not lualine_status_ok then
-	return
-end
-
+local lualine = require("lualine")
 local get_color = require("lualine.utils.utils").extract_highlight_colors
 
 lualine.setup({

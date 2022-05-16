@@ -22,7 +22,6 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, { buffer = bufnr })
-
 end
 
 M.on_attach = function(_, bufnr)
@@ -30,12 +29,7 @@ M.on_attach = function(_, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-	return
-end
-
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M

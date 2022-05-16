@@ -1,14 +1,10 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-	return
-end
-
+local telescope = require("telescope")
 local actions = require("telescope.actions")
 
 telescope.load_extension("fzf")
 telescope.setup({
 	defaults = {
-		path_display = { "smart" },
+		-- path_display = { "smart" },
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		color_devicons = false,
 		mappings = {

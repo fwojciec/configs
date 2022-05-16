@@ -169,6 +169,11 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["schemastore.nvim"] = {
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
+    url = "https://github.com/b0o/schemastore.nvim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
