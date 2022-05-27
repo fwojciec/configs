@@ -13,3 +13,5 @@
 	rebase = false
 [init]
 	defaultBranch = main
+[safe]
+	directory = /Users/filip/code/temp/neovim
