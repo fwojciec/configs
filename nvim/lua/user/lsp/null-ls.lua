@@ -11,7 +11,7 @@ local format_callback = function(bufnr, async)
 		bufnr = bufnr,
 		async = async,
 		filter = function(client)
-				return client.name == "null-ls"
+			return client.name == "null-ls"
 		end,
 	})
 end
@@ -29,8 +29,11 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.terraform_fmt,
 		formatting.xmllint,
+		formatting.protolint,
 		diagnostics.eslint,
 		diagnostics.flake8,
+		-- diagnostics.buf,
+		diagnostics.protolint,
 	},
 	on_attach = function(client, bufnr)
 		if not client.supports_method("textDocument/formatting") then
@@ -51,6 +54,9 @@ null_ls.setup({
 		vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
 			format_callback(bufnr, true)
 		end, {})
+
+		vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { buffer = bufnr })
+		vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { buffer = bufnr })
 	end,
 	root_dir = null_ls_utils.root_pattern(
 		".null-ls-root",
