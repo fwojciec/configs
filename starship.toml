@@ -10,6 +10,9 @@ disabled = true
 [battery]
 disabled = true
 
+[buf]
+disabled = true
+
 [cmake]
 disabled = true
 
