@@ -6,7 +6,7 @@ return {
 			analyses = {
 				unusedparams = true,
 				shadow = true,
-				fieldalignment = true,
+				-- fieldalignment = true,
 				nilness = true,
 				unusedwrite = true,
 				useany = true,
