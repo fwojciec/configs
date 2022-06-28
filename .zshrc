@@ -105,10 +105,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 #  --color=marker:#7dc2c7,spinner:#cf8164,header:#87afaf'
 # NORD COLORS
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#     --color=fg:#e5e9f0,bg:#2e3440,hl:#81a1c1
-#     --color=fg+:#e5e9f0,bg+:#2e3440,hl+:#81a1c1
-#     --color=info:#ebcb8b,prompt:#bf616a,pointer:#b48ead
-#     --color=marker:#a3be8c,spinner:#b48ead,header:#a3be8c'
+#   --color=fg:#d8dee9,bg:#2e3440,hl:#5e81ac 
+#   --color=fg+:#eceff4,bg+:#434c5e,hl+:#88c0d0 
+#   --color=info:#8fbcbb,prompt:#bf616a,pointer:#b48ead 
+#   --color=marker:#a3be8c,spinner:#b48ead,header:#EBCB8B'
 # ONEDARK COLORS
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 # --color=dark
