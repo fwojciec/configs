@@ -1,6 +1,6 @@
 vim.opt_local.expandtab = false
-vim.opt_local.tabstop = 4
-vim.opt_local.shiftwidth = 4
+vim.opt_local.tabstop = 8
+vim.opt_local.shiftwidth = 8
 
 vim.keymap.set("n", "<leader>t", ":TestNearest -race<CR>")
 vim.keymap.set("n", "<leader>T", ":TestFile -race<CR>")

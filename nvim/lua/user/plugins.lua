@@ -13,6 +13,7 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/popup.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
+	use("AndrewRadev/splitjoin.vim")
 
 	-- tpope
 	use("tpope/vim-surround")
@@ -36,7 +37,8 @@ return packer.startup(function(use)
 	-- use("kvrohit/substrata.nvim")
 
 	-- snippets
-	use("L3MON4D3/LuaSnip")
+	-- use("L3MON4D3/LuaSnip")
+	-- use("saadparwaiz1/cmp_luasnip")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp")
@@ -45,7 +47,8 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-nvim-lsp-signature-help")
-	use("saadparwaiz1/cmp_luasnip")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip")
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
