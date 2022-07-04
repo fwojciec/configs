@@ -40,3 +40,7 @@ font:
     y: 3
 
   use_thin_strokes: false
+
+  key_bindings:
+    - { key: Right, mods: Alt, chars: "\x1BF" }
+    - { key: Left, mods: Alt, chars: "\x1BB" }
