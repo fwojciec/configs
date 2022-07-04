@@ -30,6 +30,7 @@ null_ls.setup({
 		formatting.terraform_fmt,
 		formatting.xmllint,
 		formatting.protolint,
+		formatting.pg_format,
 		diagnostics.eslint,
 		diagnostics.flake8,
 		-- diagnostics.buf,

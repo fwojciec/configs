@@ -8,3 +8,9 @@ vim.g.loaded_python_provider = 0
 vim.g.indent_blankline_enabled = false
 vim.g.indent_blankline_char = "⦙"
 vim.g.indent_blankline_show_first_indent_level = false
+
+-- testdb
+vim.g.db = "postgres://test:test@localhost:5432/test"
+vim.g.dbs = {
+	test = "postgres://test:test@localhost:5432/test",
+}

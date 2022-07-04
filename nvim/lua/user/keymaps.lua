@@ -36,11 +36,6 @@ vim.keymap.set("n", "<leader>fg", function()
 	telescope_builtin.live_grep()
 end)
 
-vim.keymap.set("n", "<leader>r", function()
-	vim.lsp.stop_client(vim.lsp.get_active_clients())
-	vim.api.nvim_command("edit")
-end)
-
 -- editing
 vim.keymap.set("v", "p", '"_dP')
 vim.keymap.set("v", "Y", "y$")
@@ -58,3 +53,6 @@ vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>")
 
 -- treesitter fix
 vim.keymap.set("n", "<leader>we", ":write | edit | TSBufEnable highlight<CR>")
+
+-- lsp restart
+vim.keymap.set("n", "<leader>r", ":write | vim.lsp.stop_client(vim.lsp.get_active_clients()) | edit")

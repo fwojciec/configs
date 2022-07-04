@@ -20,6 +20,7 @@ return packer.startup(function(use)
 	use("tpope/vim-repeat")
 	use("tpope/vim-fugitive")
 	use("tpope/vim-unimpaired")
+	use("tpope/vim-dadbod")
 
 	-- comments
 	use("numToStr/Comment.nvim")
@@ -52,6 +53,7 @@ return packer.startup(function(use)
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
+	use("tamago324/nlsp-settings.nvim")
 	use("williamboman/nvim-lsp-installer")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("b0o/schemastore.nvim")
