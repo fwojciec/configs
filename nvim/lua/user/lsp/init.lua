@@ -9,49 +9,6 @@ vim.diagnostic.config({
 
 local server_opts = {}
 
--- go
-server_opts.gopls = {
-	settings = {
-		gopls = {
-			directoryFilters = { "-/opt/homebrew/Cellar/go" },
-			experimentalPostfixCompletions = true,
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-				-- fieldalignment = true,
-				nilness = true,
-				unusedwrite = true,
-				useany = true,
-			},
-			staticcheck = true,
-			semanticTokens = true,
-		},
-	},
-	init_options = {
-		usePlaceholders = true,
-		completeUnimported = true,
-		deepCompletion = true,
-		-- buildFlags = { "-tags=integration" },
-	},
-}
-
--- lua
-server_opts.sumneko_lua = {
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
-}
-
 -- jsonls
 server_opts.jsonls = {
 	settings = {
