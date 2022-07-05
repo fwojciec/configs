@@ -25,7 +25,7 @@ cmp.setup({
 			elseif has_words_before() then
 				cmp.complete()
 			else
-				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+				fallback()
 			end
 		end, { "i", "s" }),
 		["<S-Tab>"] = cmp.mapping(function()
@@ -60,6 +60,7 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+	preselect = cmp.PreselectMode.None,
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
@@ -82,10 +83,7 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 	},
 	experimental = {
-		ghost_text = false,
+		ghost_text = true,
 		native_menu = false,
 	},
-	-- completion = {
-	-- 	autocomplete = false,
-	-- },
 })
