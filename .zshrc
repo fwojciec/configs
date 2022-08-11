@@ -84,36 +84,8 @@ bindkey "^[[1;3C" forward-word
 bindkey "^B" backward-word
 bindkey "^F" forward-word
 
-[ -f "$ZDOTDIR/.fzf.zsh" ] && source "$ZDOTDIR/.fzf.zsh"
-
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
-
-# FZF
-export FZF_DEFAULT_COMMAND='fd --type f'
-
-# GRUVBOX COLORS
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---layout=reverse --inline-info
---color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
---color info:#76a065,prompt:#bdae93,spinner:#fabd2f,pointer:#76a065,marker:#fe8019,header:#665c54'
-# SUBSTRATA COLORS
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#  --color=fg:#b5b4c9,bg:#191c25,hl:#8296b0
-#  --color=fg+:#f0ecfe,bg+:#272935,hl+:#a0b9d8
-#  --color=info:#659ea2,prompt:#cf8164,pointer:#fe9f7c
-#  --color=marker:#7dc2c7,spinner:#cf8164,header:#87afaf'
-# NORD COLORS
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-#   --color=fg:#d8dee9,bg:#2e3440,hl:#5e81ac 
-#   --color=fg+:#eceff4,bg+:#434c5e,hl+:#88c0d0 
-#   --color=info:#8fbcbb,prompt:#bf616a,pointer:#b48ead 
-#   --color=marker:#a3be8c,spinner:#b48ead,header:#EBCB8B'
-# ONEDARK COLORS
-# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-# --color=dark
-# --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
-# --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
 
 # gcloud
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"

@@ -1,5 +1,5 @@
 import:
-  - ~/.config/alacritty/gruvbox-material-alacritty.yml
+  - ~/.config/alacritty/onehalf-light-alacritty.yml
 
 window:
   dimensions:

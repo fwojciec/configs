@@ -36,6 +36,7 @@ return packer.startup(function(use)
 	-- use("bluz71/vim-nightfly-guicolors")
 	-- use("bluz71/vim-moonfly-colors")
 	-- use("kvrohit/substrata.nvim")
+	use({"sonph/onehalf", rtp = "vim/", config = function() vim.cmd("colorscheme onehalflight") end})
 
 	-- snippets
 	-- use("L3MON4D3/LuaSnip")

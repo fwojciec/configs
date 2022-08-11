@@ -154,6 +154,12 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
+  onehalf = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\29colorscheme onehalflight\bcmd\bvim\0" },
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/onehalf/vim/",
+    url = "https://github.com/sonph/onehalf"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -227,6 +233,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Runtimepath customization
+time([[Runtimepath customization]], true)
+vim.o.runtimepath = vim.o.runtimepath .. ",/Users/filip/.local/share/nvim/site/pack/packer/start/onehalf/vim/"
+time([[Runtimepath customization]], false)
+-- Config for: onehalf
+time([[Config for onehalf]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\29colorscheme onehalflight\bcmd\bvim\0", "config", "onehalf")
+time([[Config for onehalf]], false)
 if should_profile then save_profiles() end
 
 end)

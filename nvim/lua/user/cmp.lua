@@ -41,12 +41,24 @@ cmp.setup({
 		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), { "i", "c" }),
 		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-		["<C-e>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
+		["<C-e>"] = cmp.mapping.abort(),
+		-- ["<C-e>"] = cmp.mapping({
+		-- 	i = cmp.mapping.abort(),
+		-- 	c = cmp.mapping.close(),
+		-- }),
+		["<C-u>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
 		}),
-		["<C-y>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-		["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
+		-- ["<C-q>"] = cmp.mapping(
+		-- 	cmp.mapping.confirm({
+		-- 		behavior = cmp.ConfirmBehavior.Insert,
+		-- 		select = false,
+		-- 	}),
+		-- 	{ "i", "c" }
+		-- ),
+		-- ["<C-Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+		-- ["<C-Tab>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
 	},
 	formatting = {
 		format = function(entry, vim_item)
@@ -83,7 +95,7 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 	},
 	experimental = {
-		ghost_text = true,
+		ghost_text = false,
 		native_menu = false,
 	},
 })
