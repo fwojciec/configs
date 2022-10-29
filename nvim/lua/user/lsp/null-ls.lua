@@ -22,7 +22,7 @@ null_ls.setup({
 	save_after_format = false,
 	sources = {
 		formatting.prettierd,
-		formatting.shfmt,
+		--[[ formatting.shfmt, ]]
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.isort,
 		formatting.goimports,
@@ -30,11 +30,11 @@ null_ls.setup({
 		formatting.terraform_fmt,
 		formatting.xmllint,
 		formatting.protolint,
-		formatting.pg_format,
-		diagnostics.eslint,
-		diagnostics.flake8,
+		--[[ formatting.pg_format, ]]
+		--[[ diagnostics.eslint, ]]
+		--[[ diagnostics.flake8, ]]
 		-- diagnostics.buf,
-		diagnostics.protolint,
+		--[[ diagnostics.protolint, ]]
 	},
 	on_attach = function(client, bufnr)
 		if not client.supports_method("textDocument/formatting") then
