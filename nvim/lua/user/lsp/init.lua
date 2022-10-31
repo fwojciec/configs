@@ -38,12 +38,9 @@ local function on_attach(_, bufnr)
 	vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, { buffer = bufnr })
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
 local common_setup_opts = {
 	on_attach = on_attach,
-	capabilities = capabilities,
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
 require("nvim-lsp-installer").on_server_ready(function(server)
