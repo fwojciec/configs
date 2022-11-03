@@ -18,6 +18,7 @@ alias cls="clear"
 alias glint="golangci-lint run --no-config"
 alias ls="ls -hF --color=auto --group-directories-first"
 alias pev="pyenv version"
+alias alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 
 # MacOS specific aliases (i.e. don't use these when on a linux system via ssh)
 if [[ "$(uname)" = "Darwin" ]]; then
