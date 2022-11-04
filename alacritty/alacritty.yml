@@ -29,7 +29,7 @@ font:
   bold_italic:
     family: Iosevka Term
     style: Semibold Oblique
-  size: 16.0
+  size: 18.0
 
   offset:
     x: 0
