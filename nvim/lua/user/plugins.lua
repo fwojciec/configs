@@ -18,9 +18,7 @@ return packer.startup(function(use)
 	-- tpope
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
-	use("tpope/vim-fugitive")
 	use("tpope/vim-unimpaired")
-	use("tpope/vim-dadbod")
 
 	-- comments
 	use("numToStr/Comment.nvim")

@@ -24,9 +24,9 @@ local function on_attach(_, bufnr)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
 	vim.keymap.set("n", "gd", telescope.lsp_definitions, { buffer = bufnr })
 	vim.keymap.set("n", "gtd", telescope.lsp_type_definitions, { buffer = bufnr })
+	vim.keymap.set("n", "gi", telescope.lsp_implementations, { buffer = bufnr })
 	vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = bufnr })
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-	vim.keymap.set("n", "gi", telescope.lsp_implementations, { buffer = bufnr })
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr })
 	vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = bufnr })
@@ -35,7 +35,6 @@ local function on_attach(_, bufnr)
 	vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { buffer = bufnr })
 	vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
-	vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, { buffer = bufnr })
 end
 
 local common_setup_opts = {

@@ -194,16 +194,6 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-dadbod"] = {
-    loaded = true,
-    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/vim-dadbod",
-    url = "https://github.com/tpope/vim-dadbod"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
-  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/vim-repeat",
