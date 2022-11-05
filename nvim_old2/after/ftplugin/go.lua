@@ -12,11 +12,3 @@ vim.b.go_highlight_trailing_whitespace_error = 0
 vim.b.go_highlight_string_spellcheck = 1
 vim.b.go_highlight_format_strings = 1
 vim.b.go_highlight_generate_tags = 1
-
-
-local goGrp = vim.api.nvim_create_augroup("GoGroup", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = goGrp,
-  command = 'silent %! goimports -local ""'
-  -- callback = function() print("hello") end
-})
