@@ -1,21 +1,26 @@
 -- plugins
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
-  use "neovim/nvim-lspconfig"
+  use { "neovim/nvim-lspconfig", config = require("fw.lsp").config() }
   use "tpope/vim-commentary"
   use "tpope/vim-surround"
   use "tpope/vim-repeat"
   use "tpope/vim-unimpaired"
-  use "sainnhe/gruvbox-material"
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
-  use "hrsh7th/cmp-nvim-lsp-signature-help"
-  use "hrsh7th/cmp-vsnip"
-  use "hrsh7th/vim-vsnip"
+  use { "sainnhe/gruvbox-material", config = function()
+    vim.g.gruvbox_material_background = "hard"
+    vim.g.gruvbox_material_better_performance = 1
+    vim.cmd("colorscheme gruvbox-material")
+  end }
   use "vim-test/vim-test"
+  use { "hrsh7th/nvim-cmp", requires = {
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-vsnip",
+    { "hrsh7th/vim-vsnip", config = require("fw.vsnip").config() },
+  }, config = require("fw.cmp").config() }
 end)
 
 -- options
@@ -58,19 +63,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<leader>D", vim.diagnostic.setloclist, opts)
-vim.keymap.set({ "n", "s" }, "<C-k>",
-  function()
-    if vim.fn["vsnip#jumpable"](1) == 1 then require("fw.utils").feedkey("<Plug>(vsnip-jump-next)") end
-  end, opts)
-vim.keymap.set({ "n", "s" }, "<C-j>",
-  function()
-    if vim.fn["vsnip#jumpable"](-1) == 1 then require("fw.utils").feedkey("<Plug>(vsnip-jump-prev)") end
-  end, opts)
-
--- colorscheme
-vim.g.gruvbox_material_background = "hard"
-vim.g.gruvbox_material_better_performance = 1
-vim.cmd("colorscheme gruvbox-material")
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -84,180 +76,3 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufRead" }, {
   group = vim.api.nvim_create_augroup("CursorPositionGroup", { clear = true }),
   once = true
 })
-
--- cmp
-local cmp = require("cmp")
-cmp.setup({
-  snippet = {
-    expand = function(args) vim.fn["vsnip#anonymous"](args.body) end,
-  },
-  mapping = {
-    ["<C-x><C-o>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i", "c" }),
-    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }), { "i", "c" }),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-  },
-  formatting = {
-    format = function(entry, vim_item)
-      vim_item.menu = ({
-        nvim_lsp = "[lsp]",
-        nvim_lua = "[api]",
-        vsnip = "[snip]",
-        buffer = "[buf]",
-        path = "[path]",
-      })[entry.source.name]
-      return vim_item
-    end,
-  },
-  preselect = cmp.PreselectMode.None,
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "nvim_lua" },
-    { name = "vsnip" },
-    {
-      name = "buffer",
-      option = {
-        get_bufnrs = function()
-          local buf = vim.api.nvim_get_current_buf()
-          local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-          if byte_size > 1024 * 1024 then -- 1 Megabyte max
-            return {}
-          end
-          return { buf }
-        end,
-        keyword_length = 5,
-      },
-    },
-    { name = "path" },
-    { name = "nvim_lsp_signature_help" },
-  },
-})
-
--- lsp
-local lspconfig = require("lspconfig")
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local function has_value(tab, val)
-  for _, value in ipairs(tab) do
-    if value == val then
-      return true
-    end
-  end
-
-  return false
-end
-
-local function format_callback(bufnr, async)
-  vim.lsp.buf.format({
-    bufnr = bufnr,
-    async = async,
-    filter = function(client)
-      return has_value({ "sumneko_lua", "html", "cssls", "jsonls" }, client.name)
-    end,
-  })
-end
-
-local function custom_on_attach(client, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-
-  if client.server_capabilities.documentFormattingProvider then
-    vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
-
-    local fmtGrp = vim.api.nvim_create_augroup("AutoFormatGroup", { clear = true })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = fmtGrp,
-      buffer = bufnr,
-      callback = function()
-        format_callback(bufnr, false)
-      end,
-    })
-  end
-end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false
-})
-
-lspconfig.sumneko_lua.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim", "redis" },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. '/lua'] = true,
-        }
-      }
-    }
-  },
-
-}
-
-lspconfig.gopls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-  settings = {
-    gopls = {
-      ["build.directoryFilters"] = { "+/opt/homebrew/Cellar/go" },
-      ["ui.completion.experimentalPostfixCompletions"] = true,
-      ["ui.diagnostic.analyses"] = {
-        unusedparams = true,
-        shadow = true,
-        nilness = true,
-        unusedwrite = true,
-        useany = true
-      },
-      ["ui.completion.usePlaceholders"] = true,
-      ["ui.diagnostic.staticcheck"] = true,
-      ["ui.semanticTokens"] = true,
-    },
-    ["go.autocompleteUnimportedPackages"] = true
-  }
-}
-
-lspconfig.tsserver.setup {
-  capabilities = capabilities,
-  on_attach = custom_on_attach,
-}
-
-lspconfig.eslint.setup {
-  capabilities = capabilities,
-  settings = {
-    eslint = {
-      format = {
-        enable = false
-      }
-    }
-  },
-  on_attach = custom_on_attach,
-}
-
-lspconfig.jsonls.setup {
-  capabilities = capabilities,
-  on_attach = custom_on_attach,
-}
-
-lspconfig.html.setup {
-  capabilities = capabilities,
-  on_attach = custom_on_attach,
-}
-
-lspconfig.cssls.setup {
-  capabilities = capabilities,
-  on_attach = custom_on_attach,
-}

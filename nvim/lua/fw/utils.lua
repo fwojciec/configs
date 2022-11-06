@@ -4,6 +4,16 @@ M.feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, false)
 end
 
+M.includes = function(tab, val)
+  for _, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
+  end
+
+  return false
+end
+
 M.safe_pos = function(bufnr, pos)
   local o_row, o_col = unpack(pos)
 
