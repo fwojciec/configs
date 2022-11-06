@@ -153,7 +153,7 @@ local function format_callback(bufnr, async)
     bufnr = bufnr,
     async = async,
     filter = function(client)
-      return has_value({ "sumneko_lua" }, client.name)
+      return has_value({ "sumneko_lua", "html", "cssls", "jsonls" }, client.name)
     end,
   })
 end
