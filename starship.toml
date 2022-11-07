@@ -43,6 +43,9 @@ disabled = true
 [golang]
 disabled = true
 
+[helm]
+disabled = true
+
 [java]
 disabled = true
 
