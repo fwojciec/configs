@@ -13,16 +13,10 @@ vim.b.go_highlight_string_spellcheck = 1
 vim.b.go_highlight_format_strings = 1
 vim.b.go_highlight_generate_tags = 1
 
-local function format_callback()
-  local bufnr = vim.fn.bufnr()
-  local winnr = vim.api.nvim_get_current_win()
-  local pos = vim.api.nvim_win_get_cursor(winnr)
-  vim.cmd('silent %! goimports -local ""')
-  vim.api.nvim_win_set_cursor(winnr, require("fw.utils").safe_pos(bufnr, pos))
-end
-
 local goGrp = vim.api.nvim_create_augroup("GoGroup", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = goGrp,
-  callback = format_callback
+  callback = function ()
+    require("fw.utils").run_format_cmd({ "goimports", "-local", '""' })
+  end
 })

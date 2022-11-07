@@ -32,4 +32,30 @@ M.safe_pos = function(bufnr, pos)
   return { row, col }
 end
 
+M.run_format_cmd = function(command)
+  local bufnr = vim.fn.bufnr()
+  local win = vim.api.nvim_get_current_win()
+  local old_pos = vim.api.nvim_win_get_cursor(win)
+
+  local job = vim.fn.jobstart(command, {
+    stdout_buffered = true,
+    on_stdout = function(_, data)
+      if data[#data] ~= "" then
+        error("eof expected", 2)
+      end
+      table.remove(data)
+      if data[1] == nil then
+        return
+      end
+      vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, data)
+    end,
+  })
+
+  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  vim.fn.chansend(job, lines)
+  vim.fn.chanclose(job, "stdin")
+  vim.fn.jobwait({ job }, 1000)
+  vim.api.nvim_win_set_cursor(0, M.safe_pos(bufnr, old_pos))
+end
+
 return M
