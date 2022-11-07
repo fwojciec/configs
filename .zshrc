@@ -1,44 +1,52 @@
 # enable colors
 autoload -U colors && colors
 
-# disable vi mode
-bindkey -e
+# enable vi mode
+bindkey -v
+bindkey "^?" backward-delete-char
 
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE="$HOME/.cache/zsh/history"
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 
 # aliases
-alias grep="grep --color=auto"
 alias cls="clear"
-alias glint="golangci-lint run --no-config"
-alias ls="ls -hF --color=auto --group-directories-first"
-alias pev="pyenv version"
-alias alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 
 # MacOS specific aliases (i.e. don't use these when on a linux system via ssh)
 if [[ "$(uname)" = "Darwin" ]]; then
     alias ls="exa --group-directories-first"
 fi
 
+# history search
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+bindkey "^k" history-beginning-search-backward-end 
+bindkey "^j" history-beginning-search-forward-end 
+
+# fzf
+[ -f "$ZDOTDIR/.fzf.zsh" ] && source "$ZDOTDIR/.fzf.zsh"
+
 # completion
 # see: https://github.com/Phantas0s/.dotfiles/blob/master/zsh/completion.zsh
 # https://thevaluable.dev/zsh-completion-guide-examples/
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
 zmodload zsh/complist
+autoload -U compinit; compinit
+
 bindkey -M menuselect 'h' backward-char
 bindkey -M menuselect 'k' up-line-or-history
 bindkey -M menuselect 'j' down-line-or-history
 bindkey -M menuselect 'l' forward-char
 
-autoload -Uz compinit; compinit
 _comp_options+=(globdots)   # With hidden files
 
 # setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
@@ -70,27 +78,23 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-# history search
-autoload -U history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
-bindkey '^k' history-beginning-search-backward-end 
-bindkey '^j' history-beginning-search-forward-end 
-
-# back/forward word bindings
-bindkey "^[[1;3D" backward-word
-bindkey "^[[1;3C" forward-word
-bindkey "^B" backward-word
-bindkey "^F" forward-word
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
 
 # Antibody static plugins
 source $ZDOTDIR/.zsh_plugins.sh
 
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--layout=reverse --inline-info
+--color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+--color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+
 # gcloud
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+if [ -f '/Users/filip/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/filip/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Starship prompt
 eval "$(starship init zsh)"
