@@ -4,6 +4,7 @@ autoload -U colors && colors
 # enable vi mode
 bindkey -v
 bindkey "^?" backward-delete-char
+KEYTIMEOUT=1
 
 # History in cache directory:
 HISTSIZE=10000
