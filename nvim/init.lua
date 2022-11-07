@@ -1,26 +1,21 @@
 -- plugins
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
-  use { "neovim/nvim-lspconfig", config = require("fw.lsp").config() }
+  use { "sainnhe/gruvbox-material", config = require("fw.gruvbox").config() }
   use "tpope/vim-commentary"
   use "tpope/vim-surround"
   use "tpope/vim-repeat"
   use "tpope/vim-unimpaired"
-  use { "sainnhe/gruvbox-material", config = function()
-    vim.g.gruvbox_material_background = "hard"
-    vim.g.gruvbox_material_better_performance = 1
-    vim.cmd("colorscheme gruvbox-material")
-  end }
   use "vim-test/vim-test"
-  use { "hrsh7th/nvim-cmp", requires = {
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "hrsh7th/cmp-vsnip",
-    { "hrsh7th/vim-vsnip", config = require("fw.vsnip").config() },
-  }, config = require("fw.cmp").config() }
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-nvim-lsp-signature-help"
+  use "hrsh7th/cmp-vsnip"
+  use { "hrsh7th/vim-vsnip", config = require("fw.vsnip").config() }
+  use { "hrsh7th/nvim-cmp", config = require("fw.cmp").config() }
+  use { "neovim/nvim-lspconfig", config = require("fw.lsp").config() }
 end)
 
 -- options
