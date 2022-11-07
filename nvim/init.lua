@@ -53,6 +53,7 @@ vim.g.loaded_ruby_provider = 0
 
 -- mappings
 vim.g.mapleader = ","
+vim.g.maplocalleader = " "
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { noremap = true, silent = true })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { noremap = true, silent = true })
