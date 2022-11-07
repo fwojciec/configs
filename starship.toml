@@ -1,6 +1,13 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
 
+[character]
+success_symbol = "[‣](bold bright-black)"
+error_symbol = "[‣](bold red)"
+
+[line_break]
+disabled = true
+
 [cmd_duration]
 disabled = true
 
@@ -80,8 +87,9 @@ disabled = true
 disabled = true
 
 [python]
-symbol = ""
-style = "bold blue"
+disabled = true
+# symbol = ""
+# style = "bold blue"
 
 [ruby]
 disabled = true
