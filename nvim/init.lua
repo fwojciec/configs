@@ -16,6 +16,8 @@ require("packer").startup(function(use)
   use "saadparwaiz1/cmp_luasnip"
   use "hrsh7th/nvim-cmp"
   use "neovim/nvim-lspconfig"
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use "nvim-treesitter/playground"
 end)
 
 -- options
@@ -268,3 +270,22 @@ lspconfig.cssls.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
 }
+
+-- treesitter
+require("nvim-treesitter.configs").setup({
+  sync_install = false,
+  ignore_install = { "" },
+  autopairs = {
+    enable = true,
+  },
+  highlight = {
+    enable = true,
+    disable = { "lua", "typescript" },
+    additional_vim_regex_highlighting = false,
+  },
+  indent = { enable = false, disable = {} },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
+})
