@@ -20,6 +20,9 @@ require("packer").startup(function(use)
   use "nvim-treesitter/playground"
 end)
 
+-- lua
+require("globals")
+
 -- options
 vim.opt.guicursor = ""
 vim.opt.relativenumber = true
@@ -60,6 +63,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { noremap = true, silent = t
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>D", vim.diagnostic.setloclist, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>s", "<cmd>so %<cr>", { noremap = true, silent = true })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -77,7 +81,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufRead" }, {
 -- colorscheme
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_material_better_performance = 1
-vim.cmd("colorscheme gruvbox-material")
+vim.api.nvim_cmd({ cmd = "colorscheme", args = { "gruvbox-material" } }, {})
 
 -- luasnip
 local ls = require "luasnip"
