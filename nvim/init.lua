@@ -57,13 +57,22 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 -- mappings
-vim.g.mapleader = ","
-vim.g.maplocalleader = " "
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { noremap = true, silent = true })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>D", vim.diagnostic.setloclist, { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>s", "<cmd>so %<cr>", { noremap = true, silent = true })
+vim.g.mapleader = " "
+
+local function nnoremap(lhs, rhs)
+  vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true })
+end
+
+local function xnoremap(lhs, rhs)
+  vim.keymap.set("x", lhs, rhs, { noremap = true, silent = true })
+end
+
+nnoremap("[d", vim.diagnostic.goto_prev)
+nnoremap("]d", vim.diagnostic.goto_next)
+nnoremap("<leader>d", vim.diagnostic.open_float)
+nnoremap("<leader>D", vim.diagnostic.setloclist)
+nnoremap("<leader>s", "<cmd>so %<cr>")
+xnoremap("<leader>p", "\"_dP")
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -286,18 +295,19 @@ vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>")
 -- treesitter
 require("nvim-treesitter.configs").setup({
   sync_install = false,
-  ignore_install = { "" },
-  autopairs = {
-    enable = true,
-  },
+  -- ignore_install = { "" },
+  -- autopairs = {
+  --   enable = true,
+  -- },
   highlight = {
     enable = true,
     disable = { "lua", "typescript" },
-    additional_vim_regex_highlighting = false,
+    -- additional_vim_regex_highlighting = false,
   },
-  indent = { enable = false, disable = {} },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
+  -- indent = { enable = false, disable = {} },
+  -- context_commentstring = {
+  --   enable = true,
+  --   enable_autocmd = false,
+  -- },
+  playground = { enable = true }
 })
