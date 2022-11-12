@@ -59,12 +59,14 @@ vim.g.loaded_ruby_provider = 0
 -- mappings
 vim.g.mapleader = " "
 
-local function nnoremap(lhs, rhs)
-  vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true })
+local function nnoremap(lhs, rhs, buffer)
+  if buffer == nil then buffer = 0 end
+  vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
 end
 
-local function xnoremap(lhs, rhs)
-  vim.keymap.set("x", lhs, rhs, { noremap = true, silent = true })
+local function xnoremap(lhs, rhs, buffer)
+  if buffer == nil then buffer = 0 end
+  vim.keymap.set("x", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
 end
 
 nnoremap("[d", vim.diagnostic.goto_prev)
@@ -120,7 +122,6 @@ cmp.setup({
   snippet = {
     expand = function(args)
       require 'luasnip'.lsp_expand(args.body)
-      -- vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   mapping = {
@@ -218,12 +219,12 @@ lspconfig.sumneko_lua.setup {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim", "redis" },
+        globals = { "vim", "redis", "RELOAD" },
       },
       workspace = {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. '/lua'] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
         }
       }
     }
@@ -311,3 +312,5 @@ require("nvim-treesitter.configs").setup({
   -- },
   playground = { enable = true }
 })
+
+require("testrunner")
