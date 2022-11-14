@@ -74,6 +74,7 @@ nnoremap("]d", vim.diagnostic.goto_next)
 nnoremap("<leader>d", vim.diagnostic.open_float)
 nnoremap("<leader>D", vim.diagnostic.setloclist)
 nnoremap("<leader>s", "<cmd>so %<cr>")
+nnoremap("<leader>w", "<cmd>w<cr>")
 xnoremap("<leader>p", "\"_dP")
 
 -- autocommands
