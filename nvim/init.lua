@@ -304,8 +304,8 @@ require("nvim-treesitter.configs").setup({
     enable = true,
   },
   highlight = {
-    enable = false,
-    -- disable = { "lua", "typescript" },
+    enable = true,
+    disable = { "lua", "typescript" },
     -- additional_vim_regex_highlighting = false,
   },
   -- indent = { enable = false, disable = {} },
