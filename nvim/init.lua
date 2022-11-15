@@ -61,23 +61,25 @@ vim.g.loaded_ruby_provider = 0
 vim.g.mapleader = " "
 
 local function nnoremap(lhs, rhs, buffer)
-  if buffer == nil then buffer = 0 end
   vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
 end
 
 local function xnoremap(lhs, rhs, buffer)
-  if buffer == nil then buffer = 0 end
   vim.keymap.set("x", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
 end
 
-vim.keymap.set("c", "<C-k>", "<Up>")
-vim.keymap.set("c", "<C-j>", "<Down>")
+local function cnoremap(lhs, rhs, buffer)
+  vim.keymap.set("c", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
+end
+
+cnoremap("<C-k>", "<Up>")
+cnoremap("<C-j>", "<Down>")
+nnoremap("<leader>w", "<cmd>w<cr>")
 nnoremap("[d", vim.diagnostic.goto_prev)
 nnoremap("]d", vim.diagnostic.goto_next)
 nnoremap("<leader>d", vim.diagnostic.open_float)
 nnoremap("<leader>D", vim.diagnostic.setloclist)
 nnoremap("<leader>s", "<cmd>so %<cr>")
-nnoremap("<leader>w", "<cmd>w<cr>")
 xnoremap("<leader>p", "\"_dP")
 
 -- autocommands
@@ -305,7 +307,7 @@ require("nvim-treesitter.configs").setup({
   },
   highlight = {
     enable = true,
-    disable = { "lua", "typescript" },
+    disable = { "lua", "typescript", "go" },
     -- additional_vim_regex_highlighting = false,
   },
   -- indent = { enable = false, disable = {} },
