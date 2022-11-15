@@ -18,6 +18,7 @@ require("packer").startup(function(use)
   use "neovim/nvim-lspconfig"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "nvim-treesitter/playground"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
 end)
 
 -- lua
@@ -299,13 +300,12 @@ vim.keymap.set("n", "<leader>tv", ":TestVisit<CR>")
 -- treesitter
 require("nvim-treesitter.configs").setup({
   sync_install = false,
-  -- ignore_install = { "" },
-  -- autopairs = {
-  --   enable = true,
-  -- },
-  highlight = {
+  autopairs = {
     enable = true,
-    disable = { "lua", "typescript" },
+  },
+  highlight = {
+    enable = false,
+    -- disable = { "lua", "typescript" },
     -- additional_vim_regex_highlighting = false,
   },
   -- indent = { enable = false, disable = {} },
@@ -313,7 +313,45 @@ require("nvim-treesitter.configs").setup({
   --   enable = true,
   --   enable_autocmd = false,
   -- },
-  playground = { enable = true }
+  playground = { enable = true },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+      selection_modes = {
+        ['@parameter.outer'] = 'v',
+        ['@function.outer'] = 'V',
+        ['@class.outer'] = '<c-v>',
+      },
+      include_surrounding_whitespace = true,
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+  },
 })
 
 require("testrunner")
