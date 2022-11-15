@@ -68,12 +68,8 @@ local function xnoremap(lhs, rhs, buffer)
   vim.keymap.set("x", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
 end
 
-local function cnoremap(lhs, rhs, buffer)
-  vim.keymap.set("c", lhs, rhs, { noremap = true, silent = true, buffer = buffer })
-end
-
-cnoremap("<C-k>", "<Up>")
-cnoremap("<C-j>", "<Down>")
+vim.keymap.set("c", "<C-k>", "<Up>")
+vim.keymap.set("c", "<C-j>", "<Down>")
 nnoremap("<leader>w", "<cmd>w<cr>")
 nnoremap("[d", vim.diagnostic.goto_prev)
 nnoremap("]d", vim.diagnostic.goto_next)
