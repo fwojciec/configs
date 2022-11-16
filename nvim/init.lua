@@ -287,6 +287,11 @@ lspconfig.cssls.setup {
   on_attach = custom_on_attach,
 }
 
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+}
+
 -- vim-test
 vim.g["test#strategy"] = "neovim"
 vim.keymap.set("n", "<leader>t", ":TestNearest<CR>")
