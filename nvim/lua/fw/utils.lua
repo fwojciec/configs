@@ -58,4 +58,15 @@ M.run_format_cmd = function(command)
   vim.api.nvim_win_set_cursor(0, M.safe_pos(bufnr, old_pos))
 end
 
+M.on_job_data = function(data, callback)
+  if data[#data] ~= "" then
+    error("eof expected", 2)
+  end
+  table.remove(data)
+  if data[1] == nil then
+    return
+  end
+  callback(data)
+end
+
 return M

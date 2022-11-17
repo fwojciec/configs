@@ -16,7 +16,38 @@ vim.b.go_highlight_generate_tags = 1
 local goGrp = vim.api.nvim_create_augroup("GoGroup", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = goGrp,
-  callback = function ()
+  callback = function()
     require("fw.utils").run_format_cmd({ "goimports", "-local", '""' })
   end
 })
+
+local utils = require("fw.utils")
+
+local function run_impl()
+  local bufnr = vim.fn.bufnr()
+  local lnnr = vim.api.nvim_win_get_cursor(0)[1]
+  vim.ui.input({ prompt = "Impl receiver: " }, function(receiver)
+    vim.ui.input({ prompt = "Impl interface: " }, function(interface)
+      vim.fn.jobstart({ "impl", receiver, interface }, {
+        stdout_buffered = true,
+        stderr_buffered = true,
+        on_stderr = function(_, data)
+          utils.on_job_data(data, function(processed_data)
+            for _, value in ipairs(processed_data) do
+              vim.notify("IMPL: " .. value, vim.log.levels.WARN)
+            end
+          end)
+        end,
+        on_stdout = function(_, data)
+          utils.on_job_data(data, function(processed_data)
+            vim.api.nvim_buf_set_lines(bufnr, lnnr - 1, lnnr, false, processed_data)
+          end)
+        end,
+      })
+    end)
+  end)
+end
+
+vim.api.nvim_buf_create_user_command(0, "Impl", function()
+  run_impl()
+end, {})

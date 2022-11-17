@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader><leader>r", function() RELOAD("testrunner") end, { noremap = true })
+-- vim.keymap.set("n", "<leader><leader>r", function() RELOAD("testrunner") end, { noremap = true })
 
 local test_fns = vim.treesitter.query.parse_query("go", [[ 
 [
@@ -92,4 +92,4 @@ local function run()
   vim.pretty_print(max.name)
 end
 
-vim.keymap.set("n", "<leader><leader>q", run, { noremap = true })
+-- vim.keymap.set("n", "<leader><leader>q", run, { noremap = true })
