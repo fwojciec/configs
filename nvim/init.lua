@@ -9,7 +9,7 @@ require("fw.cmp")
 require("fw.lsp")
 require("fw.vimtest")
 require("fw.treesitter")
+require("fw.telescope")
 
 -- development
 -- require("testrunner")
--- require("impl")

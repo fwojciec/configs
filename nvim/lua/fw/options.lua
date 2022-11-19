@@ -20,5 +20,5 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.signcolumn = "number"
 vim.opt.title = true
 vim.opt.inccommand = "split"
-vim.opt.path:append("**")
+-- vim.opt.path:append("**")
 vim.opt.laststatus = 3
