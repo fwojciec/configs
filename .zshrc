@@ -88,11 +88,7 @@ bindkey '^v' edit-command-line
 source $ZDOTDIR/.zsh_plugins.sh
 
 # FZF
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---layout=reverse --inline-info
---color fg:#ebdbb2,bg:#1d2021,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
---color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+
 
 # gcloud
 if [ -f '/Users/filip/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/path.zsh.inc'; fi
