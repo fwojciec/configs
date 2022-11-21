@@ -40,7 +40,9 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false
+  virtual_text = false,
+  underline = false,
+  signs = true
 })
 
 lspconfig.sumneko_lua.setup {

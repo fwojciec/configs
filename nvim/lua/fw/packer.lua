@@ -1,6 +1,7 @@
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
   use "sainnhe/gruvbox-material"
+  use "folke/tokyonight.nvim"
   use "tpope/vim-commentary"
   use "tpope/vim-surround"
   use "tpope/vim-repeat"
