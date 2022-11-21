@@ -1,21 +1,16 @@
 import:
-  - ~/.config/alacritty/gruvbox-material-alacritty.yml
-
+  - ~/.config/alacritty/tokyo-night-alacritty.yml
 window:
   dimensions:
     columns: 180
     lines: 40
-
   padding:
     x: 3
     y: 3
-
   dynamic_padding: true
   # decorations: buttonless
-
 scrolling:
   history: 100000
-
 font:
   normal:
     family: Iosevka Term
@@ -30,15 +25,12 @@ font:
     family: Iosevka Term
     style: Semibold Oblique
   size: 17
-
   offset:
     x: 0
     y: 2
-
   glyph_offset:
     x: 0
     y: 3
-
   key_bindings:
-    - { key: Right, mods: Alt, chars: "\x1BF" }
-    - { key: Left, mods: Alt, chars: "\x1BB" }
+    - {key: Right, mods: Alt, chars: "\eF"}
+    - {key: Left, mods: Alt, chars: "\eB"}
