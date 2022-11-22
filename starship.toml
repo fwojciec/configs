@@ -29,6 +29,9 @@ disabled = true
 [crystal]
 disabled = true
 
+[deno]
+disabled = true
+
 [docker_context]
 disabled = true
 
