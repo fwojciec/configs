@@ -5,6 +5,10 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+
 function RELOAD(pkg)
   package.loaded[pkg] = nil
   require(pkg)

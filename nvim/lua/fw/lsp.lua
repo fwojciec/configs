@@ -5,7 +5,7 @@ local function format_callback(bufnr, async)
     bufnr = bufnr,
     async = async,
     filter = function(client)
-      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "jsonls" }, client.name)
+      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "jsonls", "denols" }, client.name)
     end,
   })
 end
@@ -85,9 +85,16 @@ lspconfig.gopls.setup {
   }
 }
 
+lspconfig.denols.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+}
+
 lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
+  root_dir = lspconfig.util.root_pattern("package.json"),
 }
 
 lspconfig.eslint.setup {
@@ -100,6 +107,7 @@ lspconfig.eslint.setup {
     }
   },
   on_attach = custom_on_attach,
+  root_dir = lspconfig.util.root_pattern(".eslintrc"),
 }
 
 lspconfig.jsonls.setup {

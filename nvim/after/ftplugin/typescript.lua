@@ -1,3 +1,9 @@
+local is_deno = vim.fn.glob("./deno.json*") ~= ""
+
+if is_deno then
+  return
+end
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("TypeScriptGroup", { clear = true }),
   callback = function()
