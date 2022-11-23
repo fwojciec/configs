@@ -10,6 +10,7 @@ require("fw.lsp")
 require("fw.vimtest")
 require("fw.treesitter")
 require("fw.telescope")
+require("fw.lualine")
 
 -- development
 -- require("testrunner")
