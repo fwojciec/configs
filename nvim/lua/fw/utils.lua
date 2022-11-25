@@ -40,10 +40,9 @@ M.run_format_cmd = function(command)
   local job = vim.fn.jobstart(command, {
     stdout_buffered = true,
     on_stdout = function(_, data)
-      if data[#data] ~= "" then
-        error("eof expected", 2)
+      if data[#data] == "" then
+        table.remove(data)
       end
-      table.remove(data)
       if data[1] == nil then
         return
       end
