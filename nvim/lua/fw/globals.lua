@@ -13,3 +13,8 @@ function RELOAD(pkg)
   package.loaded[pkg] = nil
   require(pkg)
 end
+
+-- indentline
+vim.g.indent_blankline_enabled = false
+vim.g.indent_blankline_char = "⦙"
+vim.g.indent_blankline_show_first_indent_level = false
