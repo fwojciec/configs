@@ -5,7 +5,7 @@ local function format_callback(bufnr, async)
     bufnr = bufnr,
     async = async,
     filter = function(client)
-      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "jsonls", "denols" }, client.name)
+      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "denols" }, client.name)
     end,
   })
 end
