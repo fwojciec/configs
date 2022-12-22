@@ -38,4 +38,5 @@ require("packer").startup(function(use)
   use "nvim-lualine/lualine.nvim"
   use "towolf/vim-helm"
   use "lukas-reineke/indent-blankline.nvim"
+  use "cappyzawa/starlark.vim"
 end)

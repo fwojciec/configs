@@ -139,3 +139,9 @@ lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
 }
+
+lspconfig["starlark-rust"].setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+  filetypes = { "star", "bzl", "BUILD.bazel", "starlark" }
+}
