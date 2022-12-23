@@ -1,5 +1,5 @@
 import:
-  - ~/.config/alacritty/tokyo-night-alacritty.yml
+  - ~/.config/alacritty/tokyo-night-alacritty-storm.yml
 window:
   dimensions:
     columns: 180
@@ -9,8 +9,6 @@ window:
     y: 3
   dynamic_padding: true
   # decorations: buttonless
-scrolling:
-  history: 100000
 font:
   normal:
     family: Iosevka Term
@@ -31,6 +29,6 @@ font:
   glyph_offset:
     x: 0
     y: 3
-  key_bindings:
-    - {key: Right, mods: Alt, chars: "\eF"}
-    - {key: Left, mods: Alt, chars: "\eB"}
+    # key_bindings:
+    #   - {key: Right, mods: Alt, chars: "\eF"}
+    #   - {key: Left, mods: Alt, chars: "\eB"}
