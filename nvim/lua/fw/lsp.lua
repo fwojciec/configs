@@ -5,7 +5,7 @@ local function format_callback(bufnr, async)
     bufnr = bufnr,
     async = async,
     filter = function(client)
-      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "denols" }, client.name)
+      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "denols", "dockerls" }, client.name)
     end,
   })
 end
@@ -135,13 +135,18 @@ lspconfig.bufls.setup {
   on_attach = custom_on_attach,
 }
 
-lspconfig.tailwindcss.setup {
+lspconfig.dockerls.setup {
   capabilities = capabilities,
   on_attach = custom_on_attach,
 }
 
-lspconfig["starlark-rust"].setup {
-  capabilities = capabilities,
-  on_attach = custom_on_attach,
-  filetypes = { "star", "bzl", "BUILD.bazel", "starlark" }
-}
+-- lspconfig.tailwindcss.setup {
+--   capabilities = capabilities,
+--   on_attach = custom_on_attach,
+-- }
+
+-- lspconfig["starlark-rust"].setup {
+--   capabilities = capabilities,
+--   on_attach = custom_on_attach,
+--   filetypes = { "star", "bzl", "BUILD.bazel", "starlark" }
+-- }

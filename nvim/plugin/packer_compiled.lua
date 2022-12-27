@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
   ["gruvbox-material"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/gruvbox-material",
