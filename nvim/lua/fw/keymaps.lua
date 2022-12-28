@@ -15,8 +15,6 @@ nnoremap("<leader>d", vim.diagnostic.open_float)
 nnoremap("<leader>D", vim.diagnostic.setloclist)
 nnoremap("<leader>s", "<cmd>so %<cr>")
 xnoremap("<leader>p", "\"_dP")
-vim.keymap.set("v", "<leader>be", require("b64").encode, { noremap = true, silent = true })
-vim.keymap.set("v", "<leader>bd", require("b64").decode, { noremap = true, silent = true })
 
 -- Keymaps for better default experience
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })

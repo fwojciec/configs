@@ -40,5 +40,5 @@ require("packer").startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use "cappyzawa/starlark.vim"
   use "rafamadriz/friendly-snippets"
-  use "taybart/b64.nvim"
+  use "christianrondeau/vim-base64"
 end)

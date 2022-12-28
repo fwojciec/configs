@@ -79,11 +79,6 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["b64.nvim"] = {
-    loaded = true,
-    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/b64.nvim",
-    url = "https://github.com/taybart/b64.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -190,6 +185,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-base64"] = {
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/vim-base64",
+    url = "https://github.com/christianrondeau/vim-base64"
   },
   ["vim-commentary"] = {
     loaded = true,
