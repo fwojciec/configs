@@ -148,6 +148,11 @@ lspconfig.dockerls.setup {
   on_attach = custom_on_attach,
 }
 
+lspconfig.zls.setup {
+  capabilities = capabilities,
+  on_attach = custom_on_attach,
+}
+
 -- lspconfig.tailwindcss.setup {
 --   capabilities = capabilities,
 --   on_attach = custom_on_attach,
