@@ -23,6 +23,8 @@ local function custom_on_attach(client, bufnr)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
+  client.server_capabilities.semanticTokensProvider = nil
+
   if client.server_capabilities.documentFormattingProvider then
     vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
 
