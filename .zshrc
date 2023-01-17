@@ -100,3 +100,6 @@ if [ -f '/Users/filip/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/User
 
 # Starship prompt
 eval "$(starship init zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
