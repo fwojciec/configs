@@ -1,5 +1,5 @@
 require("formatter").setup({
-	logging = true,
+	logging = false,
 	log_level = vim.log.levels.WARN,
 	filetype = {
 		c = { require("formatter.filetypes.c").clangformat },
