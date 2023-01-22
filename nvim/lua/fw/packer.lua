@@ -41,4 +41,5 @@ require("packer").startup(function(use)
   use "cappyzawa/starlark.vim"
   use "rafamadriz/friendly-snippets"
   use "christianrondeau/vim-base64"
+  use "mhartington/formatter.nvim"
 end)

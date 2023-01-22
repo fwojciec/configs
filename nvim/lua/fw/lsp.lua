@@ -1,14 +1,14 @@
 local lspconfig = require("lspconfig")
 
-local function format_callback(bufnr, async)
-  vim.lsp.buf.format({
-    bufnr = bufnr,
-    async = async,
-    filter = function(client)
-      return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "denols", "dockerls" }, client.name)
-    end,
-  })
-end
+-- local function format_callback(bufnr, async)
+--   vim.lsp.buf.format({
+--     bufnr = bufnr,
+--     async = async,
+--     filter = function(client)
+--       return require("fw.utils").includes({ "sumneko_lua", "html", "cssls", "denols", "dockerls" }, client.name)
+--     end,
+--   })
+-- end
 
 local function custom_on_attach(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -25,18 +25,18 @@ local function custom_on_attach(client, bufnr)
 
   client.server_capabilities.semanticTokensProvider = nil
 
-  if client.server_capabilities.documentFormattingProvider then
-    vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
+  -- if client.server_capabilities.documentFormattingProvider then
+  --   vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
 
-    local fmtGrp = vim.api.nvim_create_augroup("AutoFormatGroup", { clear = true })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = fmtGrp,
-      buffer = bufnr,
-      callback = function()
-        format_callback(bufnr, false)
-      end,
-    })
-  end
+  --   local fmtGrp = vim.api.nvim_create_augroup("AutoFormatGroup", { clear = true })
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --     group = fmtGrp,
+  --     buffer = bufnr,
+  --     callback = function()
+  --       format_callback(bufnr, false)
+  --     end,
+  --   })
+  -- end
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
