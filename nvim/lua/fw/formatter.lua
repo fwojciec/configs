@@ -2,6 +2,7 @@ require("formatter").setup({
 	logging = true,
 	log_level = vim.log.levels.WARN,
 	filetype = {
+		c = { require("formatter.filetypes.c").clangformat },
 		go = { require("formatter.filetypes.go").goimports },
 		json = { require("formatter.filetypes.json").prettierd },
 		lua = { require("formatter.filetypes.lua").stylua },
@@ -17,7 +18,8 @@ require("formatter").setup({
 		},
 		typescript = { require("formatter.filetypes.typescript").prettierd },
 		typescriptreact = { require("formatter.filetypes.typescriptreact").prettierd },
-		yaml = { require("formatter.filetypes.yamls").prettierd },
+		yaml = { require("formatter.filetypes.yaml").prettierd },
+		zig = { require("formatter.filetypes.zig").zigfmt },
 		["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
 	},
 })
