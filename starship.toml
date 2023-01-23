@@ -20,6 +20,9 @@ disabled = true
 [buf]
 disabled = true
 
+[bun]
+disabled = true
+
 [cmake]
 disabled = true
 
