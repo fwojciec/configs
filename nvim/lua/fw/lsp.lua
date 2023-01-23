@@ -23,9 +23,9 @@ local function custom_on_attach(client, bufnr)
 	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
-  if client.server_capabilities.semanticTokensProvider then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
+	if client.server_capabilities.semanticTokensProvider then
+		client.server_capabilities.semanticTokensProvider = nil
+	end
 
 	-- if client.server_capabilities.documentFormattingProvider then
 	--   vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
@@ -158,6 +158,11 @@ lspconfig.zls.setup({
 })
 
 lspconfig.ccls.setup({
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
+})
+
+lspconfig.terraformls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 })
