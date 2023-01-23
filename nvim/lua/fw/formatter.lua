@@ -16,6 +16,7 @@ require("formatter").setup({
 				}
 			end,
 		},
+		sh = { require("formatter.filetypes.sh").shfmt },
 		typescript = { require("formatter.filetypes.typescript").prettierd },
 		typescriptreact = { require("formatter.filetypes.typescriptreact").prettierd },
 		yaml = { require("formatter.filetypes.yaml").prettierd },
