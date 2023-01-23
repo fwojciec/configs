@@ -13,14 +13,14 @@ vim.b.go_highlight_string_spellcheck = 1
 vim.b.go_highlight_format_strings = 1
 vim.b.go_highlight_generate_tags = 1
 
-local goGrp = vim.api.nvim_create_augroup("GoGroup", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = goGrp,
-  buffer = 0,
-  callback = function()
-    require("fw.utils").run_format_cmd({ "goimports", "-local", '""' })
-  end
-})
+-- local goGrp = vim.api.nvim_create_augroup("GoGroup", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   group = goGrp,
+--   buffer = 0,
+--   callback = function()
+--     require("fw.utils").run_format_cmd({ "goimports", "-local", '""' })
+--   end
+-- })
 
 local utils = require("fw.utils")
 

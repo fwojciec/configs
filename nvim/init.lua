@@ -11,6 +11,7 @@ require("fw.vimtest")
 require("fw.treesitter")
 require("fw.telescope")
 require("fw.lualine")
+require("fw.formatter")
 
 -- development
 -- require("testrunner")
