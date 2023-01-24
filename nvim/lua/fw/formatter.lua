@@ -17,6 +17,24 @@ require("formatter").setup({
 			end,
 		},
 		sh = { require("formatter.filetypes.sh").shfmt },
+		terraform = {
+			function()
+				return {
+					exe = "terraform",
+					args = { "fmt", "-" },
+					stdin = true,
+				}
+			end,
+		},
+		["terraform-vars"] = {
+			function()
+				return {
+					exe = "terraform",
+					args = { "fmt", "-" },
+					stdin = true,
+				}
+			end,
+		},
 		typescript = { require("formatter.filetypes.typescript").prettierd },
 		typescriptreact = { require("formatter.filetypes.typescriptreact").prettierd },
 		yaml = { require("formatter.filetypes.yaml").prettierd },
