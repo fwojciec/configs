@@ -97,11 +97,11 @@ lspconfig.gopls.setup({
 	},
 })
 
-lspconfig.denols.setup({
-	capabilities = capabilities,
-	on_attach = custom_on_attach,
-	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-})
+-- lspconfig.denols.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = custom_on_attach,
+-- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+-- })
 
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
@@ -119,7 +119,7 @@ lspconfig.eslint.setup({
 		},
 	},
 	on_attach = custom_on_attach,
-	root_dir = lspconfig.util.root_pattern(".eslintrc"),
+	root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js"),
 })
 
 lspconfig.jsonls.setup({
