@@ -17,6 +17,7 @@ require("formatter").setup({
 			end,
 		},
 		sh = { require("formatter.filetypes.sh").shfmt },
+		sql = { require("formatter.filetypes.sql").pgformat },
 		terraform = {
 			function()
 				return {
