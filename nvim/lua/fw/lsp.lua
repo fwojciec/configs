@@ -167,6 +167,11 @@ lspconfig.terraformls.setup({
 	on_attach = custom_on_attach,
 })
 
+lspconfig.ltex.setup({
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
+})
+
 -- lspconfig.tailwindcss.setup {
 --   capabilities = capabilities,
 --   on_attach = custom_on_attach,
