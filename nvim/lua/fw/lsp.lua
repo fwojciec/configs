@@ -169,7 +169,15 @@ lspconfig.terraformls.setup({
 
 lspconfig.ltex.setup({
 	capabilities = capabilities,
-	on_attach = custom_on_attach,
+	on_attach = function(client, bufnr)
+		require("ltex_extra").setup({
+			load_langs = { "en-US", "pl-PL" },
+			init_check = true,
+			path = "/Users/filip/.config/nvim/ltex",
+			log_level = "none",
+		})
+		custom_on_attach(client, bufnr)
+	end,
 })
 
 -- lspconfig.tailwindcss.setup {
