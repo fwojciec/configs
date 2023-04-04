@@ -140,6 +140,11 @@ lspconfig.cssls.setup({
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
+	settings = {
+		yaml = {
+			keyOrdering = false,
+		},
+	},
 })
 
 lspconfig.bufls.setup({
