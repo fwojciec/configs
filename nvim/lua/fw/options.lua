@@ -19,7 +19,8 @@ vim.opt.scrolloff = 5
 vim.opt.completeopt = "menuone,noselect"
 vim.o.updatetime = 250
 vim.opt.signcolumn = "number"
-vim.opt.title = false
+vim.opt.titlestring = "nvim: %t"
+vim.opt.title = true
 vim.opt.inccommand = "split"
 -- vim.opt.path:append("**")
 vim.opt.laststatus = 3
