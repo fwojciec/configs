@@ -45,4 +45,16 @@ require("packer").startup(function(use)
 	use("mhartington/formatter.nvim")
 	use("github/copilot.vim")
 	use("barreiroleo/ltex_extra.nvim")
+
+	use({
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup()
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
 end)
