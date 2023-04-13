@@ -50,27 +50,41 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 -- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+-- local runtime_path = vim.split(package.path, ";")
+-- table.insert(runtime_path, "lua/?.lua")
+-- table.insert(runtime_path, "lua/?/init.lua")
+
+-- lspconfig.lua_ls.setup({
+-- 	on_attach = custom_on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		Lua = {
+-- 			runtime = {
+-- 				version = "LuaJIT",
+-- 				path = runtime_path,
+-- 			},
+-- 			diagnostics = {
+-- 				globals = { "vim", "redis", "RELOAD" },
+-- 			},
+-- 			workspace = {
+-- 				library = vim.api.nvim_get_runtime_file("", true),
+-- 				checkThirdParty = false,
+-- 			},
+-- 			telemetry = { enable = false },
+-- 		},
+-- 	},
+-- })
+
+require("neodev").setup({})
 
 lspconfig.lua_ls.setup({
 	on_attach = custom_on_attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
-			runtime = {
-				version = "LuaJIT",
-				path = runtime_path,
+			completion = {
+				callSnippet = "Replace",
 			},
-			diagnostics = {
-				globals = { "vim", "redis", "RELOAD" },
-			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
-			},
-			telemetry = { enable = false },
 		},
 	},
 })

@@ -22,6 +22,7 @@ require("packer").startup(function(use)
 		},
 	})
 	use("neovim/nvim-lspconfig")
+	use("folke/neodev.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
 	use({
@@ -45,4 +46,6 @@ require("packer").startup(function(use)
 	use("mhartington/formatter.nvim")
 	use("github/copilot.vim")
 	use("barreiroleo/ltex_extra.nvim")
+
+	use("/Users/filip/code/neovim/chatgpt.nvim")
 end)

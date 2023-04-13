@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["chatgpt.nvim"] = {
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/chatgpt.nvim",
+    url = "/Users/filip/code/neovim/chatgpt.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -143,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/filip/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/Users/filip/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
