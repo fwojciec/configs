@@ -95,11 +95,11 @@ source $ZDOTDIR/.zsh_plugins.sh
 # 	--color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
 # 	--color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
 # apprentice
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=fg:#bcbcbc,bg:#262626,hl:#5f87af
-    --color=fg+:#ececec,bg+:#1c1c1c,hl+:#87afd7
-    --color=info:#5f875f,prompt:#af5f5f,pointer:#5f875f
-    --color=marker:#87af87,spinner:#ff8700,header:#8787af'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+#     --color=fg:#bcbcbc,bg:#262626,hl:#5f87af
+#     --color=fg+:#ececec,bg+:#1c1c1c,hl+:#87afd7
+#     --color=info:#5f875f,prompt:#af5f5f,pointer:#5f875f
+#     --color=marker:#87af87,spinner:#ff8700,header:#8787af'
 # gruvbox-material
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=fg:#d4be98,bg:#1d2021,hl:#7daea3
