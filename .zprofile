@@ -22,8 +22,8 @@ export ZSH_PYENV_LAZY_VIRTUALENV=true
 export PYENV_VIRTUALENV_DISABLE_PROMPT=true
 
 # Lazy load nvm
-export NVM_COMPLETION=false
-export NVM_LAZY_LOAD=true
+# export NVM_COMPLETION=false
+# export NVM_LAZY_LOAD=true
 
 # neovim path
 # export PATH=$HOME/temp/neovim/build/bin:$PATH
