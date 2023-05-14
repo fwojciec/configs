@@ -116,3 +116,6 @@ eval "$(starship init zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# fnm
+eval "$(fnm env --use-on-cd)"
