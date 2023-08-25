@@ -151,6 +151,13 @@ lspconfig.cssls.setup({
 	on_attach = custom_on_attach,
 })
 
+lspconfig.helm_ls.setup({
+	filetypes = { "helm" },
+	cmd = { "helm-ls", "serve" },
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
+})
+
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
@@ -197,6 +204,11 @@ lspconfig.ltex.setup({
 		})
 		custom_on_attach(client, bufnr)
 	end,
+})
+
+require("lspconfig").bashls.setup({
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
 })
 
 -- lspconfig.tailwindcss.setup {

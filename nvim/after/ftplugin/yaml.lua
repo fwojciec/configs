@@ -1,4 +1,4 @@
--- vim.b.indent_blankline_enabled = 1
+vim.b.indent_blankline_enabled = 1
 
 -- local yamlGrp = vim.api.nvim_create_augroup("YamlGroup", { clear = true })
 -- vim.api.nvim_create_autocmd("BufWritePre", {

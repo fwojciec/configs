@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 # Don't print a new line at the start of the prompt
 add_newline = false
 
@@ -6,7 +8,7 @@ add_newline = false
 # error_symbol = "[‣](bold red)"
 
 [line_break]
-disabled = true
+disabled = false
 
 [cmd_duration]
 disabled = true
@@ -54,7 +56,9 @@ disabled = true
 disabled = true
 
 [gcloud]
-disabled = true
+disabled = false
+format = 'on [$project]($style) '
+style = 'red bold'
 
 [golang]
 disabled = true
@@ -72,7 +76,8 @@ disabled = true
 disabled = true
 
 [kubernetes]
-disabled = true
+disabled = false
+style = 'bold blue'
 
 [nim]
 disabled = true
@@ -96,9 +101,9 @@ disabled = true
 disabled = true
 
 [python]
-disabled = true
-# symbol = ""
-# style = "bold blue"
+disabled = false
+symbol = ""
+style = "bold blue"
 
 [ruby]
 disabled = true
