@@ -161,6 +161,14 @@ lspconfig.helm_ls.setup({
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
+	handlers = {
+		["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+			-- if helm file disable yalm diagnostics, since we have a helm language server enabled
+			if vim.bo.filetype ~= "helm" then
+				vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+			end
+		end,
+	},
 	settings = {
 		yaml = {
 			keyOrdering = false,
