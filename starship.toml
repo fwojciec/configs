@@ -78,6 +78,7 @@ disabled = true
 [kubernetes]
 disabled = false
 style = 'bold blue'
+symbol = ''
 
 [nim]
 disabled = true
