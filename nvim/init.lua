@@ -12,6 +12,7 @@ require("fw.treesitter")
 require("fw.telescope")
 require("fw.lualine")
 require("fw.formatter")
+require("fw.nx")
 
 -- development
 -- require("testrunner")
