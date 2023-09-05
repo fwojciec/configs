@@ -43,11 +43,13 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+local default_diagnostic_handler = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = false,
-	underline = false,
+	underline = true,
 	signs = true,
 })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = default_diagnostic_handler
 
 -- Make runtime files discoverable to the server
 -- local runtime_path = vim.split(package.path, ";")
@@ -162,10 +164,10 @@ lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 	handlers = {
-		["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+		["textDocument/publishDiagnostics"] = function(_, _, _, _)
 			-- if helm file disable yalm diagnostics, since we have a helm language server enabled
 			if vim.bo.filetype ~= "helm" then
-				vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+				return default_diagnostic_handler
 			end
 		end,
 	},
