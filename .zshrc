@@ -110,6 +110,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 # gcloud
 if [ -f '/Users/filip/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/Users/filip/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Starship prompt
 eval "$(starship init zsh)"
