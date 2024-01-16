@@ -1,0 +1,39 @@
+import = ["/Users/filip/.config/alacritty/gruvbox-material-alacritty.toml"]
+
+[font]
+size = 18
+
+[font.bold]
+family = "Iosevka Term"
+style = "Semibold"
+
+[font.bold_italic]
+family = "Iosevka Term"
+style = "Semibold Oblique"
+
+[font.glyph_offset]
+x = 0
+y = 3
+
+[font.italic]
+family = "Iosevka Term"
+style = "Regular Oblique"
+
+[font.normal]
+family = "Iosevka Term"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 2
+
+[window]
+dynamic_padding = true
+
+[window.dimensions]
+columns = 180
+lines = 40
+
+[window.padding]
+x = 3
+y = 3

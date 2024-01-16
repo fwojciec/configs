@@ -31,7 +31,6 @@ require("packer").startup(function(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
 		requires = {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
@@ -49,5 +48,7 @@ require("packer").startup(function(use)
 	use("romainl/Apprentice")
 	use("mrjosh/helm-ls")
 	use("Equilibris/nx.nvim")
+	use("ahmedkhalf/project.nvim")
+
 	-- use("/Users/filip/code/neovim/chatgpt.nvim")
 end)

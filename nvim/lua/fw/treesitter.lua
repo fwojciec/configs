@@ -1,4 +1,5 @@
 require("nvim-treesitter.configs").setup({
+	auto_install = false,
 	sync_install = false,
 	autopairs = {
 		enable = true,
@@ -8,7 +9,7 @@ require("nvim-treesitter.configs").setup({
 		-- disable = { "lua", "typescript", "go" },
 		-- additional_vim_regex_highlighting = false,
 	},
-	indent = { enable = true, disable = {} },
+	indent = { enable = true, disable = { "typescript" } },
 	-- context_commentstring = {
 	--   enable = true,
 	--   enable_autocmd = false,

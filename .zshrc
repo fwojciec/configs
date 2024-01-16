@@ -16,6 +16,7 @@ setopt HIST_IGNORE_SPACE
 
 # aliases
 alias cls="clear"
+# alias argocd="argocd --grpc-web"
 
 # MacOS specific aliases (i.e. don't use these when on a linux system via ssh)
 if [[ "$(uname)" = "Darwin" ]]; then
@@ -114,7 +115,12 @@ if [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]; then . "$(brew
 if [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Starship prompt
-eval "$(starship init zsh)"
+type starship_zle-keymap-select >/dev/null || \
+  {
+    eval "$(starship init zsh)"
+  }
+
+# eval "$(starship init zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"

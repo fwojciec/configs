@@ -135,7 +135,7 @@ lspconfig.eslint.setup({
 		},
 	},
 	on_attach = custom_on_attach,
-	root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js"),
+	root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js", ".eslintrc.json"),
 })
 
 lspconfig.jsonls.setup({
@@ -153,12 +153,12 @@ lspconfig.cssls.setup({
 	on_attach = custom_on_attach,
 })
 
-lspconfig.helm_ls.setup({
-	filetypes = { "helm" },
-	cmd = { "helm-ls", "serve" },
-	capabilities = capabilities,
-	on_attach = custom_on_attach,
-})
+-- lspconfig.helm_ls.setup({
+-- 	filetypes = { "helm" },
+-- 	cmd = { "helm-ls", "serve" },
+-- 	capabilities = capabilities,
+-- 	on_attach = custom_on_attach,
+-- })
 
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
