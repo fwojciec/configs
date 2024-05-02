@@ -47,7 +47,6 @@ require("packer").startup(function(use)
 	use("barreiroleo/ltex_extra.nvim")
 	use("romainl/Apprentice")
 	use("mrjosh/helm-ls")
-	use("Equilibris/nx.nvim")
 	use("ahmedkhalf/project.nvim")
 
 	-- use("/Users/filip/code/neovim/chatgpt.nvim")

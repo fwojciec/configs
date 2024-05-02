@@ -16,6 +16,7 @@ require("formatter").setup({
 				}
 			end,
 		},
+		python = { require("formatter.filetypes.python").ruff },
 		sh = { require("formatter.filetypes.sh").shfmt },
 		sql = { require("formatter.filetypes.sql").pgformat },
 		terraform = {
@@ -42,6 +43,7 @@ require("formatter").setup({
 		javascriptreact = { require("formatter.filetypes.javascriptreact").prettierd },
 		yaml = { require("formatter.filetypes.yaml").prettierd },
 		zig = { require("formatter.filetypes.zig").zigfmt },
+		rust = { require("formatter.filetypes.rust").rustfmt },
 		["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
 	},
 })

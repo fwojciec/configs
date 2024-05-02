@@ -163,6 +163,7 @@ lspconfig.cssls.setup({
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
+	root_dir = lspconfig.util.root_pattern("Chart.yaml", ".eslintrc.js", ".eslintrc.json"),
 	handlers = {
 		["textDocument/publishDiagnostics"] = function(_, _, _, _)
 			-- if helm file disable yalm diagnostics, since we have a helm language server enabled
@@ -199,6 +200,23 @@ lspconfig.ccls.setup({
 })
 
 lspconfig.terraformls.setup({
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
+})
+
+lspconfig.rust_analyzer.setup({
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
+	cmd = { "/Users/filip/.rustup/toolchains/stable-aarch64-apple-darwin/bin/rust-analyzer" },
+})
+
+lspconfig.pyright.setup({
+	capabilities = capabilities,
+	on_attach = custom_on_attach,
+	root_dir = lspconfig.util.root_pattern("pyrightconfig.json", "pyproject.toml"),
+})
+
+lspconfig.ruff_lsp.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 })

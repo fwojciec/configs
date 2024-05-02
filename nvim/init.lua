@@ -12,7 +12,6 @@ require("fw.treesitter")
 require("fw.telescope")
 require("fw.lualine")
 require("fw.formatter")
-require("fw.nx")
 require("fw.ibl")
 require("fw.project")
 

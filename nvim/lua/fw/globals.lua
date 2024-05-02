@@ -4,14 +4,16 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
+vim.g["test#strategy"] = "neovim"
+vim.g["test#python#runner"] = "pytest"
 
 vim.g.markdown_fenced_languages = {
-  "ts=typescript"
+	"ts=typescript",
 }
 
 function RELOAD(pkg)
-  package.loaded[pkg] = nil
-  require(pkg)
+	package.loaded[pkg] = nil
+	require(pkg)
 end
 
 -- indentline
