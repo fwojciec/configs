@@ -1,4 +1,4 @@
-require("fw.packer")
+require("fw.lazy")
 require("fw.options")
 require("fw.globals")
 require("fw.keymaps")
