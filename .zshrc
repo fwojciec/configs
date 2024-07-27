@@ -20,7 +20,7 @@ alias cls="clear"
 
 # MacOS specific aliases (i.e. don't use these when on a linux system via ssh)
 if [[ "$(uname)" = "Darwin" ]]; then
-    alias ls="exa --group-directories-first"
+    alias ls="eza --group-directories-first"
 fi
 
 # history search
