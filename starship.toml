@@ -123,3 +123,5 @@ disabled = true
 
 [zig]
 disabled = true
+
+command_timeout = 2000

@@ -45,8 +45,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local default_diagnostic_handler = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = false,
-	underline = true,
-	signs = true,
+	-- underline = true,
+	-- signs = true,
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = default_diagnostic_handler
