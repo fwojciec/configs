@@ -9,7 +9,7 @@ require("nvim-treesitter.configs").setup({
 		-- disable = { "lua", "typescript", "go" },
 		-- additional_vim_regex_highlighting = false,
 	},
-	indent = { enable = false },
+	indent = { enable = true },
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false,
