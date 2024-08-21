@@ -32,6 +32,7 @@ require("lazy").setup({
 	"tpope/vim-unimpaired",
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
+	"tpope/vim-abolish",
 	"vim-test/vim-test",
 	"neovim/nvim-lspconfig",
 	"folke/neodev.nvim",

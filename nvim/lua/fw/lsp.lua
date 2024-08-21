@@ -27,29 +27,13 @@ local function custom_on_attach(client, bufnr)
 		client.server_capabilities.semanticTokensProvider = nil
 	end
 
-	-- if client.server_capabilities.documentFormattingProvider then
-	--   vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
-
-	--   local fmtGrp = vim.api.nvim_create_augroup("AutoFormatGroup", { clear = true })
-	--   vim.api.nvim_create_autocmd("BufWritePre", {
-	--     group = fmtGrp,
-	--     buffer = bufnr,
-	--     callback = function()
-	--       format_callback(bufnr, false)
-	--     end,
-	--   })
-	-- end
+	vim.diagnostic.config({
+		virtual_text = false,
+	})
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-local default_diagnostic_handler = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = false,
-	-- underline = true,
-	-- signs = true,
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = default_diagnostic_handler
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Make runtime files discoverable to the server
 -- local runtime_path = vim.split(package.path, ";")
