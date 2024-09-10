@@ -103,7 +103,7 @@ lspconfig.gopls.setup({
 -- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 -- })
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 	root_dir = lspconfig.util.root_pattern("package.json"),
@@ -148,14 +148,6 @@ lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 	root_dir = lspconfig.util.root_pattern("Chart.yaml", ".eslintrc.js", ".eslintrc.json"),
-	handlers = {
-		["textDocument/publishDiagnostics"] = function(_, _, _, _)
-			-- if helm file disable yalm diagnostics, since we have a helm language server enabled
-			if vim.bo.filetype ~= "helm" then
-				return default_diagnostic_handler
-			end
-		end,
-	},
 	settings = {
 		yaml = {
 			keyOrdering = false,
