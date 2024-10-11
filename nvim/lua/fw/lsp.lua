@@ -78,23 +78,6 @@ lspconfig.lua_ls.setup({
 lspconfig.gopls.setup({
 	on_attach = custom_on_attach,
 	capabilities = capabilities,
-	settings = {
-		gopls = {
-			["build.directoryFilters"] = { "+/opt/homebrew/Cellar/go" },
-			["ui.completion.experimentalPostfixCompletions"] = true,
-			["ui.diagnostic.analyses"] = {
-				unusedparams = true,
-				shadow = true,
-				nilness = true,
-				unusedwrite = true,
-				useany = true,
-			},
-			["ui.completion.usePlaceholders"] = true,
-			["ui.diagnostic.staticcheck"] = true,
-			["ui.semanticTokens"] = true,
-		},
-		["go.autocompleteUnimportedPackages"] = true,
-	},
 })
 
 -- lspconfig.denols.setup({

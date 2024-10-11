@@ -1,11 +1,11 @@
 local cmp = require("cmp")
 
 cmp.setup({
-	-- snippet = {
-	--   expand = function(args)
-	--     require("luasnip").lsp_expand(args.body)
-	--   end,
-	-- },
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
 	mapping = {
 		["<C-x><C-o>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i", "c" }),
@@ -29,7 +29,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		-- { name = "luasnip" },
+		{ name = "luasnip" },
 		{
 			name = "buffer",
 			option = {
