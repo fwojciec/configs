@@ -138,7 +138,7 @@ lspconfig.yamlls.setup({
 	},
 })
 
-lspconfig.bufls.setup({
+lspconfig.buf_ls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 })
@@ -175,7 +175,7 @@ lspconfig.pyright.setup({
 	root_dir = lspconfig.util.root_pattern("pyrightconfig.json", "pyproject.toml"),
 })
 
-lspconfig.ruff_lsp.setup({
+lspconfig.ruff.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 })

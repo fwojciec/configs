@@ -56,7 +56,6 @@ require("lazy").setup({
 	"mrjosh/helm-ls",
 	-- "ahmedkhalf/project.nvim",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	"madox2/vim-ai",
 })
 
 -- require("packer").startup(function(use)
