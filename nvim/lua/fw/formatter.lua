@@ -4,9 +4,9 @@ require("formatter").setup({
 	filetype = {
 		c = { require("formatter.filetypes.c").clangformat },
 		go = { require("formatter.filetypes.go").goimports },
-		json = { require("formatter.filetypes.json").prettierd },
+		json = { require("formatter.filetypes.json").prettier },
 		lua = { require("formatter.filetypes.lua").stylua },
-		markdown = { require("formatter.filetypes.markdown").prettierd },
+		markdown = { require("formatter.filetypes.markdown").prettier },
 		proto = {
 			function()
 				return {
@@ -37,11 +37,11 @@ require("formatter").setup({
 				}
 			end,
 		},
-		typescript = { require("formatter.filetypes.typescript").prettierd },
-		typescriptreact = { require("formatter.filetypes.typescriptreact").prettierd },
-		javascript = { require("formatter.filetypes.javascript").prettierd },
-		javascriptreact = { require("formatter.filetypes.javascriptreact").prettierd },
-		yaml = { require("formatter.filetypes.yaml").prettierd },
+		typescript = { require("formatter.filetypes.typescript").prettier },
+		typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
+		javascript = { require("formatter.filetypes.javascript").prettier },
+		javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
+		yaml = { require("formatter.filetypes.yaml").prettier },
 		zig = { require("formatter.filetypes.zig").zigfmt },
 		rust = { require("formatter.filetypes.rust").rustfmt },
 		["*"] = { require("formatter.filetypes.any").remove_trailing_whitespace },
