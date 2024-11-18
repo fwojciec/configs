@@ -27,29 +27,13 @@ local function custom_on_attach(client, bufnr)
 		client.server_capabilities.semanticTokensProvider = nil
 	end
 
-	-- if client.server_capabilities.documentFormattingProvider then
-	--   vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
-
-	--   local fmtGrp = vim.api.nvim_create_augroup("AutoFormatGroup", { clear = true })
-	--   vim.api.nvim_create_autocmd("BufWritePre", {
-	--     group = fmtGrp,
-	--     buffer = bufnr,
-	--     callback = function()
-	--       format_callback(bufnr, false)
-	--     end,
-	--   })
-	-- end
+	vim.diagnostic.config({
+		virtual_text = false,
+	})
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-local default_diagnostic_handler = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = false,
-	underline = true,
-	signs = true,
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = default_diagnostic_handler
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Make runtime files discoverable to the server
 -- local runtime_path = vim.split(package.path, ";")
@@ -94,23 +78,6 @@ lspconfig.lua_ls.setup({
 lspconfig.gopls.setup({
 	on_attach = custom_on_attach,
 	capabilities = capabilities,
-	settings = {
-		gopls = {
-			["build.directoryFilters"] = { "+/opt/homebrew/Cellar/go" },
-			["ui.completion.experimentalPostfixCompletions"] = true,
-			["ui.diagnostic.analyses"] = {
-				unusedparams = true,
-				shadow = true,
-				nilness = true,
-				unusedwrite = true,
-				useany = true,
-			},
-			["ui.completion.usePlaceholders"] = true,
-			["ui.diagnostic.staticcheck"] = true,
-			["ui.semanticTokens"] = true,
-		},
-		["go.autocompleteUnimportedPackages"] = true,
-	},
 })
 
 -- lspconfig.denols.setup({
@@ -119,7 +86,7 @@ lspconfig.gopls.setup({
 -- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 -- })
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 	root_dir = lspconfig.util.root_pattern("package.json"),
@@ -164,14 +131,6 @@ lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	on_attach = custom_on_attach,
 	root_dir = lspconfig.util.root_pattern("Chart.yaml", ".eslintrc.js", ".eslintrc.json"),
-	handlers = {
-		["textDocument/publishDiagnostics"] = function(_, _, _, _)
-			-- if helm file disable yalm diagnostics, since we have a helm language server enabled
-			if vim.bo.filetype ~= "helm" then
-				return default_diagnostic_handler
-			end
-		end,
-	},
 	settings = {
 		yaml = {
 			keyOrdering = false,

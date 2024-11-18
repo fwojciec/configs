@@ -20,8 +20,8 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			-- "L3MON4D3/LuaSnip",
-			-- "saadparwaiz1/cmp_luasnip",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
 		},
 	},
 	"sainnhe/gruvbox-material",
@@ -32,6 +32,7 @@ require("lazy").setup({
 	"tpope/vim-unimpaired",
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
+	"tpope/vim-abolish",
 	"vim-test/vim-test",
 	"neovim/nvim-lspconfig",
 	"folke/neodev.nvim",
@@ -55,6 +56,7 @@ require("lazy").setup({
 	"mrjosh/helm-ls",
 	-- "ahmedkhalf/project.nvim",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	"madox2/vim-ai",
 })
 
 -- require("packer").startup(function(use)
