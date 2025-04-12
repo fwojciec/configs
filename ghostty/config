@@ -1,0 +1,12 @@
+font-family = "Iosevka Term"
+font-family-bold = "Iosevka Term Semibold"
+font-family-italic = "Iosevka Semibold Italic"
+font-family-bold-italic = "Iosevka Term Semibold Italic"
+font-size = 17
+theme = "gruvbox-material-2"
+window-padding-x = 4
+window-padding-y = 4
+maximize = "true"
+font-thicken = "true"
+font-thicken-strength = 16
+adjust-cursor-thickness = 3
