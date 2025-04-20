@@ -52,11 +52,6 @@ require("lazy").setup({
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy", -- Load after startup
-		dependencies = { "nvim-tree/nvim-web-devicons" }, -- Optional: for icons
-		opts = {
-			-- Lualine options go here
-			-- options = { theme = 'auto' }, -- Example
-		},
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
