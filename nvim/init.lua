@@ -13,6 +13,7 @@ require("fw.telescope")
 require("fw.lualine")
 require("fw.formatter")
 require("fw.ibl")
+require("fw.cc")
 -- require("fw.project")
 
 -- development

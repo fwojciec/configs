@@ -1,3 +1,4 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({
@@ -13,101 +14,155 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
+		"nvim-lua/plenary.nvim",
+		lazy = true,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPre", "BufNewFile" },
+		build = ":TSUpdate",
+	},
+
+	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
+			{ "hrsh7th/cmp-buffer", event = "InsertEnter" },
+			{ "hrsh7th/cmp-path", event = "InsertEnter" },
+			{ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
+			{ "hrsh7th/cmp-nvim-lua", event = "InsertEnter" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
 		},
 	},
-	"sainnhe/gruvbox-material",
-	"folke/tokyonight.nvim",
-	"tpope/vim-commentary",
-	"tpope/vim-surround",
-	"tpope/vim-repeat",
-	"tpope/vim-unimpaired",
-	"tpope/vim-fugitive",
-	"tpope/vim-rhubarb",
-	"tpope/vim-abolish",
-	"vim-test/vim-test",
-	"neovim/nvim-lspconfig",
-	"folke/neodev.nvim",
+
+	-- == LSP ==
+	{
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			{ "folke/neodev.nvim", config = true },
+		},
+		config = function()
+			-- LSP setup goes here (attach servers, keymaps)
+			-- Example: require('lspconfig').gopls.setup{}
+		end,
+	},
+
+	-- == UI / UX ==
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy", -- Load after startup
+		dependencies = { "nvim-tree/nvim-web-devicons" }, -- Optional: for icons
+		opts = {
+			-- Lualine options go here
+			-- options = { theme = 'auto' }, -- Example
+		},
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPre", "BufNewFile" }, -- Load early for visual consistency
+		main = "ibl", -- Specify the main module for better lazy-loading
+		opts = {
+			-- Indent-blankline options
+			-- scope = { enabled = false }, -- Example
+		},
+	},
+	{
+		"OXY2DEV/markview.nvim",
+		ft = { "markdown", "codecompanion" }, -- Load only for markdown or codecompanion buffers
+		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- Ensure Treesitter is loaded
+		opts = {
+			preview = {
+				filetypes = { "markdown", "codecompanion" }, -- Redundant due to `ft` trigger, but harmless
+				ignore_buftypes = {},
+			},
+			-- Add other markview options if needed
+		},
+	},
+
+	-- == Themes == (Load early, set priority)
+	{
+		"sainnhe/gruvbox-material",
+		priority = 1000,
+		config = function() --[[ vim.cmd.colorscheme "gruvbox-material" ]]
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		priority = 1000,
+		config = function() --[[ vim.cmd.colorscheme "tokyonight" ]]
+		end,
+	},
+	{
+		"romainl/Apprentice",
+		priority = 1000,
+		config = function() --[[ vim.cmd.colorscheme "apprentice" ]]
+		end,
+	},
+	-- Add a line here after lazy.setup to set your desired colorscheme, e.g.:
+	-- vim.cmd.colorscheme "tokyonight"
+
+	-- == Telescope ==
 	{
 		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope", -- Load when :Telescope is called
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			"nvim-lua/plenary.nvim", -- Already listed above, lazy.nvim handles it
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
+		config = function()
+			-- Telescope setup and keymaps go here
+			-- Example: require('telescope').setup { ... }
+		end,
 	},
-	"nvim-lualine/lualine.nvim",
-	"towolf/vim-helm",
-	"lukas-reineke/indent-blankline.nvim",
-	"cappyzawa/starlark.vim",
-	-- "rafamadriz/friendly-snippets",
-	"christianrondeau/vim-base64",
-	"mhartington/formatter.nvim",
-	"github/copilot.vim",
-	"barreiroleo/ltex_extra.nvim",
-	"romainl/Apprentice",
-	"mrjosh/helm-ls",
+
+	-- == Tim Pope Classics (Generally load on demand) ==
+	{ "tpope/vim-commentary", event = "VeryLazy" }, -- Or use `keys` if you map `gc` etc.
+	{ "tpope/vim-surround", event = "VeryLazy" }, -- Needs setup or keymaps to trigger loading if using `keys`
+	{ "tpope/vim-repeat", event = "VeryLazy" }, -- Often used with surround/commentary
+	{ "tpope/vim-unimpaired", event = "VeryLazy" }, -- Or use `keys` for its mappings
+	{ "tpope/vim-fugitive", cmd = { "Git", "G" } }, -- Load on Git commands
+	{ "tpope/vim-rhubarb", dependencies = { "tpope/vim-fugitive" }, event = "VeryLazy" }, -- Enhances fugitive
+	{ "tpope/vim-abolish", cmd = { "Abolish", "Subvert" }, event = "VeryLazy" }, -- Load on commands or lazily
+
+	-- == Development / Utility ==
+	{ "vim-test/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite" } }, -- Load on test commands
+	{
+		"mhartington/formatter.nvim",
+		event = "BufWritePre", -- Example: Load when saving a buffer to format
+		-- Or use cmd = "Format" if you format manually
+		config = function()
+			-- Formatter setup goes here
+			-- Example: require('formatter').setup { ... }
+		end,
+	},
+	{ "christianrondeau/vim-base64", cmd = { "Base64Encode", "Base64Decode" } }, -- Load on command
+
+	-- == AI / Assistance ==
+	{ "github/copilot.vim", event = "VeryLazy" }, -- Load after startup
+	{
+		"olimorris/codecompanion.nvim",
+		-- Using the specific branch as in original config
+		branch = "feat/move-to-function-calling",
+		cmd = { "CodeCompanion" }, -- Load when CodeCompanion command is used
+		-- Dependencies are implicitly handled by lazy.nvim (plenary, treesitter)
+		-- Explicitly listing them is fine too if needed for clarity or specific dep config
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+		opts = {}, -- Keep existing opts
+		-- config = function() ... end -- Add config if needed
+	},
+
+	-- == Language Specific ==
+	{ "towolf/vim-helm", ft = "helm" }, -- Load for Helm files
+	{ "cappyzawa/starlark.vim", ft = "starlark" }, -- Load for Starlark files
+	{ "mrjosh/helm-ls", ft = "helm" }, -- Load for Helm files (likely related to LSP/helm)
+	{ "barreiroleo/ltex_extra.nvim", ft = { "markdown", "tex", "plaintex" } }, -- Load for text/markup files
+
+	-- == Commented Out / Unused ==
+	-- "rafamadriz/friendly-snippets", -- Now potentially a dependency of LuaSnip
 	-- "ahmedkhalf/project.nvim",
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	-- {
-	-- 	"yetone/avante.nvim",
-	-- 	event = "VeryLazy",
-	-- 	lazy = true,
-	-- 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-	-- 	opts = {
-	-- 		provider = "openai",
-	-- 		openai = {
-	-- 			endpoint = "https://api.openai.com/v1",
-	-- 			model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-	-- 			timeout = 30000, -- timeout in milliseconds
-	-- 			temperature = 0, -- adjust if needed
-	-- 			max_tokens = 4096,
-	-- 		},
-	-- 	},
-	-- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-	-- 	build = "make",
-	-- 	dependencies = {
-	-- 		"stevearc/dressing.nvim",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		{
-	-- 			-- support for image pasting
-	-- 			"HakonHarnes/img-clip.nvim",
-	-- 			event = "VeryLazy",
-	-- 			opts = {
-	-- 				default = {
-	-- 					embed_image_as_base64 = false,
-	-- 					prompt_for_file_name = false,
-	-- 					drag_and_drop = {
-	-- 						insert_mode = true,
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 		{
-	-- 			-- Make sure to set this up properly if you have lazy=true
-	-- 			"MeanderingProgrammer/render-markdown.nvim",
-	-- 			opts = {
-	-- 				file_types = { "markdown", "Avante" },
-	-- 			},
-	-- 			ft = { "markdown", "Avante" },
-	-- 		},
-	-- 	},
-	-- },
 })
 
--- require("packer").startup(function(use)
--- 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
--- 	use("nvim-treesitter/playground")
--- 	use({
--- 		"nvim-treesitter/nvim-treesitter-textobjects",
--- 		after = "nvim-treesitter",
--- 	})
--- end)
+-- Set your preferred colorscheme AFTER lazy setup
+-- This ensures the theme plugin has been loaded (due to priority=1000)
+-- vim.cmd.colorscheme "tokyonight" -- Example, uncomment and choose one
