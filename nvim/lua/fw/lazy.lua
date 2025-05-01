@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({
@@ -6,7 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
+		"--branch=stable", -- latest stable release
 		lazypath,
 	})
 end
@@ -14,87 +13,66 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
-		"nvim-lua/plenary.nvim",
-		lazy = true,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPre", "BufNewFile" },
-		build = ":TSUpdate",
-	},
-	{
-		"saghen/blink.cmp",
-		event = "InsertEnter",
-		version = "1.*",
+		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"rafamadriz/friendly-snippets",
-		},
-		opts = {
-			keymap = { preset = "default" },
-			appearance = {
-				nerd_font_variant = "mono",
-			},
-			completion = {
-				menu = { border = "single" },
-				documentation = { window = { border = "single" }, auto_show = false },
-			},
-			fuzzy = {
-				implementation = "prefer_rust_with_warning",
-			},
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
 		},
 	},
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "folke/neodev.nvim", config = true },
-		},
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		main = "ibl",
-	},
-
-	{
-		"sainnhe/gruvbox-material",
-		priority = 1000,
-	},
-
+	"sainnhe/gruvbox-material",
+	"folke/tokyonight.nvim",
+	"tpope/vim-commentary",
+	"tpope/vim-surround",
+	"tpope/vim-repeat",
+	"tpope/vim-unimpaired",
+	"tpope/vim-fugitive",
+	"tpope/vim-rhubarb",
+	"tpope/vim-abolish",
+	"vim-test/vim-test",
+	"neovim/nvim-lspconfig",
+	"folke/neodev.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- Already listed above, lazy.nvim handles it
+			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 	},
-
-	{ "tpope/vim-commentary", event = "VeryLazy" },
-	{ "tpope/vim-surround", event = "VeryLazy" },
-	{ "tpope/vim-repeat", event = "VeryLazy" },
-	{ "tpope/vim-unimpaired", event = "VeryLazy" },
-	{ "tpope/vim-fugitive", cmd = { "Git", "G" } },
-	{ "tpope/vim-rhubarb", dependencies = { "tpope/vim-fugitive" }, event = "VeryLazy" },
-	{ "tpope/vim-abolish", cmd = { "Abolish", "Subvert" }, event = "VeryLazy" },
-
-	{ "vim-test/vim-test", cmd = { "TestNearest", "TestFile", "TestSuite" } },
-	{
-		"mhartington/formatter.nvim",
-		event = "BufWritePre",
-	},
-	{ "github/copilot.vim", event = "VeryLazy" },
+	"nvim-lualine/lualine.nvim",
+	"towolf/vim-helm",
+	"lukas-reineke/indent-blankline.nvim",
+	"cappyzawa/starlark.vim",
+	-- "rafamadriz/friendly-snippets",
+	"christianrondeau/vim-base64",
+	"mhartington/formatter.nvim",
+	"github/copilot.vim",
+	"barreiroleo/ltex_extra.nvim",
+	"romainl/Apprentice",
+	"mrjosh/helm-ls",
+	-- "ahmedkhalf/project.nvim",
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	{
 		"olimorris/codecompanion.nvim",
-		cmd = { "CodeCompanion" },
-		dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+		branch = "feat/move-to-function-calling",
+		opts = {},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
 	},
-
-	{ "towolf/vim-helm", ft = "helm" },
-	{ "cappyzawa/starlark.vim", ft = "starlark" },
-	{ "barreiroleo/ltex_extra.nvim", ft = { "markdown", "tex", "plaintex" } },
+	{
+		"OXY2DEV/markview.nvim",
+		lazy = false,
+		opts = {
+			preview = {
+				filetypes = { "markdown", "codecompanion" },
+				ignore_buftypes = {},
+			},
+		},
+	},
 })
