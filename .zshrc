@@ -120,8 +120,8 @@ type starship_zle-keymap-select >/dev/null || \
     eval "$(starship init zsh)"
   }
 
-# eval "$(starship init zsh)"
-eval "$(rye self completion -s zsh)"
+# # eval "$(starship init zsh)"
+# eval "$(rye self completion -s zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"

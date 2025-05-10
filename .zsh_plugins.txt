@@ -1,3 +1,1 @@
-davidparsson/zsh-pyenv-lazy
-ohmyzsh/ohmyzsh path:plugins/golang
 ohmyzsh/ohmyzsh path:plugins/git
