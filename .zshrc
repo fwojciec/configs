@@ -16,6 +16,9 @@ setopt HIST_IGNORE_SPACE
 
 # aliases
 alias cls="clear"
+alias gst="git status"
+alias gaa="git add --all"
+alias gc="git commit"
 # alias argocd="argocd --grpc-web"
 
 # MacOS specific aliases (i.e. don't use these when on a linux system via ssh)
@@ -68,11 +71,11 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*' file-sort modification # sort completions based on modification date
 
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
-zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+# zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+# zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+# zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
 zstyle ':completion:*' group-name ''
@@ -86,7 +89,7 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # Antibody static plugins
-source $ZDOTDIR/.zsh_plugins.sh
+# source $ZDOTDIR/.zsh_plugins.sh
 
 # FZF
 # tokyonight
@@ -109,25 +112,11 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#d8a657,spinner:#e78a4e,header:#e78a4e'
 
 # gcloud
-if [ -f '/Users/filip/code/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/filip/code/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/filip/code/google-cloud-sdk/completion.zsh.inc'; fi
 if [ -f "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc" ]; then . "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Starship prompt
-type starship_zle-keymap-select >/dev/null || \
-  {
-    eval "$(starship init zsh)"
-  }
-
-# # eval "$(starship init zsh)"
-# eval "$(rye self completion -s zsh)"
-
-# direnv
-eval "$(direnv hook zsh)"
-
-# fnm
-eval "$(fnm env --use-on-cd)"
+eval "$(starship init zsh)"
 
 # zoxide
 eval "$(zoxide init zsh)"

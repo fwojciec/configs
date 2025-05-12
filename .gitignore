@@ -6,3 +6,5 @@ nvim/ltex/*
 nvim/ltex*
 packer_compiled.lua
 nvim/lazy-lock.json
+
+**/.claude/settings.local.json
