@@ -115,6 +115,9 @@ disabled = true
 [singularity]
 disabled = true
 
+[swift]
+disabled = true
+
 [terraform]
 disabled = true
 
