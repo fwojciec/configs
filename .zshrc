@@ -13,6 +13,8 @@ SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_REDUCE_BLANKS
 
 # aliases
 alias cls="clear"
@@ -58,6 +60,8 @@ _comp_options+=(globdots)   # With hidden files
 # setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
 setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
+setopt AUTO_PUSHD           # Push dirs onto stack automatically
+setopt PUSHD_SILENT         # Don't print dir stack after pushd/popd
 
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
@@ -68,6 +72,7 @@ zle -C alias-expension complete-word _generic
 zstyle ':completion:alias-expension:*' completer _expand_alias
 
 zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors 'ma=0;30;47'
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*' file-sort modification # sort completions based on modification date
 
@@ -121,5 +126,36 @@ eval "$(starship init zsh)"
 # zoxide
 eval "$(zoxide init zsh)"
 
+# syntax highlighting & autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#808080'
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# disable underline on paths
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
+
 # direnv
 eval "$(direnv hook zsh)"
+
+
+alias claude="$HOME/.claude/local/claude"
+
+# extract archives
+extract() {
+  if [[ -f "$1" ]]; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.tar.xz)  tar xJf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *) echo "Unknown archive format" ;;
+    esac
+  fi
+}
+
+# Added by Antigravity
+export PATH="/Users/filip/.antigravity/antigravity/bin:$PATH"
